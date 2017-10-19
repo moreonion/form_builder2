@@ -1,7 +1,7 @@
 {
-  "name": "form-builder-2",
-  "description": "More Onion Form-Builder-2 Prototype",
-  "version": "1.0.0",
+  "name": "mo-form-builder-2",
+  "description": "More Onion: Form Builder v2 Prototype",
+  "version": "0.1.0",
   "author": "Onur D. <contact@dinony.com>",
   "private": true,
   "scripts": {
