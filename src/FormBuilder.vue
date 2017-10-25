@@ -1,15 +1,14 @@
 <template>
   <div>
-    <el-button>ello</el-button>
+    <el-button>form builder</el-button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app',
+  name: 'mo-form-builder',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
     }
   }
 }
