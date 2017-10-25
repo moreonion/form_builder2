@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import {
-  Button
+  Row, Col
 } from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 
@@ -9,4 +9,5 @@ import locale from 'element-ui/lib/locale'
 
 locale.use(lang)
 
-Vue.component(Button.name, Button)
+Vue.use(Row)
+Vue.use(Col)

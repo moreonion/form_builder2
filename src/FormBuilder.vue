@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <el-button>form builder</el-button>
-  </div>
+  <el-row :gutter="20">
+    <el-col :xs="24" :sm="8">Palette</el-col>
+    <el-col :xs="24" :sm="16">Builder</el-col>
+  </el-row>
 </template>
 
 <script>
