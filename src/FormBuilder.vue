@@ -6,6 +6,7 @@
       </el-col>
       <el-col :xs="24" :sm="16">
         <mo-settings></mo-settings>
+        <mo-test></mo-test>
         <mo-builder></mo-builder>
       </el-col>
     </el-row>
@@ -23,12 +24,15 @@ import Builder from './components/Builder.vue'
 import Settings from './components/Settings.vue'
 import Legend from './components/Legend.vue'
 
+import Test from './components/Test.vue'
+
 export default {
   components: {
     'mo-palette': Palette,
     'mo-builder': Builder,
     'mo-settings': Settings,
-    'mo-legend': Legend
+    'mo-legend': Legend,
+    'mo-test': Test
   },
   data () {
     return {
