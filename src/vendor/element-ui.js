@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import {
-  Row, Col, Collapse, CollapseItem
+  Row, Col, Collapse, CollapseItem,
+  Form, FormItem, Input
 } from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 
@@ -13,3 +14,6 @@ Vue.use(Row)
 Vue.use(Col)
 Vue.use(Collapse)
 Vue.use(CollapseItem)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Input)
