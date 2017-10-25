@@ -1,1 +1,1 @@
-import './vender/element-ui'
+import './vendor/element-ui'
