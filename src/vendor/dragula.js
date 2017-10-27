@@ -1,6 +1,2 @@
-import Vue from 'vue'
-import VueDragula from 'vue-dragula'
+import 'dragula/dist/dragula.css'
 
-import 'vue-dragula/styles/dragula.css'
-
-Vue.use(VueDragula)

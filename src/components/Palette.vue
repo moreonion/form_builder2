@@ -1,15 +1,34 @@
 <template>
   <el-collapse v-model="activeName" accordion>
     <el-collapse-item title="Contact record fields" name="1">
-      <el-form :model="form" v-dragula="items" bag="palette">
-        <div :key="i" v-for="(item, i) in items">{{item}}</div>
+      <el-form id="contactFields" :model="form" ref="contactFields">
+        <el-form-item label="First name">
+          <el-input></el-input>
+        </el-form-item>
+        <el-form-item label="Last name">
+          <el-input></el-input>
+        </el-form-item>
+        <el-form-item label="Salutation">
+          <el-input></el-input>
+        </el-form-item>
       </el-form>
     </el-collapse-item>
     <el-collapse-item title="General fields" name="2">
-      <div>TODO</div>
+      <el-form id="generalFields" ref="generalFields">
+        <el-form-item label="Last name">
+          <el-input></el-input>
+        </el-form-item>
+        <el-form-item label="Salutation">
+          <el-input></el-input>
+        </el-form-item>
+      </el-form>
     </el-collapse-item>
     <el-collapse-item title="Payment fields" name="3">
-      <div>TODO</div>
+      <el-form id="paymentFields" :model="form" ref="paymentFields">
+        <el-form-item label="Salutation">
+          <el-input></el-input>
+        </el-form-item>
+      </el-form>
     </el-collapse-item>
   </el-collapse>
 </template>
@@ -26,6 +45,11 @@ export default {
         'First Name',
         'Second Name'
       ]
+    }
+  },
+  mounted: function() {
+    for(let ref in this.$refs) {
+      this.$emit('append', 'left', this.$refs[ref].$el)
     }
   }
 }
