@@ -48,7 +48,7 @@ export default {
         const sourceContainer = this.drakeMap[source.id]
         const targetContainer = this.drakeMap[target.id]
         console.log(sourceContainer, targetContainer)
-        return sourceContainer !== targetContainer
+        return sourceContainer !== targetContainer || source === target
       }).bind(this), 200)
     })
   },
