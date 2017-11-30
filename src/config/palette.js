@@ -49,17 +49,24 @@ const PaletteRaw = {
   ]
 }
 
-function withIds(palette) {
+function cloneWithIds(palette) {
   let groupIdCounter = 0
   let fieldIdCounter = 0
   const groups = palette.groups
-  groups.forEach(g => {
-    g.id = groupIdCounter++
-    g.fields.forEach(f => {
-      f.id = fieldIdCounter++
+  return {
+    ...palette,
+    groups: groups.map(g => {
+      return {
+        ...g,
+        id: groupIdCounter++,
+        fields: g.fields.map(f => {
+          return {
+            ...f, id: fieldIdCounter++
+          }
+        })
+      }
     })
-  })
-  return palette
+  }
 }
 
-export const PaletteConfig = withIds(PaletteRaw)
+export const getPaletteConfig = () => cloneWithIds(PaletteRaw)
