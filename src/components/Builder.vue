@@ -12,9 +12,9 @@ export default {
     }
   },
   mounted: function() {
-    for(let ref in this.$refs) {
-      this.$emit('append', 'right', this.$refs[ref].$el)
-    }
+    // for(let ref in this.$refs) {
+    //   this.$emit('append', 'right', this.$refs[ref].$el)
+    // }
   }
 }
 </script>

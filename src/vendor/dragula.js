@@ -1,2 +1,0 @@
-import 'dragula/dist/dragula.css'
-

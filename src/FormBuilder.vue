@@ -1,12 +1,12 @@
 <template>
   <div>
     <el-row :gutter="20">
-      <el-col :xs="24" :sm="8">
-        <mo-palette @append="appendDragContainer"></mo-palette>
+      <el-col :xs="6" :sm="8">
+        <mo-palette :paletteConfig="paletteConfig"></mo-palette>
       </el-col>
-      <el-col :xs="24" :sm="16">
+      <el-col :xs="18" :sm="16">
         <mo-settings></mo-settings>
-        <mo-builder @append="appendDragContainer"></mo-builder>
+        <mo-builder></mo-builder>
       </el-col>
     </el-row>
     <el-row>
@@ -26,7 +26,7 @@ import Legend from './components/Legend.vue'
 
 import Test from './components/Test.vue'
 
-import * as dragula from 'dragula'
+import {PaletteConfig} from './config/palette'
 
 export default {
   components: {
@@ -38,24 +38,7 @@ export default {
   },
   data () {
     return {
-      drake: null,
-      drakeMap: {}
-    }
-  },
-  created: function() {
-    this.drake = dragula({
-      accepts: debounce(((el, target, source, sibling) => {
-        const sourceContainer = this.drakeMap[source.id]
-        const targetContainer = this.drakeMap[target.id]
-        console.log(sourceContainer, targetContainer)
-        return sourceContainer !== targetContainer || source === target
-      }).bind(this), 200)
-    })
-  },
-  methods: {
-    appendDragContainer(side, container) {
-      this.drakeMap[container.id] = side
-      this.drake.containers.push(container)
+      paletteConfig: PaletteConfig
     }
   }
 }
