@@ -1,20 +1,30 @@
 <template>
   <el-collapse v-model="activeName" accordion>
-    <el-collapse-item
-      :key="i" v-for="(paletteGroup, i) in paletteConfig.groups"
-      :title="paletteGroup.label" :name="i" >
-      <div class="paletteItem" :key="j" v-for="(field, j) in paletteGroup.fields">
-        {{field.label}}
-      </div>
-    </el-collapse-item>
+      <el-collapse-item :title="paletteGroup.label" :name="i"
+        :key="i" v-for="(paletteGroup, i) in paletteConfig.groups">
+        <draggable v-model="paletteConfig.groups[i].fields" :options="dndOptions">
+            <div class="paletteItem" :key="j" v-for="(field, j) in paletteGroup.fields">
+              {{field.label}}
+            </div>
+        </draggable>
+      </el-collapse-item>
   </el-collapse>
 </template>
 
 <script>
+import draggable from 'vuedraggable'
+
 export default {
+  components: {
+    draggable
+  },
   props: ['paletteConfig'],
   data () {
     return {
+      dndOptions: {
+        group: 'palette',
+        sort: false
+      },
       activeName: 0,
     }
   }

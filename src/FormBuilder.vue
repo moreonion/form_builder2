@@ -26,7 +26,7 @@ import Legend from './components/Legend.vue'
 
 import Test from './components/Test.vue'
 
-import {PaletteConfig} from './config/palette'
+import {getPaletteConfig} from './config/palette'
 
 export default {
   components: {
@@ -38,7 +38,7 @@ export default {
   },
   data () {
     return {
-      paletteConfig: PaletteConfig
+      paletteConfig: getPaletteConfig()
     }
   }
 }
