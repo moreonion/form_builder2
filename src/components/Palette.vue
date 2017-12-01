@@ -2,7 +2,12 @@
   <el-collapse v-model="activeName" accordion>
       <el-collapse-item :title="paletteGroup.label" :name="i"
         :key="i" v-for="(paletteGroup, i) in paletteConfig.groups">
-        <draggable v-model="paletteConfig.groups[i].fields" :options="dndOptions">
+        <!--<draggable v-model="paletteConfig.groups[i].fields" :options="dndOptions" @end="eventHandler">
+            <div class="paletteItem" :key="j" v-for="(field, j) in paletteGroup.fields">
+              {{field.label}}
+            </div>
+        </draggable>-->
+        <draggable :options="dndOptions" @end="eventHandler">
             <div class="paletteItem" :key="j" v-for="(field, j) in paletteGroup.fields">
               {{field.label}}
             </div>
@@ -22,10 +27,15 @@ export default {
   data () {
     return {
       dndOptions: {
-        group: 'palette',
+        group: {name: 'palette', pull: true, put: ['tree']},
         sort: false
       },
       activeName: 0,
+    }
+  },
+  methods: {
+    eventHandler(a,b,c) {
+      console.log('---- Palette: Event handler ----')
     }
   }
 }

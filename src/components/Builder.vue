@@ -2,14 +2,14 @@
   <el-row class="root">
     <el-col :span="12" class="node">
       <h1>{{formData.value}}</h1>
-      <draggable v-model="formData.children" :element="'p'" :options="{group: 'tree'}" :move="onMove" :clone="cloneFunc">
+      <draggable v-model="formData.children" :options="dndOptions" @add="eventHandler">
         <div :key="i" v-for="(page, i) in formData.children" class="node">
           <h2>{{page.value}}</h2>
-          <draggable class="node-container" v-model="page.children" :options="{group: 'tree'}">
+          <draggable class="node-container" v-model="page.children" :options="dndOptions">
             <div :key="j" v-for="(pageChild, j) in page.children">
               <div v-if="pageChild.type === 'fieldset'" class="node">
                 <h3>{{pageChild.value}}</h3>
-                <draggable class="node-container" v-model="pageChild.children" :options="{group: 'tree'}">
+                <draggable class="node-container" v-model="pageChild.children" :options="dndOptions">
                   <div :key="k" v-for="(fieldSetChild, k) in pageChild.children" >
                     <div v-if="fieldSetChild.type === 'input'" class="node">
                       <input v-model="fieldSetChild.value">
@@ -50,17 +50,17 @@ export default {
     'mo-node': Node
   },
   props: ['formData'],
-  methods: {
-    cloneFunc(orig) {
-      console.log('cloneFunc', JSON.stringify(orig))
-      return {
-        type: 'page',
-        value: 'Are you kidding me',
-        children: []
+  data() {
+    return {
+      dndOptions: {
+         group: {name: 'tree', put: ['palette'], pull: true},
+         animation: 100
       }
-    },
-    onMove(evt, originalEvent) {
-      console.log('onMove'/*, evt, originalEvent*/)
+    }
+  },
+  methods: {
+    eventHandler(a,b,c) {
+      console.log('---- Builder: Event handler ----')
     }
   }
 }
