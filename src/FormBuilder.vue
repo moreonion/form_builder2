@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-row :gutter="20">
-      <el-col :xs="6" :sm="8">
+      <el-col :xs="6" :sm="4">
         <mo-palette :paletteConfig="paletteConfig"></mo-palette>
       </el-col>
-      <el-col :xs="18" :sm="16">
+      <el-col :xs="18" :sm="20">
         <mo-settings></mo-settings>
         <mo-builder :formData="formData"></mo-builder>
       </el-col>
@@ -40,9 +40,44 @@ export default {
     return {
       paletteConfig: getPaletteConfig(),
       formData: {
+        id: 'root',
+        value: 'Hello root',
         children: [
           {
-            children: []
+            id: 'page0',
+            type: 'page',
+            value: 'Page 0',
+            children: [
+              {
+                id: 'fieldset0',
+                type: 'fieldset',
+                value: 'FieldSet :D',
+                children: [
+                  {
+                    id: 'input0',
+                    type: 'input',
+                    value: 'First name'
+                  },
+                  {
+                    id: 'input1',
+                    type: 'input',
+                    value: 'Last name'
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: 'page1',
+            type: 'page',
+            value: 'Page 1',
+            children: [
+              {
+                id: 'textarea0',
+                type: 'textarea',
+                value: 'Well :)'
+              }
+            ]
           }
         ]
       }
