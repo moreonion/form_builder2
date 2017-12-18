@@ -65,10 +65,11 @@ export default {
     eventHandler(ev, dataContainer) {
       console.log('---- Builder: Event handler ----', ev.newIndex, ev.oldIndex)
       if(ev.from.className === 'paletteWrapper') {
+        ev.to.removeChild(ev.to.children[ev.newIndex])
         const paletteModel = this.getPaletteItem(ev.oldIndex)
         const left = this.tree.children.slice(0, ev.newIndex)
         const right = this.tree.children.slice(ev.newIndex)
-        const newChildren = left.concat({id:`input${++counter}`, type: 'page', value: `Page ${paletteModel.label}`, children: []}).concat(right)
+        const newChildren = left.concat({id:`page${++counter}`, type: 'page', value: `Page ${paletteModel.label}`, children: []}).concat(right)
         this.$set(this.tree, 'children', newChildren)
       }
     }
