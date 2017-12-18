@@ -7,7 +7,7 @@
               {{field.label}}
             </div>
         </draggable>-->
-        <draggable :options="dndOptions" @end="eventHandler">
+        <draggable class="paletteWrapper" :options="dndOptions">
             <div class="paletteItem" :key="j" v-for="(field, j) in paletteGroup.fields">
               {{field.label}}
             </div>
@@ -34,7 +34,7 @@ export default {
     }
   },
   methods: {
-    eventHandler(a,b,c) {
+    eventHandler(ev) {
       console.log('---- Palette: Event handler ----')
     }
   }

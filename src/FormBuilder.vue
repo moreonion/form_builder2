@@ -6,7 +6,7 @@
       </el-col>
       <el-col :xs="18" :sm="20">
         <mo-settings></mo-settings>
-        <mo-builder :formData="formData"></mo-builder>
+        <mo-builder :formData="formData" :getPaletteItem="getPaletteItem"></mo-builder>
       </el-col>
     </el-row>
     <el-row>
@@ -28,6 +28,8 @@ import Test from './components/Test.vue'
 
 import {getPaletteConfig} from './config/palette.js'
 
+const paletteConfig = getPaletteConfig()
+
 export default {
   components: {
     'mo-palette': Palette,
@@ -38,7 +40,7 @@ export default {
   },
   data () {
     return {
-      paletteConfig: getPaletteConfig(),
+      paletteConfig,
       formData: {
         id: 'root',
         value: 'Hello root',
@@ -80,6 +82,9 @@ export default {
             ]
           }
         ]
+      },
+      getPaletteItem(index) {
+        return paletteConfig.groups[0].fields[index]
       }
     }
   }
