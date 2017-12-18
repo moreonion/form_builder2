@@ -20,32 +20,32 @@ const PaletteRaw = {
         {label: 'Newsletter'}
       ]
     },
-    {
-      label: 'General fields',
-      fields: [
-        {label: 'Textfield'},
-        {label: 'Textarea'},
-        {label: 'Number'},
-        {label: 'Radios'},
-        {label: 'Checkboxes'},
-        {label: 'Select list'},
-        {label: 'Grid'},
-        {label: 'Date'},
-        {label: 'Time'},
-        {label: 'Currency'},
-        {label: 'File'},
-        {label: 'Hidden'},
-        {label: 'Markup'},
-        {label: 'Fieldset'},
-        {label: 'Pagebreak'},
-      ]
-    },
-    {
-      label: 'Payment fields',
-      fields: [
-        {label:'Currency'}
-      ]
-    }
+    // {
+    //   label: 'General fields',
+    //   fields: [
+    //     {label: 'Textfield'},
+    //     {label: 'Textarea'},
+    //     {label: 'Number'},
+    //     {label: 'Radios'},
+    //     {label: 'Checkboxes'},
+    //     {label: 'Select list'},
+    //     {label: 'Grid'},
+    //     {label: 'Date'},
+    //     {label: 'Time'},
+    //     {label: 'Currency'},
+    //     {label: 'File'},
+    //     {label: 'Hidden'},
+    //     {label: 'Markup'},
+    //     {label: 'Fieldset'},
+    //     {label: 'Pagebreak'},
+    //   ]
+    // },
+    // {
+    //   label: 'Payment fields',
+    //   fields: [
+    //     {label:'Currency'}
+    //   ]
+    // }
   ]
 }
 
@@ -54,7 +54,6 @@ function cloneWithIds(palette) {
   let fieldIdCounter = 0
   const groups = palette.groups
   return {
-    ...palette,
     groups: groups.map(g => {
       return {
         ...g,
