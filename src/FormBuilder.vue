@@ -6,7 +6,7 @@
       </el-col>
       <el-col :xs="18" :sm="20">
         <mo-settings></mo-settings>
-        <mo-builder :formData="formData" :getPaletteItem="getPaletteItem"></mo-builder>
+        <mo-builder :rootNode="formData" :getPaletteItem="getPaletteItem"></mo-builder>
       </el-col>
     </el-row>
     <el-row>
@@ -21,7 +21,6 @@
 import debounce from 'lodash.debounce'
 
 import Palette from './components/Palette.vue'
-import Builder from './components/Builder.vue'
 import Settings from './components/Settings.vue'
 import Legend from './components/Legend.vue'
 import Test from './components/Test.vue'
@@ -33,7 +32,6 @@ const paletteConfig = getPaletteConfig()
 export default {
   components: {
     'mo-palette': Palette,
-    'mo-builder': Builder,
     'mo-settings': Settings,
     'mo-legend': Legend,
     'mo-test': Test

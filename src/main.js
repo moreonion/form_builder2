@@ -1,6 +1,7 @@
 import Vue from 'vue'
 
 import './vendor'
+import './components'
 
 import FormBuilder from './FormBuilder.vue'
 
