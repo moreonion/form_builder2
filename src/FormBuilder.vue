@@ -26,6 +26,7 @@ import Legend from './components/Legend.vue'
 import Test from './components/Test.vue'
 
 import {getPaletteConfig} from './config/palette.js'
+import initState from './config/initState.js'
 
 const paletteConfig = getPaletteConfig()
 
@@ -39,48 +40,7 @@ export default {
   data () {
     return {
       paletteConfig,
-      formData: {
-        id: 'root',
-        value: 'Hello root',
-        children: [
-          {
-            id: 'page0',
-            type: 'page',
-            value: 'Page 0',
-            children: [
-              {
-                id: 'fieldset0',
-                type: 'fieldset',
-                value: 'FieldSet :D',
-                children: [
-                  {
-                    id: 'input0',
-                    type: 'input',
-                    value: 'First name'
-                  },
-                  {
-                    id: 'input1',
-                    type: 'input',
-                    value: 'Last name'
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            id: 'page1',
-            type: 'page',
-            value: 'Page 1',
-            children: [
-              {
-                id: 'textarea0',
-                type: 'textarea',
-                value: 'Well :)'
-              }
-            ]
-          }
-        ]
-      },
+      formData: initState,
       getPaletteItem(index) {
         return paletteConfig.groups[0].fields[index]
       }
