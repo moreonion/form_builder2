@@ -23,7 +23,7 @@ import debounce from 'lodash.debounce'
 import Palette from './components/Palette.vue'
 import Settings from './components/Settings.vue'
 import Legend from './components/Legend.vue'
-import Test from './components/Test.vue'
+import Builder from './components/Builder.js'
 
 import {getPaletteConfig} from './config/palette.js'
 import initState from './config/initState.js'
@@ -32,10 +32,10 @@ const paletteConfig = getPaletteConfig()
 
 export default {
   components: {
+    'mo-builder': Builder,
     'mo-palette': Palette,
     'mo-settings': Settings,
-    'mo-legend': Legend,
-    'mo-test': Test
+    'mo-legend': Legend
   },
   data () {
     return {
