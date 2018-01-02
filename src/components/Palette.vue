@@ -8,9 +8,9 @@
             </div>
         </draggable>-->
         <draggable class="paletteWrapper" :options="dndOptions">
-            <div class="paletteItem" :key="j" v-for="(field, j) in paletteGroup.fields">
-              {{field.label}}
-            </div>
+          <div class="paletteItem" :key="j" v-for="(field, j) in paletteGroup.fields">
+            {{field.label}}
+          </div>
         </draggable>
       </el-collapse-item>
   </el-collapse>
