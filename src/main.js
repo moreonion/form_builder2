@@ -6,5 +6,7 @@ import FormBuilder from './FormBuilder.vue'
 
 new Vue({
   el: '#app',
-  render: h => h(FormBuilder)
+  render() {
+    return <FormBuilder/>
+  }
 })
