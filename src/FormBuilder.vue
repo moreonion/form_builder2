@@ -19,12 +19,10 @@
 </template>
 
 <script>
-import debounce from 'lodash.debounce'
-
 import Palette from './components/Palette.vue'
 import Settings from './components/Settings.vue'
 import Legend from './components/Legend.vue'
-import Builder from './components/Builder'
+import Builder from './components/builder/Builder'
 
 import {getPaletteConfig} from './config/palette'
 import initState from './config/initState'
