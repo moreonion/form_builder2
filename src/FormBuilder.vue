@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import Palette from './components/Palette.vue'
+import Palette from './components/palette/Palette.vue'
 import Settings from './components/Settings.vue'
 import Legend from './components/Legend.vue'
 import Builder from './components/builder/Builder'
