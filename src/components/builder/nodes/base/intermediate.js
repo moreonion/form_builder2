@@ -1,5 +1,8 @@
-export default class IntermediateNode {
+import AbstractNode from '../base/abs-node'
+
+export default class IntermediateNode extends AbstractNode {
   constructor(initChildren=[]) {
+    super()
     this.children = [...initChildren]
   }
 
@@ -12,5 +15,9 @@ export default class IntermediateNode {
     if(index !== -1) {
       this.children.splice(index, 1)
     }
+  }
+
+  renderNode() {
+    return this.children(child => child.renderNode())
   }
 }
