@@ -1,7 +1,7 @@
 import IntermediateNode from './intermediate'
 import TextFieldNode from '../general/textfield'
 
-import {BUILDER_DND_OPTIONS} from '../../../config/dnd'
+import {BUILDER_DND_OPTIONS} from '../../../../config/dnd'
 
 export default class DndNode extends IntermediateNode {
   constructor(initChildren=[], dndOptions=BUILDER_DND_OPTIONS) {
