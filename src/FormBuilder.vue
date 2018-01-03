@@ -7,13 +7,14 @@
       <el-col :xs="18" :sm="20">
         <mo-settings></mo-settings>
         <mo-builder :rootNode="formData" :getPaletteItem="getPaletteItem"></mo-builder>
+        <pre>{{formData}}</pre>
       </el-col>
     </el-row>
-    <el-row>
+    <!--<el-row>
       <el-col>
         <mo-legend></mo-legend>
       </el-col>
-    </el-row>
+    </el-row>-->
   </div>
 </template>
 
