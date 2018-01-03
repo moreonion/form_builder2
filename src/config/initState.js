@@ -1,6 +1,7 @@
-import IntermediateNode from '../components/nodes/intermediate'
-import PageNode from '../components/nodes/page'
+import IntermediateNode from '../components/nodes/base/intermediate'
+import PageNode from '../components/nodes/general/page'
+import TextFieldNode from '../components/nodes/general/textfield'
 
-const initState = new IntermediateNode([new PageNode()])
+const initState = new IntermediateNode([new PageNode([new TextFieldNode()])])
 
 export default initState
