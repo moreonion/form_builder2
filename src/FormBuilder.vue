@@ -23,10 +23,10 @@ import debounce from 'lodash.debounce'
 import Palette from './components/Palette.vue'
 import Settings from './components/Settings.vue'
 import Legend from './components/Legend.vue'
-import Builder from './components/Builder.js'
+import Builder from './components/Builder'
 
-import {getPaletteConfig} from './config/palette.js'
-import initState from './config/initState.js'
+import {getPaletteConfig} from './config/palette'
+import initState from './config/initState'
 
 const paletteConfig = getPaletteConfig()
 

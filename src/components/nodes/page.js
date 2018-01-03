@@ -1,4 +1,4 @@
-import IntermediateNode from './intermediate.js'
+import IntermediateNode from './intermediate'
 
 export default class PageNode extends IntermediateNode {
   renderNode(h) {
