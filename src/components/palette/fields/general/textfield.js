@@ -1,4 +1,4 @@
-import AbstractField from '../base/abs-palette-node'
+import AbstractField from '../base/abs-field'
 import TextfieldNode from '../../../builder/nodes/general/textfield'
 
 export default class PaletteTextfield extends AbstractField {
@@ -7,6 +7,6 @@ export default class PaletteTextfield extends AbstractField {
   }
 
   nodeFactory() {
-    return new TextFieldNode('New textfield')
+    return new TextfieldNode('New textfield')
   }
 }
