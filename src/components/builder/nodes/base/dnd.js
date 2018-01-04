@@ -14,6 +14,7 @@ export default class DndNode extends IntermediateNode {
   }
 
   addHandler(event) {
+    console.log('add')
     if(event.from.className === 'paletteWrapper') {
       // Handle DnD from palette to builder
       const paletteItemInfo = decodePaletteItem(event.item.id)
@@ -28,9 +29,38 @@ export default class DndNode extends IntermediateNode {
     }
   }
 
+  updateHandler(event) {
+    // Handle DnD within builder
+    // Set new array reference, so that data stays reactiv
+    const lastIndex = event.from.children.length-1
+    if(event.oldIndex < event.newIndex) {
+      if(event.newIndex === lastIndex) {
+        this.children = this.children.slice(0, event.oldIndex)
+          .concat(this.children.slice(event.oldIndex+1))
+          .concat(this.children[event.oldIndex])
+      } else {
+        this.children = this.children.slice(0, event.oldIndex)
+          .concat(this.children.slice(event.oldIndex+1, event.newIndex+1))
+          .concat(this.children[event.oldIndex])
+          .concat(this.children[event.newIndex+1])
+      }
+    } else {
+      if(event.oldIndex === lastIndex) {
+        this.children = this.children.slice(0, event.newIndex)
+          .concat(this.children[event.oldIndex])
+          .concat(this.children.slice(event.newIndex, event.oldIndex))
+      } else {
+        this.children = this.children.slice(0, event.newIndex)
+          .concat(this.children[event.oldIndex])
+          .concat(this.children.slice(event.newIndex, event.oldIndex))
+          .concat(this.children.slice(event.oldIndex+1))
+      }
+    }
+  }
+
   renderNode(h) {
     return (
-      <draggable options={this.dndOptions} onAdd={this.addHandler.bind(this)}>
+      <draggable options={this.dndOptions} onAdd={this.addHandler.bind(this)} onUpdate={this.updateHandler.bind(this)}>
         {this.children.map(child => child.renderNode(h))}
       </draggable>
     )
