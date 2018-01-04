@@ -2,7 +2,7 @@
   <div>
     <el-row :gutter="20">
       <el-col :xs="6" :sm="4">
-        <mo-palette :paletteConfig="paletteConfig"></mo-palette>
+        <mo-palette></mo-palette>
       </el-col>
       <el-col :xs="18" :sm="20">
         <mo-settings></mo-settings>
@@ -34,7 +34,6 @@ export default {
     'mo-legend': Legend
   },
   computed: {
-    ...mapState('palette', ['paletteConfig']),
     ...mapState('builder', ['rootNode'])
   }
 }
