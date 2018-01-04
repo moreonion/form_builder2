@@ -1,4 +1,4 @@
-export default class AbstractPaletteNode {
+export default class AbstractField {
   constructor(label, icon) {
     this.label = label
     this.icon = icon
