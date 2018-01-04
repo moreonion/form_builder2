@@ -10,7 +10,7 @@ export default class TextFieldNode extends AbstractNode {
 
   renderNode(h) {
     return (
-      <el-form label-position={this.labelPos} label-width={this.labelWidth}>
+      <el-form key={Math.random()} label-position={this.labelPos} label-width={this.labelWidth}>
         <el-form-item label={this.label}>
           <el-input></el-input>
         </el-form-item>
