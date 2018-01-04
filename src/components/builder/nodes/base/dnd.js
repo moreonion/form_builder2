@@ -15,6 +15,7 @@ export default class DndNode extends IntermediateNode {
 
   addHandler(event) {
     if(event.from.className === 'paletteWrapper') {
+      // Handle DnD from palette to builder
       const paletteItemInfo = decodePaletteItem(event.item.id)
       if(paletteItemInfo !== null) {
         event.to.removeChild(event.to.children[event.newIndex])
