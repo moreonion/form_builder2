@@ -6,8 +6,8 @@
       </el-col>
       <el-col :xs="18" :sm="20">
         <mo-settings></mo-settings>
-        <mo-builder :rootNode="formTree"></mo-builder>
-        <pre>{{formTree}}</pre>
+        <mo-builder :rootNode="rootNode"></mo-builder>
+        <pre>{{rootNode}}</pre>
       </el-col>
     </el-row>
     <!--<el-row>
@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     ...mapState('palette', ['paletteConfig']),
-    ...mapState('builder', ['formTree'])
+    ...mapState('builder', ['rootNode'])
   }
 }
 </script>
