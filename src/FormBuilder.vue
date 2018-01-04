@@ -6,9 +6,8 @@
       </el-col>
       <el-col :xs="18" :sm="20">
         <mo-settings></mo-settings>
-        <mo-builder :rootNode="formData" :getPaletteItem="getPaletteItem"></mo-builder>
-        <pre>{{formData}}</pre>
-        <pre>{{test}}</pre>
+        <mo-builder :rootNode="formTree"></mo-builder>
+        <pre>{{formTree}}</pre>
       </el-col>
     </el-row>
     <!--<el-row>
@@ -27,10 +26,7 @@ import Builder from './components/builder/Builder'
 
 import {mapState} from 'vuex'
 
-import {getPaletteConfig} from './config/palette'
 import initState from './config/initState'
-
-const paletteConfig = getPaletteConfig()
 
 export default {
   components: {
@@ -39,17 +35,16 @@ export default {
     'mo-settings': Settings,
     'mo-legend': Legend
   },
-  data () {
-    return {
-      paletteConfig,
-      formData: initState,
-      getPaletteItem(index) {
-        return paletteConfig.groups[0].fields[index]
-      }
-    }
-  },
+  // data () {
+  //   return {
+  //     getPaletteItem(index) {
+  //       return paletteConfig.groups[0].fields[index]
+  //     }
+  //   }
+  // },
   computed: {
-    ...mapState('builder', ['test'])
+    ...mapState('palette', ['paletteConfig']),
+    ...mapState('builder', ['formTree'])
   }
 }
 </script>

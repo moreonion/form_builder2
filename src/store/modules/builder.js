@@ -1,6 +1,8 @@
+import initState from '../../config/initState'
+
 export const builderModule = {
   namespaced: true,
   state: {
-    test: ':)'
+    formTree: initState
   }
 }
