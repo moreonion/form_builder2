@@ -23,7 +23,7 @@ export default class DndNode extends IntermediateNode {
         const {paletteGroupIndex, paletteItemIndex} = paletteItemInfo
         const paletteItemModel = store.getters['palette/getPaletteItem'](paletteGroupIndex, paletteItemIndex)
 
-        this.children.splice(event.newIndex, 0, new TextFieldNode('ADD'))
+        this.children.splice(event.newIndex, 0, paletteItemModel.nodeFactory())
       }
     }
   }
