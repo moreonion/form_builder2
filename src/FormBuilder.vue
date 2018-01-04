@@ -8,6 +8,7 @@
         <mo-settings></mo-settings>
         <mo-builder :rootNode="formData" :getPaletteItem="getPaletteItem"></mo-builder>
         <pre>{{formData}}</pre>
+        <pre>{{test}}</pre>
       </el-col>
     </el-row>
     <!--<el-row>
@@ -23,6 +24,8 @@ import Palette from './components/palette/Palette.vue'
 import Settings from './components/Settings.vue'
 import Legend from './components/Legend.vue'
 import Builder from './components/builder/Builder'
+
+import {mapState} from 'vuex'
 
 import {getPaletteConfig} from './config/palette'
 import initState from './config/initState'
@@ -44,6 +47,9 @@ export default {
         return paletteConfig.groups[0].fields[index]
       }
     }
+  },
+  computed: {
+    ...mapState('builder', ['test'])
   }
 }
 </script>
