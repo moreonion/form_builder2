@@ -8,7 +8,7 @@
             </div>
         </draggable>-->
         <draggable class="paletteWrapper" :options="dndOptions">
-          <div class="paletteItem" :key="j" v-for="(field, j) in paletteGroup.fields">
+          <div class="paletteItem" :id="encodePaletteItem(i, j)" :key="j" v-for="(field, j) in paletteGroup.fields">
             {{field.label}}
           </div>
         </draggable>
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import {encodePaletteItem} from './encode'
+
 export default {
   props: ['paletteConfig'],
   data () {
@@ -29,9 +31,7 @@ export default {
     }
   },
   methods: {
-    eventHandler(ev) {
-      console.log('---- Palette: Event handler ----')
-    }
+    encodePaletteItem
   }
 }
 </script>
