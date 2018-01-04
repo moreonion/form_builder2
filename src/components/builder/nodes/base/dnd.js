@@ -1,6 +1,8 @@
 import IntermediateNode from './intermediate'
 import TextFieldNode from '../general/textfield'
 
+import {decodePaletteItem} from '../../../palette/decode'
+
 import {BUILDER_DND_OPTIONS} from '../../../../config/dnd'
 
 export default class DndNode extends IntermediateNode {
@@ -11,8 +13,11 @@ export default class DndNode extends IntermediateNode {
 
   addHandler(event) {
     if(event.from.className === 'paletteWrapper') {
-      event.to.removeChild(event.to.children[event.newIndex])
-      this.children.splice(event.newIndex, 0, new TextFieldNode('ADD'))
+      const paletteItemInfo = decodePaletteItem(event.item.id)
+      if(paletteItemInfo !== null) {
+        event.to.removeChild(event.to.children[event.newIndex])
+        this.children.splice(event.newIndex, 0, new TextFieldNode('ADD'))
+      }
     }
   }
 
