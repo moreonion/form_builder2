@@ -1,7 +1,7 @@
 import Vuex from 'vuex'
 
-import {builderModule} from './modules/builder'
-import {paletteModule} from './modules/palette'
+import {builderModule} from '../components/builder/store'
+import {paletteModule} from '../components/palette/store'
 
 export const store = new Vuex.Store({
   modules: {
