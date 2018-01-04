@@ -5,6 +5,8 @@ import {decodePaletteItem} from '../../../palette/decode'
 
 import {BUILDER_DND_OPTIONS} from '../../../../config/dnd'
 
+import {store} from '../../../../store'
+
 export default class DndNode extends IntermediateNode {
   constructor(initChildren=[], dndOptions=BUILDER_DND_OPTIONS) {
     super(initChildren)
@@ -16,6 +18,10 @@ export default class DndNode extends IntermediateNode {
       const paletteItemInfo = decodePaletteItem(event.item.id)
       if(paletteItemInfo !== null) {
         event.to.removeChild(event.to.children[event.newIndex])
+
+        const {paletteGroupIndex, paletteItemIndex} = paletteItemInfo
+        const paletteItemModel = store.getters['palette/getPaletteItem'](paletteGroupIndex, paletteItemIndex)
+
         this.children.splice(event.newIndex, 0, new TextFieldNode('ADD'))
       }
     }
