@@ -1,4 +1,4 @@
-import {getPaletteConfig} from '../../config/palette'
+import {getPaletteConfig} from './initState'
 
 const paletteConfig = getPaletteConfig()
 

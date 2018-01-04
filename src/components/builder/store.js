@@ -1,4 +1,4 @@
-import initState from '../../config/initState'
+import initState from './initState'
 
 export const builderModule = {
   namespaced: true,

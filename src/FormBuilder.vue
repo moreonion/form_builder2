@@ -19,14 +19,12 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 import Palette from './components/palette/Palette.vue'
 import Settings from './components/Settings.vue'
 import Legend from './components/Legend.vue'
 import Builder from './components/builder/Builder'
-
-import {mapState} from 'vuex'
-
-import initState from './config/initState'
 
 export default {
   components: {
@@ -35,13 +33,6 @@ export default {
     'mo-settings': Settings,
     'mo-legend': Legend
   },
-  // data () {
-  //   return {
-  //     getPaletteItem(index) {
-  //       return paletteConfig.groups[0].fields[index]
-  //     }
-  //   }
-  // },
   computed: {
     ...mapState('palette', ['paletteConfig']),
     ...mapState('builder', ['formTree'])
