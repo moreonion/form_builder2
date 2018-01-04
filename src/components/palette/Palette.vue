@@ -17,19 +17,12 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 import {encodePaletteItem} from './encode'
 
 export default {
-  props: ['paletteConfig'],
-  data () {
-    return {
-      dndOptions: {
-        group: {name: 'palette', pull: true, put: ['tree']},
-        sort: false
-      },
-      activeName: 0,
-    }
-  },
+  computed: mapState('palette', ['paletteConfig', 'activeName', 'dndOptions']),
   methods: {
     encodePaletteItem
   }
