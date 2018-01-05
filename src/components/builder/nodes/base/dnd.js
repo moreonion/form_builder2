@@ -83,7 +83,6 @@ export default class DnDNode extends IntermediateNode {
       </div>
     )
     const children = this.children.length > 0 ? this.children.map(child => child.renderNode(h)) : emptyState
-    debugger
     return (
       <draggable key={this.key} options={this.dndOptions}
         onAdd={this.addHandler.bind(this)}
