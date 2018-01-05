@@ -3,6 +3,7 @@ import AbstractNode from '../base/abstract'
 export default class IntermediateNode extends AbstractNode {
   constructor(initChildren=[]) {
     super()
+    this.type = 'intermediate'
     this.children = [...initChildren]
   }
 

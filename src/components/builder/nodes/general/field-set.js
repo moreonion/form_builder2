@@ -3,6 +3,7 @@ import IntermediateNode from '../base/intermediate'
 export default class FieldSetNode extends IntermediateNode {
   constructor(initChildren=[], dndOptions=undefined) {
     super(initChildren, dndOptions)
+    this.type = 'fieldSet'
   }
 
   renderNode(h) {

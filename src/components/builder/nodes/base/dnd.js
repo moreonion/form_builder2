@@ -10,6 +10,7 @@ import {store} from '../../../../store'
 export default class DnDNode extends IntermediateNode {
   constructor(initChildren=[], dndOptions=BUILDER_DND_OPTIONS) {
     super(initChildren)
+    this.type = 'dnd'
     this.dndOptions = dndOptions
   }
 

@@ -3,6 +3,7 @@ import IntermediateNode from '../base/intermediate'
 export default class PageNode extends IntermediateNode {
   constructor(initChildren=[], dndOptions=undefined) {
     super(initChildren, dndOptions)
+    this.type = 'page'
   }
 
   renderNode(h) {
