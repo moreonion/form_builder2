@@ -6,7 +6,9 @@ export function getPaletteConfig() {
     groups: [
       {
         label: 'Contact record fields',
-        dndOptions: {name: PALETTE_DND_GROUP, pull: true, put: false},
+        dndOptions: {
+          group: {name: PALETTE_DND_GROUP, pull: true, put: false}
+        },
         fields: [
           new PaletteTextfield()
         ]
