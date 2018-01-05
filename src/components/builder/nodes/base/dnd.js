@@ -15,7 +15,6 @@ export default class DnDNode extends IntermediateNode {
     super(initChildren)
     this.type = 'dnd'
     this.dndOptions = dndOptions
-    this.key = Math.random()
   }
 
   addHandler(event) {
@@ -80,16 +79,16 @@ export default class DnDNode extends IntermediateNode {
     const emptyState = (
       <div key={Math.random()} style={{height: '50px'}}>
         <h1>Empty DnD container :)</h1>
-      </div>
-    )
+      </div>)
+
     const children = this.children.length > 0 ? this.children.map(child => child.renderNode(h)) : emptyState
+
     return (
-      <draggable key={this.key} options={this.dndOptions}
+      <draggable key={Math.random()} options={this.dndOptions}
         onAdd={this.addHandler.bind(this)}
         onUpdate={this.updateHandler.bind(this)}
         onRemove={this.removeHandler.bind(this)}>
         {children}
-      </draggable>
-    )
+      </draggable>)
   }
 }
