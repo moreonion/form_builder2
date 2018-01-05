@@ -59,9 +59,11 @@ export default class DnDNode extends IntermediateNode {
   }
 
   renderNode(h) {
+    const emptyState = <div style={{height: '50px', color: 'pink'}}><h1>Empty :)</h1></div>
+    const children = this.children.length > 0 ? this.children.map(child => child.renderNode(h)) : emptyState
     return (
       <draggable options={this.dndOptions} onAdd={this.addHandler.bind(this)} onUpdate={this.updateHandler.bind(this)}>
-        {this.children.map(child => child.renderNode(h))}
+        {children}
       </draggable>
     )
   }
