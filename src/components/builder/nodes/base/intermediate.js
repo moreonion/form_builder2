@@ -1,5 +1,7 @@
 import AbstractNode from '../base/abstract'
 
+import {encodePath} from '../../encode-path'
+
 export default class IntermediateNode extends AbstractNode {
   constructor(initChildren=[]) {
     super()
@@ -7,16 +9,24 @@ export default class IntermediateNode extends AbstractNode {
     this.children = [...initChildren]
   }
 
+  setChildren(children) {
+    this.children = children
+    encodePath(this, this.path)
+  }
+
   addChild(index, child) {
     this.children.splice(index, 0, child)
+    encodePath(this, this.path)
   }
 
   pushChild(child) {
     this.children.push(child)
+    encodePath(this, this.path)
   }
 
   removeChildByIndex(i) {
     this.children.splice(i, 1)
+    encodePath(this, this.path)
   }
 
   removeChild(child) {
@@ -24,6 +34,7 @@ export default class IntermediateNode extends AbstractNode {
     if(index !== -1) {
       this.children.splice(index, 1)
     }
+    encodePath(this, this.path)
   }
 
   renderNode(h) {

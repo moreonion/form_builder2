@@ -8,7 +8,6 @@ import {PALETTE_DND_WRAPER_CLASSNAME} from '../../../../config/palette'
 import {store} from '../../../../store'
 
 import {getNode} from '../../get-node'
-import {encodePath} from '../../encode-path'
 import {decodePath} from '../../decode-path'
 
 export default class DnDNode extends IntermediateNode {
@@ -16,6 +15,7 @@ export default class DnDNode extends IntermediateNode {
     super(initChildren)
     this.type = 'dnd'
     this.dndOptions = dndOptions
+    this.key = Math.random()
   }
 
   addHandler(event) {
@@ -37,9 +37,6 @@ export default class DnDNode extends IntermediateNode {
       // Get node by encoded tree path
       const node = getNode(rootNode, decodePath(encodedNodePath))
       this.addChild(event.newIndex, node)
-
-      // Update path encoding for subtree
-      encodePath(this, this.path)
     }
   }
 
@@ -49,25 +46,25 @@ export default class DnDNode extends IntermediateNode {
     const lastIndex = event.from.children.length-1
     if(event.oldIndex < event.newIndex) {
       if(event.newIndex === lastIndex) {
-        this.children = this.children.slice(0, event.oldIndex)
+        this.setChildren(this.children.slice(0, event.oldIndex)
           .concat(this.children.slice(event.oldIndex+1))
-          .concat(this.children[event.oldIndex])
+          .concat(this.children[event.oldIndex]))
       } else {
-        return this.children.slice(0, event.oldIndex)
+        this.setChildren(this.children.slice(0, event.oldIndex)
           .concat(this.children.slice(event.oldIndex+1, event.newIndex+1))
           .concat(this.children[event.oldIndex])
-          .concat(this.children.slice(event.newIndex+1))
+          .concat(this.children.slice(event.newIndex+1)))
       }
     } else {
       if(event.oldIndex === lastIndex) {
-        this.children = this.children.slice(0, event.newIndex)
+        this.setChildren(this.children.slice(0, event.newIndex)
           .concat(this.children[event.oldIndex])
-          .concat(this.children.slice(event.newIndex, event.oldIndex))
+          .concat(this.children.slice(event.newIndex, event.oldIndex)))
       } else {
-        this.children = this.children.slice(0, event.newIndex)
+        this.setChildren(this.children.slice(0, event.newIndex)
           .concat(this.children[event.oldIndex])
           .concat(this.children.slice(event.newIndex, event.oldIndex))
-          .concat(this.children.slice(event.oldIndex+1))
+          .concat(this.children.slice(event.oldIndex+1)))
       }
     }
   }
@@ -77,16 +74,18 @@ export default class DnDNode extends IntermediateNode {
     const nodePath = decodePath(encodedNodePath)
     const lastIndex = nodePath[nodePath.length-1]
     this.removeChildByIndex(lastIndex)
-
-    // Update path encoding for subtree
-    // encodePath(this, this.path)
   }
 
   renderNode(h) {
-    const emptyState = <div style={{height: '50px'}}><h1>Empty DnD container :)</h1></div>
+    const emptyState = (
+      <div key={Math.random()} style={{height: '50px'}}>
+        <h1>Empty DnD container :)</h1>
+      </div>
+    )
     const children = this.children.length > 0 ? this.children.map(child => child.renderNode(h)) : emptyState
+    debugger
     return (
-      <draggable options={this.dndOptions}
+      <draggable key={this.key} options={this.dndOptions}
         onAdd={this.addHandler.bind(this)}
         onUpdate={this.updateHandler.bind(this)}
         onRemove={this.removeHandler.bind(this)}>
