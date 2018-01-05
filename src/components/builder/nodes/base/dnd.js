@@ -40,10 +40,10 @@ export default class DndNode extends IntermediateNode {
           .concat(this.children.slice(event.oldIndex+1))
           .concat(this.children[event.oldIndex])
       } else {
-        this.children = this.children.slice(0, event.oldIndex)
+        return this.children.slice(0, event.oldIndex)
           .concat(this.children.slice(event.oldIndex+1, event.newIndex+1))
           .concat(this.children[event.oldIndex])
-          .concat(this.children[event.newIndex+1])
+          .concat(this.children.slice(event.newIndex+1))
       }
     } else {
       if(event.oldIndex === lastIndex) {
