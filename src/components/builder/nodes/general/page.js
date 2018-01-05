@@ -8,7 +8,7 @@ export default class PageNode extends IntermediateNode {
 
   renderNode(h) {
     return (
-      <div style={{border: '10px solid pink'}}>
+      <div id={this.path} style={{border: '10px solid pink'}}>
         <h1>Page</h1>
         <div style={{border: '5px dashed pink', margin: '5px'}}>
           {this.children.map(child => child.renderNode(h))}
