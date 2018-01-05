@@ -1,5 +1,6 @@
 import PaletteTextField from '../palette/fields/general/text'
 import PalettePageField from '../palette/fields/general/page'
+import PaletteFieldSetField from '../palette/fields/general/field-set'
 import {PALETTE_DND_GROUP, PALETTE_DND_OPTIONS} from '../../config/dnd'
 
 export function getPaletteConfig() {
@@ -21,7 +22,8 @@ export function getPaletteConfig() {
         },
         fields: [
           new PaletteTextField(),
-          new PalettePageField()
+          new PalettePageField(),
+          new PaletteFieldSetField()
         ]
       }
     ]
