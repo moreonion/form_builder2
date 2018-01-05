@@ -4,6 +4,7 @@ import TextFieldNode from '../general/textfield'
 import {decodePaletteItem} from '../../../palette/decode'
 
 import {BUILDER_DND_OPTIONS} from '../../../../config/dnd'
+import {PALETTE_DND_WRAPER_CLASSNAME} from '../../../../config/palette'
 
 import {store} from '../../../../store'
 
@@ -15,7 +16,7 @@ export default class DndNode extends IntermediateNode {
 
   addHandler(event) {
     console.log('add')
-    if(event.from.className === 'paletteWrapper') {
+    if(event.from.className === PALETTE_DND_WRAPER_CLASSNAME) {
       // Handle DnD from palette to builder
       const paletteItemInfo = decodePaletteItem(event.item.id)
       if(paletteItemInfo !== null) {
