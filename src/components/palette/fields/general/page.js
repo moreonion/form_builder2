@@ -1,6 +1,8 @@
 import AbstractField from '../base/abstract'
+import PageNode from '../../../builder/nodes/general/page'
+import DnDNode from '../../../builder/nodes/base/dnd'
 
-export class PalettePageField extends AbstractField {
+export default class PalettePageField extends AbstractField {
   constructor(label='Page', icon='') {
     super(label, icon)
   }
