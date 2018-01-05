@@ -7,6 +7,10 @@ import {PALETTE_DND_WRAPER_CLASSNAME} from '../../../../config/palette'
 
 import {store} from '../../../../store'
 
+import {getNode} from '../../get-node'
+import {encodePath} from '../../encode-path'
+import {decodePath} from '../../decode-path'
+
 export default class DnDNode extends IntermediateNode {
   constructor(initChildren=[], dndOptions=BUILDER_DND_OPTIONS) {
     super(initChildren)
@@ -26,6 +30,16 @@ export default class DnDNode extends IntermediateNode {
 
         this.children.splice(event.newIndex, 0, paletteItemModel.nodeFactory())
       }
+    } else {
+      // Handle DnD from builder to builder
+      const encodedNodePath = event.item.id
+      const rootNode = store.state.builder.rootNode
+      // Get node by encoded tree path
+      const node = getNode(rootNode, decodePath(encodedNodePath))
+      this.addChild(event.newIndex, node)
+
+      // Update path encoding for subtree
+      encodePath(this, this.path)
     }
   }
 
@@ -58,11 +72,24 @@ export default class DnDNode extends IntermediateNode {
     }
   }
 
+  removeHandler(event) {
+    const encodedNodePath = event.item.id
+    const nodePath = decodePath(encodedNodePath)
+    const lastIndex = nodePath[nodePath.length-1]
+    this.removeChildByIndex(lastIndex)
+
+    // Update path encoding for subtree
+    // encodePath(this, this.path)
+  }
+
   renderNode(h) {
-    const emptyState = <div style={{height: '50px', color: 'pink'}}><h1>Empty :)</h1></div>
+    const emptyState = <div style={{height: '50px'}}><h1>Empty DnD container :)</h1></div>
     const children = this.children.length > 0 ? this.children.map(child => child.renderNode(h)) : emptyState
     return (
-      <draggable options={this.dndOptions} onAdd={this.addHandler.bind(this)} onUpdate={this.updateHandler.bind(this)}>
+      <draggable options={this.dndOptions}
+        onAdd={this.addHandler.bind(this)}
+        onUpdate={this.updateHandler.bind(this)}
+        onRemove={this.removeHandler.bind(this)}>
         {children}
       </draggable>
     )
