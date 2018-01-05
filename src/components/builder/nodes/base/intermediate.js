@@ -15,6 +15,10 @@ export default class IntermediateNode extends AbstractNode {
     this.children.push(child)
   }
 
+  removeChildByIndex(i) {
+    this.children.splice(i, 1)
+  }
+
   removeChild(child) {
     const index = children.findIndex(c => c === child)
     if(index !== -1) {
