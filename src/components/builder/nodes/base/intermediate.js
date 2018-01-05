@@ -10,6 +10,10 @@ export default class IntermediateNode extends AbstractNode {
     this.children.splice(index, 0, child)
   }
 
+  pushChild(child) {
+    this.children.push(child)
+  }
+
   removeChild(child) {
     const index = children.findIndex(c => c === child)
     if(index !== -1) {
@@ -17,7 +21,7 @@ export default class IntermediateNode extends AbstractNode {
     }
   }
 
-  renderNode() {
-    return this.children(child => child.renderNode())
+  renderNode(h) {
+    return this.children.map(child => child.renderNode(h))
   }
 }
