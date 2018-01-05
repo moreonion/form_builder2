@@ -7,7 +7,7 @@
               {{field.label}}
             </div>
         </draggable>-->
-        <draggable :class="paletteWrapperClsName" :options="dndOptions">
+        <draggable :class="paletteWrapperClsName" :options="paletteGroup.dndOptions">
           <div class="paletteItem" :id="encodePaletteItem(i, j)" :key="j" v-for="(field, j) in paletteGroup.fields">
             {{field.label}}
           </div>
@@ -25,7 +25,7 @@ import {PALETTE_DND_WRAPER_CLASSNAME} from '../../config/palette'
 export default {
   computed: {
     paletteWrapperClsName: () => PALETTE_DND_WRAPER_CLASSNAME,
-    ...mapState('palette', ['paletteConfig', 'activeName', 'dndOptions'])
+    ...mapState('palette', ['paletteConfig', 'activeName'])
   },
   methods: {
     encodePaletteItem
