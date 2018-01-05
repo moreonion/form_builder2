@@ -8,14 +8,13 @@ import {PALETTE_DND_WRAPER_CLASSNAME} from '../../../../config/palette'
 
 import {store} from '../../../../store'
 
-export default class DndNode extends IntermediateNode {
+export default class DnDNode extends IntermediateNode {
   constructor(initChildren=[], dndOptions=BUILDER_DND_OPTIONS) {
     super(initChildren)
     this.dndOptions = dndOptions
   }
 
   addHandler(event) {
-    console.log('add')
     if(event.from.className === PALETTE_DND_WRAPER_CLASSNAME) {
       // Handle DnD from palette to builder
       const paletteItemInfo = decodePaletteItem(event.item.id)
