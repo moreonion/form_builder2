@@ -1,5 +1,4 @@
 import IntermediateNode from './intermediate'
-import TextFieldNode from '../general/textfield'
 
 import {decodePaletteItem} from '../../../palette/decode'
 

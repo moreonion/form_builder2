@@ -1,4 +1,4 @@
-import AbstractNode from '../base/abs-node'
+import AbstractNode from '../base/abstract'
 
 export default class TextFieldNode extends AbstractNode {
   constructor(label='Textfield', labelPos='top', labelWidth='100px') {

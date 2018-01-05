@@ -1,4 +1,4 @@
-import PaletteTextfield from '../palette/fields/general/textfield'
+import PaletteTextField from '../palette/fields/general/text'
 import {PALETTE_DND_GROUP, PALETTE_DND_OPTIONS} from '../../config/dnd'
 
 export function getPaletteConfig() {
@@ -10,7 +10,7 @@ export function getPaletteConfig() {
           group: {name: PALETTE_DND_GROUP, pull: true, put: false}
         },
         fields: [
-          new PaletteTextfield()
+          new PaletteTextField()
         ]
       },
       {
@@ -19,7 +19,7 @@ export function getPaletteConfig() {
           group: {name: PALETTE_DND_GROUP, pull: 'clone', put: false}
         },
         fields: [
-          new PaletteTextfield()
+          new PaletteTextField()
         ]
       }
     ]

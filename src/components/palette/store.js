@@ -1,4 +1,4 @@
-import {getPaletteConfig} from './initState'
+import {getPaletteConfig} from './init-state'
 
 export const paletteModule = {
   namespaced: true,

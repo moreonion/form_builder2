@@ -1,4 +1,4 @@
-import AbstractNode from '../base/abs-node'
+import AbstractNode from '../base/abstract'
 
 export default class IntermediateNode extends AbstractNode {
   constructor(initChildren=[]) {
