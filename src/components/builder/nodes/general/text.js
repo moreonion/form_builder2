@@ -1,9 +1,11 @@
 import {AbstractNode} from '../base/abstract'
 
-export default class TextFieldNode extends AbstractNode {
+export const NODE_TYPE_TEXT = 'text'
+
+export class TextFieldNode extends AbstractNode {
   constructor(label='Textfield', labelPos='top', labelWidth='100px') {
     super()
-    this.type = 'text'
+    this.type = NODE_TYPE_TEXT
     this.label = label
     this.labelPos = labelPos
     this.labelWidth = labelWidth

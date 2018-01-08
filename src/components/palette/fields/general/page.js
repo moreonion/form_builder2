@@ -5,7 +5,7 @@ import {DnDNode} from '../../../builder/nodes/base/dnd'
 export default class PalettePageField extends AbstractField {
   constructor(label='Page', icon='') {
     super(label, icon)
-    this.type = NODE_TYPE_PAGE
+    this.nodeType = NODE_TYPE_PAGE
   }
 
   nodeFactory() {

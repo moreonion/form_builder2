@@ -1,8 +1,10 @@
-import TextFieldNode from '../general/text'
+import {TextFieldNode} from '../general/text'
 
-export default class FirstNameNode extends TextFieldNode {
+export const NODE_TYPE_FIRST_NAME = 'first-name'
+
+export class FirstNameNode extends TextFieldNode {
   constructor(label='First name', labelPos='top', labelWidth='100px') {
     super(label, labelPos, labelWidth)
-    this.type = 'first-name'
+    this.type = NODE_TYPE_FIRST_NAME
   }
 }

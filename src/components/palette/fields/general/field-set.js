@@ -5,6 +5,7 @@ import {DnDNode} from '../../../builder/nodes/base/dnd'
 export default class PaletteFieldSetField extends AbstractField {
   constructor(label='Fieldset', icon='') {
     super(label, icon)
+    this.nodeType = NODE_TYPE_FIELD_SET
   }
 
   nodeFactory() {
