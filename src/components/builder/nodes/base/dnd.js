@@ -75,6 +75,10 @@ export default class DnDNode extends IntermediateNode {
     this.removeChildByIndex(lastIndex)
   }
 
+  moveHandler(event) {
+    return true
+  }
+
   renderNode(h) {
     const emptyState = (
       <div key={Math.random()} style={{'min-height': '150px'}}>
@@ -83,8 +87,12 @@ export default class DnDNode extends IntermediateNode {
 
     const children = this.children.length > 0 ? this.children.map(child => child.renderNode(h)) : emptyState
 
+    /*
+     * NOTE: value={[]} move={..} is the same trick as in `./components/palette/Palette.vue`
+     */
     return (
-      <draggable key={Math.random()} options={this.dndOptions}
+      <draggable value={[]} key={Math.random()} options={this.dndOptions}
+        move={this.moveHandler.bind(this)}
         onAdd={this.addHandler.bind(this)}
         onUpdate={this.updateHandler.bind(this)}
         onRemove={this.removeHandler.bind(this)}>
