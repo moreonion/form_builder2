@@ -114,12 +114,4 @@ export default class DnDNode extends IntermediateNode {
         {children}
       </draggable>)
   }
-
-  toString() {
-    return {
-      type: this.type,
-      path: this. path,
-      children: this.children.map(child => child.toString())
-    }
-  }
 }
