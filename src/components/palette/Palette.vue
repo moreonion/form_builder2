@@ -1,15 +1,18 @@
 <template>
   <el-collapse v-model="activeName" accordion>
       <el-collapse-item :title="paletteGroup.label" :name="i"
-        :key="i" v-for="(paletteGroup, i) in paletteConfig.groups">
+        :key="i" v-for="(paletteGroup, i) in palette.groups">
         <!--
           NOTE: :value="[]" :move="moveHandler"
           Use dummy array for value prop to get move callbacks.
           `moveHandler` is only called, when some value binding (v-model, list)
           is used with vuedraggable.
         -->
-        <draggable :value="[]" :class="paletteWrapperClsName" :move="moveHandler" :options="paletteGroup.dndOptions">
-          <div class="paletteItem" :id="encodePaletteItem(i, j)" :key="j" v-for="(field, j) in paletteGroup.fields">
+        <draggable :value="[]" :class="paletteWrapperClsName"
+          :move="moveHandler" :options="paletteGroup.dndOptions"
+          @remove="removeHandler">
+          <div class="paletteItem" :id="encodePaletteItem(i, j)" :key="j"
+            v-for="(field, j) in paletteGroup.fields">
             {{field.label}}
           </div>
         </draggable>
@@ -29,7 +32,7 @@ import PalettePageField from './fields/general/page'
 export default {
   computed: {
     paletteWrapperClsName: () => PALETTE_DND_WRAPER_CLASSNAME,
-    ...mapState('palette', ['paletteConfig', 'activeName'])
+    ...mapState('palette', ['palette', 'activeName'])
   },
   methods: {
     encodePaletteItem,
@@ -37,8 +40,7 @@ export default {
       const paletteModelId = decodePaletteItem(event.dragged.id)
       if(paletteModelId !== null) {
         const {paletteGroupIndex, paletteItemIndex} = paletteModelId
-        const paletteModel = this.paletteConfig.groups[paletteGroupIndex].fields[paletteItemIndex]
-
+        const paletteModel = this.$store.getters['palette/getPaletteItem'](paletteGroupIndex, paletteItemIndex)
 
         if(paletteModel instanceof PalettePageField) {
           /*
@@ -54,6 +56,10 @@ export default {
       }
 
       return true
+    },
+    removeHandler(event) {
+    },
+    endHandler(event) {
     }
   }
 }

@@ -7,11 +7,11 @@ import PaletteLastNameField from './fields/contact/last-name'
 
 import {PALETTE_DND_GROUP, PALETTE_DND_OPTIONS} from '../../config/dnd'
 
-export function getPaletteConfig() {
+export function getInitPaletteState() {
   return {
     groups: [
       {
-        label: 'Contact record fields',
+        label: 'Contact',
         dndOptions: {
           group: {name: PALETTE_DND_GROUP, pull: true, put: false}
         },

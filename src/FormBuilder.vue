@@ -7,6 +7,7 @@
       <el-col :xs="18" :sm="20">
         <mo-settings></mo-settings>
         <mo-builder :rootNode="rootNode"></mo-builder>
+        <pre>{{palette}}</pre>
         <pre>{{rootNode.toString()}}</pre>
       </el-col>
     </el-row>
@@ -34,6 +35,7 @@ export default {
     'mo-legend': Legend
   },
   computed: {
+    ...mapState('palette', ['palette']),
     ...mapState('builder', ['rootNode'])
   }
 }

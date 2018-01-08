@@ -1,14 +1,20 @@
-import {getPaletteConfig} from './init-state'
+import {getInitPaletteState} from './init-state'
 
 export const paletteModule = {
   namespaced: true,
   state: {
-    paletteConfig: getPaletteConfig(),
+    palette: getInitPaletteState(),
+    paletteConfig: {
+      createdSingletons: {
+        firstName: false,
+        lastName: false
+      }
+    },
     activeName: 0 // active collapse index
   },
   getters: {
     getPaletteItem: state => (groupIndex, itemIndex) => {
-      return state.paletteConfig.groups[groupIndex].fields[itemIndex]
+      return state.palette.groups[groupIndex].fields[itemIndex]
     }
   }
 }
