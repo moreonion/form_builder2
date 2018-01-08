@@ -19,4 +19,12 @@ export default class TextFieldNode extends AbstractNode {
       </el-form>
     )
   }
+
+  toString() {
+    return {
+      type: this.type,
+      path: this.path,
+      label: this.label
+    }
+  }
 }

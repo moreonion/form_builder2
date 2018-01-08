@@ -7,7 +7,7 @@
       <el-col :xs="18" :sm="20">
         <mo-settings></mo-settings>
         <mo-builder :rootNode="rootNode"></mo-builder>
-        <pre>{{rootNode}}</pre>
+        <pre>{{rootNode.toString()}}</pre>
       </el-col>
     </el-row>
     <!--<el-row>

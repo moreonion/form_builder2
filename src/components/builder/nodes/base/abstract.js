@@ -7,4 +7,11 @@ export default class AbstractNode {
   renderNode() {
     return <div></div>
   }
+
+  toString() {
+    return {
+      type: this.type,
+      path: this.path
+    }
+  }
 }
