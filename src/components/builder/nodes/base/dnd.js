@@ -23,8 +23,6 @@ export default class DnDNode extends IntermediateNode {
       // Handle DnD from palette to builder
       const paletteItemInfo = decodePaletteItem(event.item.id)
       if(paletteItemInfo !== null) {
-        event.to.removeChild(event.to.children[event.newIndex])
-
         const {paletteGroupIndex, paletteItemIndex} = paletteItemInfo
         const paletteItemModel = store.getters['palette/getPaletteItem'](paletteGroupIndex, paletteItemIndex)
 
