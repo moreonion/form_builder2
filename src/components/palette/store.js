@@ -4,7 +4,7 @@ export const paletteModule = {
   namespaced: true,
   state: {
     paletteConfig: getPaletteConfig(),
-    activeName: 1 // active collapse index
+    activeName: 0 // active collapse index
   },
   getters: {
     getPaletteItem: state => (groupIndex, itemIndex) => {
