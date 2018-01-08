@@ -1,4 +1,4 @@
-import AbstractNode from '../base/abstract'
+import {AbstractNode} from '../base/abstract'
 
 import {encodePath} from '../../encode-path'
 

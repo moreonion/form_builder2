@@ -1,7 +1,9 @@
+export const NODE_TYPE_ABSTRACT = 'abstract'
+
 // Common interface for all builder nodes
-export default class AbstractNode {
+export class AbstractNode {
   constructor() {
-    this.type = 'abstract'
+    this.type = NODE_TYPE_ABSTRACT
     this.path = null
   }
   // abstract: override in subclasses
