@@ -8,7 +8,7 @@ export default class FieldSetNode extends IntermediateNode {
 
   renderNode(h) {
     return (
-      <div style={{border: '5px solid blue'}}>
+      <div id={this.path} style={{border: '5px solid blue'}}>
         <h1>Fieldset</h1>
         <div style={{border: '2px dashed blue', margin: '2px'}}>
           {this.children.map(child => child.renderNode(h))}
