@@ -1,6 +1,9 @@
-import PaletteTextField from '../palette/fields/general/text'
-import PalettePageField from '../palette/fields/general/page'
-import PaletteFieldSetField from '../palette/fields/general/field-set'
+import PaletteTextField from './fields/general/text'
+import PalettePageField from './fields/general/page'
+import PaletteFieldSetField from './fields/general/field-set'
+
+import PaletteFirstNameField from './fields/contact/first-name'
+
 import {PALETTE_DND_GROUP, PALETTE_DND_OPTIONS} from '../../config/dnd'
 
 export function getPaletteConfig() {
@@ -12,7 +15,7 @@ export function getPaletteConfig() {
           group: {name: PALETTE_DND_GROUP, pull: true, put: false}
         },
         fields: [
-          new PaletteTextField()
+          new PaletteFirstNameField()
         ]
       },
       {
