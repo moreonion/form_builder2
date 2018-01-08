@@ -23,6 +23,7 @@ import {mapState} from 'vuex'
 import {encodePaletteItem} from './encode'
 import {decodePaletteItem} from './decode'
 import {PALETTE_DND_WRAPER_CLASSNAME} from '../../config/palette'
+import {BUILDER_ROOT_DIV_ID} from '../../config/builder'
 import PalettePageField from './fields/general/page'
 
 export default {
@@ -43,8 +44,8 @@ export default {
           /*
            * RULE: Page node is only allowed as child of root node.
            */
-          return event.to.parentNode.id === 'root'
-        } else if(event.to.parentNode.id === 'root') {
+          return event.to.parentNode.id === BUILDER_ROOT_DIV_ID
+        } else if(event.to.parentNode.id === BUILDER_ROOT_DIV_ID) {
           /*
            * RULE: Children of root may only be page nodes.
            */
