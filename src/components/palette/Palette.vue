@@ -21,7 +21,9 @@
 import {mapState} from 'vuex'
 
 import {encodePaletteItem} from './encode'
+import {decodePaletteItem} from './decode'
 import {PALETTE_DND_WRAPER_CLASSNAME} from '../../config/palette'
+import PalettePageField from './fields/general/page'
 
 export default {
   computed: {
@@ -29,7 +31,29 @@ export default {
     ...mapState('palette', ['paletteConfig', 'activeName'])
   },
   methods: {
-    encodePaletteItem
+    encodePaletteItem,
+    moveHandler(event) {
+      const paletteModelId = decodePaletteItem(event.dragged.id)
+      if(paletteModelId !== null) {
+        const {paletteGroupIndex, paletteItemIndex} = paletteModelId
+        const paletteModel = this.paletteConfig.groups[paletteGroupIndex].fields[paletteItemIndex]
+
+
+        if(paletteModel instanceof PalettePageField) {
+          /*
+           * RULE: Page node is only allowed as child of root node.
+           */
+          return event.to.parentNode.id === 'root'
+        } else if(event.to.parentNode.id === 'root') {
+          /*
+           * RULE: Children of root may only be page nodes.
+           */
+          return paletteModel instanceof PalettePageField
+        }
+      }
+
+      return true
+    }
   }
 }
 </script>
