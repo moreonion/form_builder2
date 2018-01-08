@@ -31,7 +31,7 @@ export class DnDNode extends IntermediateNode {
 
         const newNode = paletteItemModel.nodeFactory()
 
-        if(BUILDER_IS_SINGLETON_NODES_MAP[newNode.type] === true) {
+        if(BUILDER_IS_SINGLETON_NODE_MAP[newNode.type] === true) {
           store.commit('palette/createSingleton', newNode.type)
         }
         this.addChild(event.newIndex, newNode)
