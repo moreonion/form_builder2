@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapGetters} from 'vuex'
 
 import {encodePaletteItem} from './encode'
 import {decodePaletteItem} from './decode'
@@ -32,7 +32,8 @@ import PalettePageField from './fields/general/page'
 export default {
   computed: {
     paletteWrapperClsName: () => PALETTE_DND_WRAPER_CLASSNAME,
-    ...mapState('palette', ['palette', 'activeName'])
+    ...mapState('palette', ['activeName']),
+    ...mapGetters('palette', {palette: 'paletteState'})
   },
   methods: {
     encodePaletteItem,

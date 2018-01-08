@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapGetters} from 'vuex'
 
 import Palette from './components/palette/Palette.vue'
 import Settings from './components/Settings.vue'
@@ -35,7 +35,9 @@ export default {
     'mo-legend': Legend
   },
   computed: {
-    ...mapState('palette', ['palette']),
+    ...mapGetters('palette', {
+      palette: 'paletteState'
+    }),
     ...mapState('builder', ['rootNode'])
   }
 }
