@@ -1,5 +1,5 @@
 import IntermediateNode from './nodes/base/intermediate'
-import DnDNode from './nodes/base/dnd'
+import {DnDNode} from './nodes/base/dnd'
 import PageNode from './nodes/general/page'
 import TextFieldNode from './nodes/general/text'
 import {encodePath} from './encode-path'
