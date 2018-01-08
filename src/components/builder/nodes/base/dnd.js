@@ -4,17 +4,20 @@ import {decodePaletteItem} from '../../../palette/decode'
 
 import {BUILDER_DND_OPTIONS} from '../../../../config/dnd'
 import {PALETTE_DND_WRAPER_CLASSNAME} from '../../../../config/palette'
-import {BUILDER_ROOT_DIV_ID} from '../../../../config/builder'
+import {BUILDER_ROOT_DIV_ID, BUILDER_IS_SINGLETON_NODE_MAP} from '../../../../config/builder'
+
 import {store} from '../../../../store'
 
 import {getNode} from '../../get-node'
 import {decodePath} from '../../decode-path'
 import PageNode from '../general/page'
 
-export default class DnDNode extends IntermediateNode {
+export const NODE_TYPE_DND = 'dnd'
+
+export class DnDNode extends IntermediateNode {
   constructor(initChildren=[], dndOptions=BUILDER_DND_OPTIONS) {
     super(initChildren)
-    this.type = 'dnd'
+    this.type = NODE_TYPE_DND
     this.dndOptions = dndOptions
   }
 
@@ -26,7 +29,12 @@ export default class DnDNode extends IntermediateNode {
         const {paletteGroupIndex, paletteItemIndex} = paletteItemInfo
         const paletteItemModel = store.getters['palette/getPaletteItem'](paletteGroupIndex, paletteItemIndex)
 
-        this.addChild(event.newIndex, paletteItemModel.nodeFactory())
+        const newNode = paletteItemModel.nodeFactory()
+
+        if(BUILDER_IS_SINGLETON_NODES_MAP[newNode.type] === true) {
+          store.commit('palette/createSingleton', newNode.type)
+        }
+        this.addChild(event.newIndex, newNode)
       }
     } else {
       // Handle DnD from builder to builder
