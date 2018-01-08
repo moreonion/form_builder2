@@ -13,7 +13,8 @@ export function getInitPaletteState() {
       {
         label: 'Contact',
         dndOptions: {
-          group: {name: PALETTE_DND_GROUP, pull: true, put: false}
+          group: {name: PALETTE_DND_GROUP, pull: true, put: false},
+          sort: false
         },
         fields: [
           new PaletteFirstNameField(),
@@ -23,7 +24,8 @@ export function getInitPaletteState() {
       {
         label: 'General fields',
         dndOptions: {
-          group: {name: PALETTE_DND_GROUP, pull: 'clone', put: false}
+          group: {name: PALETTE_DND_GROUP, pull: 'clone', put: false},
+          sort: false
         },
         fields: [
           new PaletteTextField(),
