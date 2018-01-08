@@ -2,12 +2,13 @@
   <el-collapse v-model="activeName" accordion>
       <el-collapse-item :title="paletteGroup.label" :name="i"
         :key="i" v-for="(paletteGroup, i) in paletteConfig.groups">
-        <!--<draggable v-model="paletteConfig.groups[i].fields" :options="dndOptions" @end="eventHandler">
-            <div class="paletteItem" :key="j" v-for="(field, j) in paletteGroup.fields">
-              {{field.label}}
-            </div>
-        </draggable>-->
-        <draggable :class="paletteWrapperClsName" :options="paletteGroup.dndOptions">
+        <!--
+          NOTE: :value="[]" :move="moveHandler"
+          Use dummy array for value prop to get move callbacks.
+          `moveHandler` is only called, when some value binding (v-model, list)
+          is used with vuedraggable.
+        -->
+        <draggable :value="[]" :class="paletteWrapperClsName" :move="moveHandler" :options="paletteGroup.dndOptions">
           <div class="paletteItem" :id="encodePaletteItem(i, j)" :key="j" v-for="(field, j) in paletteGroup.fields">
             {{field.label}}
           </div>
