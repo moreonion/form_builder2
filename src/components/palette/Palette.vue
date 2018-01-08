@@ -33,7 +33,9 @@ export default {
   computed: {
     paletteWrapperClsName: () => PALETTE_DND_WRAPER_CLASSNAME,
     ...mapState('palette', ['activeName']),
-    ...mapGetters('palette', {palette: 'paletteState'})
+    ...mapGetters('palette', {
+      palette: 'paletteState'
+    })
   },
   methods: {
     encodePaletteItem,
