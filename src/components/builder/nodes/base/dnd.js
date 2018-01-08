@@ -77,7 +77,7 @@ export default class DnDNode extends IntermediateNode {
 
   renderNode(h) {
     const emptyState = (
-      <div key={Math.random()} style={{height: '50px'}}>
+      <div key={Math.random()} style={{'min-height': '150px'}}>
         <h1>Empty DnD container :)</h1>
       </div>)
 
