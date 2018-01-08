@@ -9,6 +9,7 @@ import {store} from '../../../../store'
 
 import {getNode} from '../../get-node'
 import {decodePath} from '../../decode-path'
+import PageNode from '../general/page'
 
 export default class DnDNode extends IntermediateNode {
   constructor(initChildren=[], dndOptions=BUILDER_DND_OPTIONS) {
@@ -76,6 +77,22 @@ export default class DnDNode extends IntermediateNode {
   }
 
   moveHandler(event) {
+    const encodedNodePath = event.dragged.id
+    const rootNode = store.state.builder.rootNode
+    const node = getNode(rootNode, decodePath(encodedNodePath))
+
+    if(node instanceof PageNode) {
+     /*
+      * RULE: Page node is only allowed as child of root node.
+      */
+      return event.to.parentNode.id === 'root'
+    } else if(event.to.parentNode.id === 'root') {
+     /*
+      * RULE: Children of root may only be page nodes.
+      */
+      return node instanceof PageNode
+    }
+
     return true
   }
 
