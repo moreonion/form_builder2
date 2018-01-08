@@ -14,7 +14,6 @@ export default class PageNode extends IntermediateNode {
         <div style={{border: '5px dashed pink', margin: '5px'}}>
           {this.children.map(child => child.renderNode(h))}
         </div>
-      </div>
-    )
+      </div>)
   }
 }

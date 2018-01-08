@@ -16,8 +16,7 @@ export default class TextFieldNode extends AbstractNode {
         <el-form-item label={this.label}>
           <el-input></el-input>
         </el-form-item>
-      </el-form>
-    )
+      </el-form>)
   }
 
   toString() {

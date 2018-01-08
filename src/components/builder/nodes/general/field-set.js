@@ -13,7 +13,6 @@ export default class FieldSetNode extends IntermediateNode {
         <div style={{border: '2px dashed blue', margin: '2px'}}>
           {this.children.map(child => child.renderNode(h))}
         </div>
-      </div>
-    )
+      </div>)
   }
 }
