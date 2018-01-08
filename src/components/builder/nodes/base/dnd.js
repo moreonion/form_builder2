@@ -10,7 +10,7 @@ import {store} from '../../../../store'
 
 import {getNode} from '../../get-node'
 import {decodePath} from '../../decode-path'
-import PageNode from '../general/page'
+import {PageNode} from '../general/page'
 
 export const NODE_TYPE_DND = 'dnd'
 

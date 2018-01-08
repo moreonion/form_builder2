@@ -1,9 +1,11 @@
 import IntermediateNode from '../base/intermediate'
 
-export default class PageNode extends IntermediateNode {
+export const NODE_TYPE_PAGE = 'page'
+
+export class PageNode extends IntermediateNode {
   constructor(initChildren=[], dndOptions=undefined) {
     super(initChildren, dndOptions)
-    this.type = 'page'
+    this.type = NODE_TYPE_PAGE
     this.key = Math.random()
   }
 
