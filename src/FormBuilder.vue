@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="wrapper">
     <el-row :gutter="20">
-      <el-col :xs="6" :sm="4">
+      <el-col :xs="6" :sm="8">
         <mo-palette></mo-palette>
       </el-col>
-      <el-col :xs="18" :sm="20">
+      <el-col :xs="18" :sm="14">
         <mo-settings></mo-settings>
         <mo-builder :rootNode="rootNode"></mo-builder>
         <pre>{{rootNode.toString()}}</pre>
@@ -61,5 +61,9 @@ export default {
 </script>
 
 <style lang="scss">
-
+  .wrapper {
+    @media screen and (min-width: 768px) {
+      margin: 5%;
+    }
+  }
 </style>
