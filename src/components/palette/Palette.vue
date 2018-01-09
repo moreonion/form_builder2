@@ -13,7 +13,7 @@
           @remove="removeHandler">
           <div class="paletteItem" :id="encodePaletteItem(i, j)" :key="j"
             v-for="(field, j) in paletteGroup.fields">
-            {{field.label}}
+            <fa-icon :icon="field.icon"/> {{field.label}}
           </div>
         </draggable>
       </el-collapse-item>

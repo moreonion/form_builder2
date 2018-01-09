@@ -9,7 +9,6 @@
         <mo-builder :rootNode="rootNode"></mo-builder>
         <pre>{{palette}}</pre>
         <pre>{{rootNode.toString()}}</pre>
-        <fa-icon :icon="testIcon" />
       </el-col>
     </el-row>
     <!--<el-row>
@@ -22,8 +21,6 @@
 
 <script>
 import {mapState, mapGetters} from 'vuex'
-
-import faUser from '@fortawesome/fontawesome-free-solid/faUser'
 
 import Palette from './components/palette/Palette.vue'
 import Settings from './components/Settings.vue'
@@ -41,10 +38,7 @@ export default {
     ...mapGetters('palette', {
       palette: 'paletteState'
     }),
-    ...mapState('builder', ['rootNode']),
-    testIcon() {
-      return faUser
-    }
+    ...mapState('builder', ['rootNode'])
   }
 }
 </script>
