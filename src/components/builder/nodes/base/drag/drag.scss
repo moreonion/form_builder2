@@ -1,17 +1,19 @@
+@import "../../../../../colors";
+
 .drag-node {
   position: relative;
   border: 2px solid;
   border-color: transparent;
 
   &:hover {
-    border-color: grey;
+    border-color: $light-gray;
   }
 }
 
 @mixin hover-btn {
   display: inline-block;
   padding: 6px 8px;
-  background: grey;
+  background: $light-gray;
 }
 
 .drag-node {
