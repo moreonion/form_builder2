@@ -7,8 +7,8 @@
       <el-col :xs="18" :sm="20">
         <mo-settings></mo-settings>
         <mo-builder :rootNode="rootNode"></mo-builder>
-        <pre>{{prettyPrintPalette(palette)}}</pre>
         <pre>{{rootNode.toString()}}</pre>
+        <pre>{{prettyPrintPalette(palette)}}</pre>
       </el-col>
     </el-row>
     <!--<el-row>
@@ -61,14 +61,5 @@ export default {
 </script>
 
 <style lang="scss">
-  .formItem {
-    border: 1px solid pink;
-    padding: 5px;
-    cursor: pointer;
-  }
 
-  .dragContainer {
-    min-height: 400px;
-    border: blue 1px solid;
-  }
 </style>
