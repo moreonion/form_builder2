@@ -1,5 +1,4 @@
-import {Palette} from './palette'
-import {PaletteGroup} from './palette-group'
+import {Palette, PaletteGroup} from './palette-model'
 
 import PaletteTextField from './fields/general/text'
 import PalettePageField from './fields/general/page'

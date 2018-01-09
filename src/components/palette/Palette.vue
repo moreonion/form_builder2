@@ -24,8 +24,7 @@
 <script>
 import {mapState, mapGetters} from 'vuex'
 
-import {encodePaletteItem} from './encode'
-import {decodePaletteItem} from './decode'
+import {encodePaletteItem, decodePaletteItem} from './util'
 import {PALETTE_DND_WRAPER_CLASSNAME} from '../../config/palette'
 import {BUILDER_ROOT_DIV_ID} from '../../config/builder'
 import PalettePageField from './fields/general/page'

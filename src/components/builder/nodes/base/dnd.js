@@ -1,6 +1,6 @@
 import IntermediateNode from './intermediate'
 
-import {decodePaletteItem} from '../../../palette/decode'
+import {decodePaletteItem} from '../../../palette/util'
 
 import {BUILDER_DND_OPTIONS} from '../../../../config/dnd'
 import {PALETTE_DND_WRAPER_CLASSNAME} from '../../../../config/palette'

@@ -7,3 +7,7 @@ export function decodePaletteItem(encodedStr) {
     paletteItemIndex: parseInt(res[2])
   } : null
 }
+
+export function encodePaletteItem(paletteGroupIndex, paletteItemIndex) {
+  return `pG-${paletteGroupIndex}--pI-${paletteItemIndex}`
+}
