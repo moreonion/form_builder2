@@ -1,5 +1,7 @@
 import {WrapperNode} from '../wrapper'
 
+import faArrowsAlt from '@fortawesome/fontawesome-free-solid/faArrowsAlt'
+
 import './drag.scss'
 
 export const NODE_TYPE_DRAG = 'drag'
@@ -13,9 +15,11 @@ export class DragNode extends WrapperNode {
   renderNode(h) {
     return (
       <div class="drag-node">
-        <div>Drag handler</div>
-        <div>Edit Btn</div>
-        {this.child.renderNode(h)}
+        <div class="drag-handle hover-handle">
+          <fa-icon icon={faArrowsAlt}/>
+        </div>
+        <div class="edit-btn hover-handle">Edit</div>
+        <div class="child-wrapper">{this.child.renderNode(h)}</div>
       </div>)
   }
 
