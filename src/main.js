@@ -1,5 +1,7 @@
 import Vue from 'vue'
 
+import './global.scss'
+
 import './vendor'
 
 import {store} from './store'
