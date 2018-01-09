@@ -11,10 +11,11 @@
         <draggable :value="[]" :class="paletteWrapperClsName"
           :move="moveHandler" :options="paletteGroup.dndOptions"
           @remove="removeHandler">
-          <div class="paletteItem" :id="encodePaletteItem(i, j)" :key="j"
+          <div v-if="paletteGroup.fields.length > 0" class="paletteItem" :id="encodePaletteItem(i, j)" :key="j"
             v-for="(field, j) in paletteGroup.fields">
-            <fa-icon :icon="field.icon"/> {{field.label}}
+            <fa-icon :icon="field.icon"></fa-icon> <span>{{field.label}}</span>
           </div>
+          <div v-if="paletteGroup.fields.length === 0">No items left :)</div>
         </draggable>
       </el-collapse-item>
   </el-collapse>
