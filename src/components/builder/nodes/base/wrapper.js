@@ -12,4 +12,11 @@ export class WrapperNode extends AbstractNode {
   renderNode(h) {
     return <div>{this.child.renderNode(h)}</div>
   }
+
+  toString() {
+    return {
+      type: this.type,
+      child: this.child.toString()
+    }
+  }
 }
