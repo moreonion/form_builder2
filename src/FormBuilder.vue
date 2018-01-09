@@ -7,7 +7,7 @@
       <el-col :xs="18" :sm="20">
         <mo-settings></mo-settings>
         <mo-builder :rootNode="rootNode"></mo-builder>
-        <pre>{{palette}}</pre>
+        <pre>{{prettyPrintPalette(palette)}}</pre>
         <pre>{{rootNode.toString()}}</pre>
       </el-col>
     </el-row>
@@ -39,6 +39,23 @@ export default {
       palette: 'paletteState'
     }),
     ...mapState('builder', ['rootNode'])
+  },
+  methods: {
+    prettyPrintPalette(palette) {
+      return {
+        groups: palette.groups.map(group => {
+          return {
+            label: group.label,
+            fields: group.fields.map(field => {
+              return {
+                label: field.label,
+                icon: field.icon.iconName
+              }
+            })
+          }
+        })
+      }
+    }
   }
 }
 </script>
