@@ -10,10 +10,16 @@
   }
 }
 
-@mixin hover-btn {
+@mixin hover-btn($cursor: pointer) {
+  cursor: $cursor;
   display: inline-block;
-  padding: 6px 8px;
+  padding: 10px 12px;
   background: $light-gray;
+  font-size: 11px;
+
+  &:hover {
+    background: $light-gray * 1.02;
+  }
 }
 
 .drag-node {
@@ -31,21 +37,25 @@
 .drag-node {
   .drag-handle {
     position: absolute;
-    left: -30px;
+    left: -35px;
     top: -2px;
-    @include hover-btn();
+    @include hover-btn(grab);
   }
 }
 
 .drag-node {
   .edit-btn {
     float: right;
+    position: relative;
+    top: -2px;
+    right: -2px;
+    background: #F1F1EF;
     @include hover-btn();
   }
 }
 
 .drag-node {
   .child-wrapper {
-    padding: 5px;
+    padding: 15px;
   }
 }
