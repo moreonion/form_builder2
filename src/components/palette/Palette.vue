@@ -71,7 +71,10 @@ export default {
 
 <style lang="scss">
   .paletteItem {
+    max-width: 200px;
     padding: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
     margin-bottom: 5px;
     border: 1px solid grey;
     border-radius: 2px;

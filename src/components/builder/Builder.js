@@ -8,7 +8,7 @@ export default {
      * E.g. Children of root node must be 'page' nodes
      */
     return (
-      <div id={BUILDER_ROOT_DIV_ID}>
+      <div id={BUILDER_ROOT_DIV_ID} style={{'margin-left': '32px'}}>
         {rootNode.children.map(child => child.renderNode(h))}
       </div>)
   }
