@@ -1,6 +1,6 @@
 import {AbstractNode} from '../base/abstract'
 
-import {encodePath} from '../../encode-path'
+import {encodePath} from '../../util'
 
 export default class IntermediateNode extends AbstractNode {
   constructor(initChildren=[]) {
