@@ -1,4 +1,4 @@
-import IntermediateNode from './intermediate'
+import {IntermediateNode} from './intermediate'
 
 import {decodePaletteItem} from '../../../palette/util'
 

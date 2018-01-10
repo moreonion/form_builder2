@@ -1,5 +1,5 @@
 import {DragNode} from './nodes/base/drag/drag'
-import IntermediateNode from './nodes/base/intermediate'
+import {IntermediateNode} from './nodes/base/intermediate'
 
 export function wrapDragNode(node) {
   return new DragNode(node)

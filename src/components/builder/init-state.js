@@ -1,4 +1,4 @@
-import IntermediateNode from './nodes/base/intermediate'
+import {IntermediateNode} from './nodes/base/intermediate'
 import {DnDNode} from './nodes/base/dnd'
 import {DragNode} from './nodes/base/drag/drag'
 import {PageNode} from './nodes/general/page'

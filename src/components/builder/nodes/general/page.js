@@ -1,4 +1,4 @@
-import IntermediateNode from '../base/intermediate'
+import {IntermediateNode} from '../base/intermediate'
 
 export const NODE_TYPE_PAGE = 'page'
 

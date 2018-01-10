@@ -2,10 +2,12 @@ import {AbstractNode} from '../base/abstract'
 
 import {encodePath} from '../../util'
 
-export default class IntermediateNode extends AbstractNode {
+export const NODE_TYPE_INTERMEDIATE = 'intermediate'
+
+export class IntermediateNode extends AbstractNode {
   constructor(initChildren=[]) {
     super()
-    this.type = 'intermediate'
+    this.type = NODE_TYPE_INTERMEDIATE
     this.children = [...initChildren]
   }
 
