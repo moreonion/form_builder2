@@ -3,16 +3,19 @@ import {DnDNode} from './nodes/base/dnd'
 import {DragNode} from './nodes/base/drag/drag'
 import {PageNode} from './nodes/general/page'
 import {TextFieldNode} from './nodes/general/text'
+import {FirstNameNode} from './nodes/contact/first-name'
 import {wrapDragNode} from './util'
 import {encodePath} from './path'
 
 const initState = new IntermediateNode([ // --> root node
   new DnDNode([
-    new PageNode([
-      new DnDNode([
-        wrapDragNode(new TextFieldNode())
-      ])
-    ])
+    wrapDragNode(
+      new PageNode([
+        new DnDNode([
+          wrapDragNode(new FirstNameNode()),
+          wrapDragNode(new TextFieldNode())
+        ])
+      ]))
   ])
 ])
 
