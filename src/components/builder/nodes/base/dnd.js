@@ -8,7 +8,8 @@ import {BUILDER_ROOT_DIV_ID, BUILDER_IS_SINGLETON_NODE_MAP} from '../../../../co
 
 import {store} from '../../../../store'
 
-import {getNode, decodePath} from '../../util'
+import {getNode} from '../../util'
+import {decodePath} from '../../path'
 import {PageNode} from '../general/page'
 
 export const NODE_TYPE_DND = 'dnd'

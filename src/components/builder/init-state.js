@@ -3,7 +3,8 @@ import {DnDNode} from './nodes/base/dnd'
 import {DragNode} from './nodes/base/drag/drag'
 import {PageNode} from './nodes/general/page'
 import {TextFieldNode} from './nodes/general/text'
-import {wrapDragNode, encodePath} from './util'
+import {wrapDragNode} from './util'
+import {encodePath} from './path'
 
 const initState = new IntermediateNode([ // --> root node
   new DnDNode([
