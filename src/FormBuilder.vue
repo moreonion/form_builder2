@@ -7,8 +7,8 @@
       <el-col :xs="18" :sm="14">
         <mo-settings></mo-settings>
         <mo-builder :rootNode="rootNode"></mo-builder>
-        <pre>{{rootNode.toString()}}</pre>
-        <pre>{{prettyPrintPalette(palette)}}</pre>
+        <pre style="font-size: 10px;">{{rootNode.toString()}}</pre>
+        <pre style="font-size: 10px;">{{prettyPrintPalette(palette)}}</pre>
       </el-col>
     </el-row>
     <!--<el-row>
