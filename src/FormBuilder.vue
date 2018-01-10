@@ -21,7 +21,6 @@
 
 <script>
 import {mapState, mapGetters} from 'vuex'
-
 import Palette from './components/palette/Palette.vue'
 import Settings from './components/Settings.vue'
 import Legend from './components/Legend.vue'
@@ -62,6 +61,8 @@ export default {
 
 <style lang="scss">
   .wrapper {
+    margin: 20px;
+
     @media screen and (min-width: 768px) {
       margin: 5%;
     }
