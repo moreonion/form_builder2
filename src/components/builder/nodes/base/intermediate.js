@@ -1,5 +1,4 @@
-import {AbstractNode} from '../base/abstract'
-
+import {AbstractNode} from './abstract'
 import {encodePath} from '../../util'
 
 export const NODE_TYPE_INTERMEDIATE = 'intermediate'
