@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
     <el-row :gutter="20">
-      <el-col :xs="6" :sm="8">
+      <el-col :xs="24" :sm="8">
         <mo-palette></mo-palette>
       </el-col>
-      <el-col :xs="18" :sm="14">
+      <el-col :xs="24" :sm="14">
         <mo-settings></mo-settings>
         <mo-builder :rootNode="rootNode"></mo-builder>
         <pre style="font-size: 10px;">{{rootNode.toString()}}</pre>
