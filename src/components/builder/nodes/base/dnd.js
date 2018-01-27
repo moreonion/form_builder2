@@ -127,8 +127,6 @@ export class DnDNode extends IntermediateNode {
       default: props => props.item.renderNode(h)
     }
 
-    return (
-      <DnDItems items={this.children} scopedSlots={slots}/>
-    )
+    return <DnDItems items={this.children} scopedSlots={slots}/>
   }
 }
