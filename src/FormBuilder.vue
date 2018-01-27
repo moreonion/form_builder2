@@ -1,26 +1,29 @@
 <template>
-  <div class="wrapper">
-    <el-row :gutter="20">
-      <el-col :xs="24" :sm="8">
-        <mo-palette></mo-palette>
-      </el-col>
-      <el-col :xs="24" :sm="14">
-        <mo-settings></mo-settings>
-        <mo-builder :rootNode="rootNode"></mo-builder>
-        <pre style="font-size: 10px;">{{rootNode.toString()}}</pre>
-        <pre style="font-size: 10px;">{{prettyPrintPalette(palette)}}</pre>
-      </el-col>
-    </el-row>
-    <!--<el-row>
-      <el-col>
-        <mo-legend></mo-legend>
-      </el-col>
-    </el-row>-->
-  </div>
+  <DnDContext>
+    <div class="wrapper">
+      <el-row :gutter="20">
+        <el-col :xs="24" :sm="8">
+          <mo-palette></mo-palette>
+        </el-col>
+        <!-- <el-col :xs="24" :sm="14">
+          <mo-settings></mo-settings>
+          <mo-builder :rootNode="rootNode"></mo-builder>
+          <pre style="font-size: 10px;">{{rootNode.toString()}}</pre>
+          <pre style="font-size: 10px;">{{prettyPrintPalette(palette)}}</pre>
+        </el-col> -->
+      </el-row>
+      <!--<el-row>
+        <el-col>
+          <mo-legend></mo-legend>
+        </el-col>
+      </el-row>-->
+    </div>
+  </DnDContext>
 </template>
 
 <script>
 import {mapState, mapGetters} from 'vuex'
+import {DnDContext} from 'mo-vue-dnd'
 import Palette from './components/palette/Palette.vue'
 import Settings from './components/Settings.vue'
 import Legend from './components/Legend.vue'
@@ -28,6 +31,7 @@ import Builder from './components/builder/Builder'
 
 export default {
   components: {
+    DnDContext,
     'mo-builder': Builder,
     'mo-palette': Palette,
     'mo-settings': Settings,
