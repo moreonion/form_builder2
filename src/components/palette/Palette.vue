@@ -2,7 +2,7 @@
   <el-collapse v-model="activeName" accordion>
     <el-collapse-item :title="paletteGroup.label" :name="i" :key="i"
       v-for="(paletteGroup, i) in palette.groups">
-      <DnDItems :items="paletteGroup.items">
+      <DnDItems :items="paletteGroup.items" :options="paletteGroup.dndOptions">
         <template scope="props">
           <div class="paletteItem">
             <fa-icon :icon="props.item.icon"></fa-icon> <span>{{props.item.label}}</span>
