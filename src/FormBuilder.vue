@@ -9,12 +9,12 @@
         <el-col :xs="24" :sm="8">
           <mo-palette></mo-palette>
         </el-col>
-        <!-- <el-col :xs="24" :sm="14">
+        <el-col :xs="24" :sm="14">
           <mo-settings></mo-settings>
           <mo-builder :rootNode="rootNode"></mo-builder>
           <pre style="font-size: 10px;">{{rootNode.toString()}}</pre>
           <pre style="font-size: 10px;">{{prettyPrintPalette(palette)}}</pre>
-        </el-col> -->
+        </el-col>
       </el-row>
       <!--<el-row>
         <el-col>
@@ -53,10 +53,10 @@ export default {
         groups: palette.groups.map(group => {
           return {
             label: group.label,
-            fields: group.fields.map(field => {
+            items: group.items.map(item => {
               return {
-                label: field.label,
-                icon: field.icon.iconName
+                label: item.label,
+                icon: item.icon.iconName
               }
             })
           }
