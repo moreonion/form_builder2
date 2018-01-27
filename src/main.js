@@ -6,7 +6,7 @@ import './vendor'
 
 import {store} from './store'
 
-import FormBuilder from './FormBuilder.vue'
+import FormBuilder from './FormBuilder'
 
 new Vue({
   el: '#app',
