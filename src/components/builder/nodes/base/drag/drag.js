@@ -13,11 +13,11 @@ export class DragNode extends IntermediateNode {
     this.hover = false
   }
 
-  mouseenterHandler(event) {
+  onEnter(event) {
     this.hover = true
   }
 
-  mouseleaveHandler(event) {
+  onLeave(event) {
     this.hover = false
   }
 
@@ -27,9 +27,7 @@ export class DragNode extends IntermediateNode {
       'drag-node--hover-state': this.hover
     }
     return (
-      <div class={classSettings}
-        onMouseenter={this.mouseenterHandler.bind(this)}
-        onMouseleave={this.mouseleaveHandler.bind(this)}>
+      <div class={classSettings} onMouseenter={this.onEnter.bind(this)} onMouseleave={this.onLeave.bind(this)}>
         <DnDHandle container={payload}>
           <div class="drag-handle hover-handle">
             <fa-icon icon={faArrowsAlt}/>
