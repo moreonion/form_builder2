@@ -7,15 +7,22 @@ import {FirstNameNode} from './nodes/contact/first-name'
 import {wrapDragNode} from './util'
 import {encodePath} from './path'
 
-const initState = new IntermediateNode([ // --> root node
+// const initState = new IntermediateNode([ // --> root node
+//   new DnDNode([
+//     wrapDragNode(
+//       new PageNode([
+//         new DnDNode([
+//           wrapDragNode(new FirstNameNode()),
+//           wrapDragNode(new TextFieldNode())
+//         ])
+//       ]))
+//   ])
+// ])
+
+const initState = new IntermediateNode([
   new DnDNode([
-    wrapDragNode(
-      new PageNode([
-        new DnDNode([
-          wrapDragNode(new FirstNameNode()),
-          wrapDragNode(new TextFieldNode())
-        ])
-      ]))
+    wrapDragNode(new FirstNameNode()),
+    wrapDragNode(new TextFieldNode())
   ])
 ])
 
