@@ -28,7 +28,7 @@ export class DnDNode extends IntermediateNode {
       default: props => props.item.renderNode(h)
     }
 
-    return <DnDItems items={this.children} onUpdate={data => this.setChildren(data)}
+    return <DnDItems items={this.children} onUpdate={this.setChildren.bind(this)}
       group={this.dndGroup} options={this.dndOptions} scopedSlots={slots}/>
   }
 }
