@@ -52,7 +52,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      'mo-vue-dnd/mo-vue-dnd.css': 'mo-vue-dnd/dist/mo-vue-dnd.css'
     }
   },
   plugins: [
