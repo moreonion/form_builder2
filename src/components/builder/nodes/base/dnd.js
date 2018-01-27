@@ -25,7 +25,7 @@ export class DnDNode extends IntermediateNode {
 
   renderNode(h) {
     const slots = {
-      default: props => props.item.renderNode(h)
+      default: props => props.item.renderNode(h, props.container)
     }
 
     return <DnDItems items={this.children} onUpdate={this.setChildren.bind(this)}
