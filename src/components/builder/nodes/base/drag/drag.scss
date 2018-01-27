@@ -4,10 +4,11 @@
   position: relative;
   border: 2px solid;
   border-color: transparent;
+  transition: border-color .5s;
+}
 
-  &:hover {
-    border-color: $light-gray;
-  }
+.drag-node--hover-state {
+  border-color: $light-gray;
 }
 
 @mixin hover-btn($cursor: pointer) {
@@ -16,15 +17,12 @@
   padding: 10px 12px;
   background: $light-gray;
   font-size: 11px;
-
-  &:hover {
-    background: $light-gray * 1.02;
-  }
 }
 
 .drag-node {
   .hover-handle {
     opacity: 0;
+    transition: opacity .5s;
   }
 
   &:hover {
