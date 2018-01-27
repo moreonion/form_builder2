@@ -3,7 +3,7 @@ import {DnDContext} from 'mo-vue-dnd'
 import './FormBuilder.scss'
 import Palette from './components/palette/Palette.vue'
 import Settings from './components/Settings.vue'
-import Legend from './components/Legend.vue'
+// import Legend from './components/Legend.vue'
 import Builder from './components/builder/Builder'
 
 export default {
@@ -12,7 +12,7 @@ export default {
     Builder,
     Palette,
     Settings,
-    Legend
+    // Legend
   },
   computed: {
     ...mapGetters('palette', {
