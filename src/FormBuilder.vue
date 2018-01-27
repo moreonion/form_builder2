@@ -2,7 +2,7 @@
   <DnDContext>
     <template scope="props">
       <h4>Dragging</h4>
-      <pre>{{props.item}}</pre>
+      <pre style="font-size: 8px;">{{props.item}}</pre>
     </template>
     <div class="wrapper">
       <el-row :gutter="20">
