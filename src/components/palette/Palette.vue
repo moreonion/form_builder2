@@ -22,9 +22,7 @@ import {BUILDER_ROOT_DIV_ID} from '../../config/builder'
 import PalettePageField from './fields/general/page'
 
 export default {
-  components: {
-    DnDItems
-  },
+  components: {DnDItems},
   computed: {
     paletteWrapperClsName: () => PALETTE_DND_WRAPER_CLASSNAME,
     ...mapState('palette', ['activeName']),
