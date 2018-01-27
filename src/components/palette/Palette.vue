@@ -1,35 +1,30 @@
 <template>
   <el-collapse v-model="activeName" accordion>
-      <el-collapse-item :title="paletteGroup.label" :name="i"
-        :key="i" v-for="(paletteGroup, i) in palette.groups">
-        <!--
-          NOTE: :value="[]" :move="moveHandler"
-          Use dummy array for value prop to get move callbacks.
-          `moveHandler` is only called, when some value binding (v-model, list)
-          is used with vuedraggable.
-        -->
-        <draggable :value="[]" :class="paletteWrapperClsName"
-          :move="moveHandler" :options="paletteGroup.dndOptions"
-          @remove="removeHandler">
-          <div v-if="paletteGroup.fields.length > 0" class="paletteItem" :id="encodePaletteItem(i, j)" :key="j"
-            v-for="(field, j) in paletteGroup.fields">
-            <fa-icon :icon="field.icon"></fa-icon> <span>{{field.label}}</span>
+    <el-collapse-item :title="paletteGroup.label" :name="i" :key="i"
+      v-for="(paletteGroup, i) in palette.groups">
+      <DnDItems :items="paletteGroup.fields">
+        <template scope="props">
+          <div class="paletteItem">
+            <fa-icon :icon="props.item.icon"></fa-icon> <span>{{props.item.label}}</span>
           </div>
-          <div v-if="paletteGroup.fields.length === 0">No items left :)</div>
-        </draggable>
-      </el-collapse-item>
+        </template>
+      </DnDItems>
+    </el-collapse-item>
   </el-collapse>
 </template>
 
 <script>
 import {mapState, mapGetters} from 'vuex'
-
+import {DnDItems} from 'mo-vue-dnd'
 import {encodePaletteItem, decodePaletteItem} from './util'
 import {PALETTE_DND_WRAPER_CLASSNAME} from '../../config/palette'
 import {BUILDER_ROOT_DIV_ID} from '../../config/builder'
 import PalettePageField from './fields/general/page'
 
 export default {
+  components: {
+    DnDItems
+  },
   computed: {
     paletteWrapperClsName: () => PALETTE_DND_WRAPER_CLASSNAME,
     ...mapState('palette', ['activeName']),
