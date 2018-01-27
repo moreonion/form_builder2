@@ -5,9 +5,9 @@ export class Palette {
 }
 
 export class PaletteGroup {
-  constructor(label, dndOptions, fields) {
+  constructor(label, dndOptions, items) {
     this.label = label
     this.dndOptions = dndOptions
-    this.fields = fields
+    this.items = items
   }
 }

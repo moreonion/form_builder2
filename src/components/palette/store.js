@@ -26,7 +26,7 @@ export const paletteModule = {
         groups: palette.groups.map(group => {
           return {
             ...group,
-            fields: group.fields.filter(item => {
+            items: group.items.filter(item => {
               return !BUILDER_IS_SINGLETON_NODE_MAP[item.nodeType]
                 || !createdSingletons[item.nodeType]
             })
@@ -35,7 +35,7 @@ export const paletteModule = {
       }
     },
     getPaletteItem: (_, getters) => (groupIndex, itemIndex) => {
-      return getters.paletteState.groups[groupIndex].fields[itemIndex]
+      return getters.paletteState.groups[groupIndex].items[itemIndex]
     }
   },
   mutations: {
