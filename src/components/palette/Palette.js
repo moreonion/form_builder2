@@ -5,6 +5,7 @@ import {encodePaletteItem, decodePaletteItem} from './util'
 import {PALETTE_DND_WRAPER_CLASSNAME} from '../../config/palette'
 import {BUILDER_ROOT_DIV_ID} from '../../config/builder'
 import PageFieldItem from './items/general/page'
+import {PALETTE_DND_GROUP} from '../../config/dnd'
 
 export default {
   components: {DnDItems},
@@ -43,17 +44,14 @@ export default {
     endHandler(event) {
     }
   },
-  render() {
-    const renderItem = props => (
-      <div class="paletteItem">
-        <fa-icon icon={props.item.icon}></fa-icon> <span>{props.item.label}</span>
-      </div>)
+  render(h) {
+    const renderItem = props => props.item.renderItem(h, props.item)
     const slots = {default: renderItem}
 
     const content = this.palette.groups.map((paletteGroup, i) => (
       <el-collapse value={this.activeName} accordion>
         <el-collapse-item title={paletteGroup.label} name={i} key={i}>
-          <DnDItems items={paletteGroup.items} options={paletteGroup.dndOptions} scopedSlots={slots}/>
+          <DnDItems group={PALETTE_DND_GROUP} items={paletteGroup.items} options={paletteGroup.dndOptions} scopedSlots={slots}/>
         </el-collapse-item>
       </el-collapse>))
 
