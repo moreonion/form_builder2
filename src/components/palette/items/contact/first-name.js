@@ -10,10 +10,7 @@ export default class FirstNameItem extends AbstractItem {
     this.nodeType = NODE_TYPE_FIRST_NAME
   }
 
-  // nodeFactory() {
-  //   return wrapDragNode(new FirstNameNode())
-  // }
   nodeFactory() {
-    return new FirstNameNode()
+    return wrapDragNode(new FirstNameNode())
   }
 }
