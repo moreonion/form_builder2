@@ -1,9 +1,7 @@
 import {Palette, PaletteGroup} from './palette-model'
-
 import TextFieldItem from './items/general/text'
 import PageFieldItem from './items/general/page'
 import FieldSetItem from './items/general/field-set'
-
 import FirstNameItem from './items/contact/first-name'
 import LastNameItem from './items/contact/last-name'
 
