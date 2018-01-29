@@ -4,7 +4,7 @@ import './Palette.scss'
 import {encodePaletteItem, decodePaletteItem} from './util'
 import {PALETTE_DND_WRAPER_CLASSNAME} from '../../config/palette'
 import {BUILDER_ROOT_DIV_ID} from '../../config/builder'
-import PageFieldItem from './fields/general/page'
+import PageFieldItem from './items/general/page'
 
 export default {
   components: {DnDItems},
