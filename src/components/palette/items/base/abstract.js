@@ -1,6 +1,6 @@
 import {NODE_TYPE_ABSTRACT} from '../../../builder/nodes/base/abstract'
 
-export default class AbstractField {
+export default class AbstractItem {
   constructor(label, icon) {
     this.label = label
     this.icon = icon
@@ -11,5 +11,10 @@ export default class AbstractField {
   // Implement builder node factory
   nodeFactory() {
     return null
+  }
+
+  // abstract: override in subclasses
+  renderItem() {
+    return <div></div>
   }
 }

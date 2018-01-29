@@ -4,7 +4,7 @@ import './Palette.scss'
 import {encodePaletteItem, decodePaletteItem} from './util'
 import {PALETTE_DND_WRAPER_CLASSNAME} from '../../config/palette'
 import {BUILDER_ROOT_DIV_ID} from '../../config/builder'
-import PalettePageField from './fields/general/page'
+import PageFieldItem from './fields/general/page'
 
 export default {
   components: {DnDItems},
@@ -23,7 +23,7 @@ export default {
         const {paletteGroupIndex, paletteItemIndex} = paletteModelId
         const paletteModel = this.$store.getters['palette/getPaletteItem'](paletteGroupIndex, paletteItemIndex)
 
-        if(paletteModel instanceof PalettePageField) {
+        if(paletteModel instanceof PageFieldItem) {
           /*
           * RULE: Page node is only allowed as child of root node.
           */
@@ -32,7 +32,7 @@ export default {
           /*
           * RULE: Children of root may only be page nodes.
           */
-          return paletteModel instanceof PalettePageField
+          return paletteModel instanceof PageFieldItem
         }
       }
 

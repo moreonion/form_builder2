@@ -1,12 +1,12 @@
 import {DnDOptions} from 'mo-vue-dnd'
 import {Palette, PaletteGroup} from './palette-model'
 
-import PaletteTextField from './fields/general/text'
-import PalettePageField from './fields/general/page'
-import PaletteFieldSetField from './fields/general/field-set'
+import TextFieldItem from './fields/general/text'
+import PageFieldItem from './fields/general/page'
+import FieldSetItem from './fields/general/field-set'
 
-import PaletteFirstNameField from './fields/contact/first-name'
-import PaletteLastNameField from './fields/contact/last-name'
+import FirstNameItem from './fields/contact/first-name'
+import LastNameItem from './fields/contact/last-name'
 
 import {PALETTE_DND_GROUP, PALETTE_DND_OPTIONS, BUILDER_DND_GROUP} from '../../config/dnd'
 
@@ -25,13 +25,13 @@ generalItemsOptions.permissions = palettePermissions
 export function getInitPaletteState() {
   return new Palette([
     new PaletteGroup('Contact', contactItemsOptions, [
-      new PaletteFirstNameField(),
-      new PaletteLastNameField()
+      new FirstNameItem(),
+      new LastNameItem()
     ]),
     new PaletteGroup('General fields', generalItemsOptions, [
-      new PaletteTextField(),
-      new PalettePageField(),
-      new PaletteFieldSetField()
+      new TextFieldItem(),
+      new PageFieldItem(),
+      new FieldSetItem()
     ])
   ])
 }

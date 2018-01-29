@@ -5,6 +5,7 @@ import Palette from './components/palette/Palette'
 import Settings from './components/Settings'
 // import Legend from './components/Legend'
 import Builder from './components/builder/Builder'
+import {AbstractNode} from './components/builder/nodes/base/abstract'
 
 export default {
   components: {
@@ -40,7 +41,9 @@ export default {
   render(h) {
     const slots = {
       default: props => {
-        return props.item.renderNode(h)
+        return props.item instanceof AbstractNode ?
+          props.item.renderNode(h):
+          props.item.renderItem(h)
       }
     }
     return (
