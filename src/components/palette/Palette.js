@@ -1,21 +1,6 @@
-<template>
-  <el-collapse v-model="activeName" accordion>
-    <el-collapse-item :title="paletteGroup.label" :name="i" :key="i"
-      v-for="(paletteGroup, i) in palette.groups">
-      <DnDItems :items="paletteGroup.items" :options="paletteGroup.dndOptions">
-        <template scope="props">
-          <div class="paletteItem">
-            <fa-icon :icon="props.item.icon"></fa-icon> <span>{{props.item.label}}</span>
-          </div>
-        </template>
-      </DnDItems>
-    </el-collapse-item>
-  </el-collapse>
-</template>
-
-<script>
 import {mapState, mapGetters} from 'vuex'
 import {DnDItems} from 'mo-vue-dnd'
+import './Palette.scss'
 import {encodePaletteItem, decodePaletteItem} from './util'
 import {PALETTE_DND_WRAPER_CLASSNAME} from '../../config/palette'
 import {BUILDER_ROOT_DIV_ID} from '../../config/builder'
@@ -40,13 +25,13 @@ export default {
 
         if(paletteModel instanceof PalettePageField) {
           /*
-           * RULE: Page node is only allowed as child of root node.
-           */
+          * RULE: Page node is only allowed as child of root node.
+          */
           return event.to.parentNode.id === BUILDER_ROOT_DIV_ID
         } else if(event.to.parentNode.id === BUILDER_ROOT_DIV_ID) {
           /*
-           * RULE: Children of root may only be page nodes.
-           */
+          * RULE: Children of root may only be page nodes.
+          */
           return paletteModel instanceof PalettePageField
         }
       }
@@ -57,18 +42,21 @@ export default {
     },
     endHandler(event) {
     }
+  },
+  render() {
+    const renderItem = props => (
+      <div class="paletteItem">
+        <fa-icon icon={props.item.icon}></fa-icon> <span>{props.item.label}</span>
+      </div>)
+    const slots = {default: renderItem}
+
+    const content = this.palette.groups.map((paletteGroup, i) => (
+      <el-collapse value={this.activeName} accordion>
+        <el-collapse-item title={paletteGroup.label} name={i} key={i}>
+          <DnDItems items={paletteGroup.items} options={paletteGroup.dndOptions} scopedSlots={slots}/>
+        </el-collapse-item>
+      </el-collapse>))
+
+    return <div>{content}</div>
   }
 }
-</script>
-
-<style lang="scss">
-  .paletteItem {
-    max-width: 200px;
-    padding: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    border: 1px solid grey;
-    border-radius: 2px;
-  }
-</style>
