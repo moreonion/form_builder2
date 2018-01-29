@@ -11,10 +11,15 @@ export default class PageFieldItem extends AbstractItem {
     this.nodeType = NODE_TYPE_PAGE
   }
 
+  // nodeFactory() {
+  //   return wrapDragNode(
+  //     new PageNode([
+  //       new DnDNode([])
+  //     ]))
+  // }
   nodeFactory() {
-    return wrapDragNode(
-      new PageNode([
-        new DnDNode([])
-      ]))
+    return new PageNode([
+      new DnDNode([])
+    ])
   }
 }

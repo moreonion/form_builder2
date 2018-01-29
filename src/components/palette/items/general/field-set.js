@@ -11,10 +11,16 @@ export default class FieldSetItem extends AbstractItem {
     this.nodeType = NODE_TYPE_FIELD_SET
   }
 
+  // nodeFactory() {
+  //   return wrapDragNode(
+  //     new FieldSetNode([
+  //       new DnDNode([])
+  //     ]))
+  // }
+
   nodeFactory() {
-    return wrapDragNode(
-      new FieldSetNode([
-        new DnDNode([])
-      ]))
+    return new FieldSetNode([
+      new DnDNode([])
+    ])
   }
 }

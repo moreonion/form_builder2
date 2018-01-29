@@ -10,8 +10,12 @@ export default class TextFieldItem extends AbstractItem {
     this.nodeType = NODE_TYPE_TEXT
   }
 
+  // nodeFactory() {
+  //   return wrapDragNode(
+  //     new TextFieldNode('New textfield'))
+  // }
+
   nodeFactory() {
-    return wrapDragNode(
-      new TextFieldNode('New textfield'))
+    return new TextFieldNode('New textfield')
   }
 }
