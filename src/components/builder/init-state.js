@@ -21,8 +21,8 @@ import {encodePath} from './path'
 
 const initState = new IntermediateNode([
   new DnDNode([
-    new FirstNameNode(),
-    new TextFieldNode()
+    wrapDragNode(new FirstNameNode()),
+    wrapDragNode(new TextFieldNode())
   ])
 ])
 
