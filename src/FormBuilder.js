@@ -6,7 +6,6 @@ import Settings from './components/Settings'
 // import Legend from './components/Legend'
 import Builder from './components/builder/Builder'
 import {AbstractNode} from './components/builder/nodes/base/abstract'
-import {slotsFactory} from './components/slots'
 
 export default {
   components: {
@@ -40,8 +39,15 @@ export default {
     }
   },
   render(h) {
+    const slots = {
+      default: props => {
+        return props.item instanceof AbstractNode ?
+          props.item.renderNode(h):
+          props.item.renderItem(h, props.item)
+      }
+    }
     return (
-      <DnDContext scopedSlots={slotsFactory(h)}>
+      <DnDContext scopedSlots={slots}>
         <div class="wrapper">
           <el-row gutter={20}>
             <el-col xs={24} sm={8}>
