@@ -13,8 +13,10 @@ export default class AbstractItem {
     return null
   }
 
-  // abstract: override in subclasses
-  renderItem() {
-    return <div></div>
+  renderItem(h, item) {
+    return (
+      <div class="paletteItem">
+        <fa-icon icon={item.icon}></fa-icon> <span>{item.label}</span>
+      </div>)
   }
 }
