@@ -7,7 +7,10 @@ import FieldSetItem from './items/general/field-set'
 import FirstNameItem from './items/contact/first-name'
 import LastNameItem from './items/contact/last-name'
 
-import {PALETTE_CONTACT_DND_OPTIONS, PALETTE_GENERAL_DND_OPTIONS} from '../../config/dnd'
+import {
+  PALETTE_CONTACT_DND_OPTIONS,
+  PALETTE_GENERAL_DND_OPTIONS
+} from '../../config/dnd'
 
 export function getInitPaletteState() {
   return new Palette([
