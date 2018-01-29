@@ -4,7 +4,7 @@ import { builderModule } from '../components/builder/store';
 export const PALETTE_DND_GROUP = 'palette'
 export const BUILDER_DND_GROUP = 'tree'
 
-const builderOptions = new DnDOptions(true, false)
+const builderOptions = new DnDOptions(true, true)
 // Just allow dnd on itself (nested)
 builderOptions.permissions = [
   [BUILDER_DND_GROUP],
