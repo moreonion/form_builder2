@@ -43,7 +43,7 @@ export default {
       default: props => {
         return props.item instanceof AbstractNode ?
           props.item.renderNode(h):
-          props.item.renderItem(h)
+          props.item.renderItem(h, props.item)
       }
     }
     return (
