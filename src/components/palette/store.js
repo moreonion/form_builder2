@@ -18,7 +18,7 @@ export const paletteModule = {
         return accum
       }, {})
     },
-    activeName: 0 // active collapse index
+    activeNames: [0, 1] // active collapse indexes
   },
   getters: {
     paletteState: ({palette, paletteConfig:{createdSingletons}}) => {
