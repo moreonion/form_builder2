@@ -10,6 +10,6 @@ export default class TextFieldItem extends AbstractItem {
   }
 
   nodeFactory() {
-    new TextFieldNode('New textfield')
+    return new TextFieldNode('New textfield')
   }
 }

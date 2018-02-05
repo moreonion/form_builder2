@@ -11,7 +11,7 @@ export default class PageFieldItem extends AbstractItem {
   }
 
   nodeFactory() {
-    new PageNode([
+    return new PageNode([
       new DnDNode([])
     ])
   }

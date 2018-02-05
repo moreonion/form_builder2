@@ -11,7 +11,7 @@ export default class FieldSetItem extends AbstractItem {
   }
 
   nodeFactory() {
-    new FieldSetNode([
+    return new FieldSetNode([
       new DnDNode([])
     ])
   }
