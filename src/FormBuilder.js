@@ -39,13 +39,7 @@ export default {
     }
   },
   render(h) {
-    const slots = {
-      default: props => {
-        return props.item instanceof AbstractNode ?
-          props.item.renderNode(h):
-          props.item.renderItem(h, props.item)
-      }
-    }
+    const slots = {default: props => props.item.renderFn(h, props.item)}
     return (
       <DnDContext scopedSlots={slots}>
         <div class="wrapper">
