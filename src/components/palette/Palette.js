@@ -49,7 +49,7 @@ export default {
 
     const content = this.palette.groups.map((paletteGroup, i) => (
       <el-collapse value={this.activeName} accordion>
-        <el-collapse-item title={paletteGroup.label} name={i} key={i}>
+        <el-collapse-item title={paletteGroup.label} name={i}>
           <DnDItems group={PALETTE_DND_GROUP} items={paletteGroup.items} options={paletteGroup.dndOptions} scopedSlots={slots}/>
         </el-collapse-item>
       </el-collapse>))
