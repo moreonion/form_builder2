@@ -1,5 +1,12 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
+const pkg = require('./package.json')
+
+const banner = `
+mo-fb2 v${pkg.version}
+(c) 2018 ${pkg.author}
+License: ${pkg.license}
+`
 
 module.exports = {
   entry: './src/main.js',
@@ -46,6 +53,7 @@ module.exports = {
       }
     ]
   },
+
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
@@ -53,7 +61,8 @@ module.exports = {
     }
   },
   plugins: [
-    new webpack.NormalModuleReplacementPlugin(/element-ui[\/\\]lib[\/\\]locale[\/\\]lang[\/\\]zh-CN/, 'element-ui/lib/locale/lang/en')
+    new webpack.NormalModuleReplacementPlugin(/element-ui[\/\\]lib[\/\\]locale[\/\\]lang[\/\\]zh-CN/, 'element-ui/lib/locale/lang/en'),
+    new webpack.BannerPlugin(banner)
   ],
   devServer: {
     historyApiFallback: true,

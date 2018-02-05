@@ -1,8 +1,8 @@
 {
-  "name": "mo-form-builder-2",
-  "description": "More Onion: Form Builder v2 Prototype",
+  "name": "mo-fb2",
+  "description": "More Onion: Form Builder",
   "version": "0.1.0",
-  "author": "Onur D. <contact@dinony.com>",
+  "author": "Onur Dogangönül <contact@dinony.com>",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
@@ -26,7 +26,6 @@
     "babel-loader": "^7.1.2",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-plugin-transform-vue-jsx": "^3.5.1",
     "babel-preset-env": "^1.6.0",
     "cross-env": "^5.1.3",
