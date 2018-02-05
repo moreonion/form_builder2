@@ -10,31 +10,22 @@ export class DragNode extends IntermediateNode {
   constructor(child) {
     super([child])
     this.type = NODE_TYPE_DRAG
-    this.hover = false
   }
 
-  onEnter(event) {
-    this.hover = true
-  }
-
-  onLeave(event) {
-    this.hover = false
-  }
-
-  renderNode(h, payload) {
+  renderFn(h, payload) {
     const classSettings = {
       'drag-node': true,
       'drag-node--hover-state': this.hover
     }
     return (
-      <div class={classSettings} onMouseenter={this.onEnter.bind(this)} onMouseleave={this.onLeave.bind(this)}>
+      <div class={classSettings}>
         <DnDHandle container={payload}>
           <div class="drag-handle hover-handle">
             <fa-icon icon={faArrowsAlt}/>
           </div>
         </DnDHandle>
         <div class="edit-btn hover-handle">Edit</div>
-        <div class="child-wrapper">{this.children[0].renderNode(h)}</div>
+        <div class="child-wrapper">{this.children[0].renderFn(h)}</div>
       </div>)
   }
 
