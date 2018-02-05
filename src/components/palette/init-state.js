@@ -18,7 +18,7 @@ export function getInitPaletteState() {
     ]),
     new PaletteGroup('General fields', PALETTE_GENERAL_DND_OPTIONS, [
       new TextFieldItem(),
-      new PageFieldItem(),
+      // new PageFieldItem(),
       new FieldSetItem()
     ])
   ])
