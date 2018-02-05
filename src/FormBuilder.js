@@ -51,12 +51,12 @@ export default {
               <Settings/>
               <Builder rootNode={this.rootNode}/>
             </el-col>
-            <el-col xs={24} sm={14}>
+            {/* <el-col xs={24} sm={14}>
               <h4>Builder</h4>
               <pre style="font-size: 8px">{JSON.stringify(this.rootNode, null, 2)}</pre>
               <h4>Palette</h4>
               <pre style="font-size: 8px">{JSON.stringify(this.palette, null, 2)}</pre>
-            </el-col>
+            </el-col> */}
           </el-row>
         </div>
       </DnDContext>)
