@@ -3,8 +3,9 @@ import {AbstractNode} from '../base/abstract'
 export const NODE_TYPE_TEXT = 'text'
 
 export class TextFieldNode extends AbstractNode {
-  constructor(label='Textfield', labelPos='top', labelWidth='100px') {
+  constructor(text='', label='Textfield', labelPos='top', labelWidth='100px') {
     super()
+    this.text = text
     this.type = NODE_TYPE_TEXT
     this.label = label
     this.labelPos = labelPos
@@ -13,9 +14,9 @@ export class TextFieldNode extends AbstractNode {
 
   renderFn(h) {
     return (
-      <el-form id={this.path} label-position={this.labelPos} label-width={this.labelWidth}>
+      <el-form label-position={this.labelPos} label-width={this.labelWidth}>
         <el-form-item label={this.label}>
-          <el-input></el-input>
+          <el-input value={this.text} onChange={val => this.text=val}></el-input>
         </el-form-item>
       </el-form>)
   }
@@ -23,7 +24,7 @@ export class TextFieldNode extends AbstractNode {
   toString() {
     return {
       type: this.type,
-      path: this.path,
+      text: this.text,
       label: this.label
     }
   }
