@@ -18,9 +18,10 @@ import {FirstNameNode} from './nodes/contact/first-name'
 // ])
 
 const initState = new IntermediateNode([
-  new DnDNode([
-    new FirstNameNode(),
-    new TextFieldNode()
+  new PageNode([
+    new DnDNode([
+      new TextFieldNode('Text 123')
+    ])
   ])
 ])
 
