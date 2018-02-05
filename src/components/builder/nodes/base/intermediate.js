@@ -11,22 +11,18 @@ export class IntermediateNode extends AbstractNode {
 
   setChildren(children) {
     this.children = children
-    encodePath(this, this.path)
   }
 
   addChild(index, child) {
     this.children.splice(index, 0, child)
-    encodePath(this, this.path)
   }
 
   pushChild(child) {
     this.children.push(child)
-    encodePath(this, this.path)
   }
 
   removeChildByIndex(i) {
     this.children.splice(i, 1)
-    encodePath(this, this.path)
   }
 
   removeChild(child) {
@@ -34,7 +30,6 @@ export class IntermediateNode extends AbstractNode {
     if(index !== -1) {
       this.children.splice(index, 1)
     }
-    encodePath(this, this.path)
   }
 
   renderFn(h) {
