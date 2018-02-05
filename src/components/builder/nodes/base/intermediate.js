@@ -1,5 +1,4 @@
 import {AbstractNode} from './abstract'
-import {encodePath} from '../../path'
 
 export const NODE_TYPE_INTERMEDIATE = 'intermediate'
 

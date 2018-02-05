@@ -2,7 +2,6 @@ import faTextWidth from '@fortawesome/fontawesome-free-solid/faTextWidth'
 
 import AbstractItem from '../base/abstract'
 import {TextFieldNode, NODE_TYPE_TEXT} from '../../../builder/nodes/general/text'
-import {wrapDragNode} from '../../../builder/util'
 
 export default class TextFieldItem extends AbstractItem {
   constructor(label='Textfield', icon=faTextWidth) {
@@ -11,7 +10,6 @@ export default class TextFieldItem extends AbstractItem {
   }
 
   nodeFactory() {
-    return wrapDragNode(
-      new TextFieldNode('New textfield'))
+    new TextFieldNode('New textfield')
   }
 }

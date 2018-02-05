@@ -1,6 +1,5 @@
 import AbstractItem from '../base/abstract'
 import {LastNameNode, NODE_TYPE_LAST_NAME} from '../../../builder/nodes/contact/last-name'
-import {wrapDragNode} from '../../../builder/util'
 
 import faUsers from '@fortawesome/fontawesome-free-solid/faUsers'
 
@@ -11,6 +10,6 @@ export default class LastNameItem extends AbstractItem {
   }
 
   nodeFactory() {
-    return wrapDragNode(new LastNameNode())
+    return new LastNameNode()
   }
 }

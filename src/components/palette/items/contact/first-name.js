@@ -1,6 +1,5 @@
 import AbstractItem from '../base/abstract'
 import {FirstNameNode, NODE_TYPE_FIRST_NAME} from '../../../builder/nodes/contact/first-name'
-import {wrapDragNode} from '../../../builder/util'
 
 import faUser from '@fortawesome/fontawesome-free-solid/faUser'
 
@@ -11,6 +10,6 @@ export default class FirstNameItem extends AbstractItem {
   }
 
   nodeFactory() {
-    return wrapDragNode(new FirstNameNode())
+    return new FirstNameNode()
   }
 }
