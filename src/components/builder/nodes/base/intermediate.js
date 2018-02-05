@@ -6,7 +6,7 @@ export class IntermediateNode extends AbstractNode {
   constructor(initChildren=[]) {
     super()
     this.type = NODE_TYPE_INTERMEDIATE
-    this.children = [...initChildren]
+    this.children = initChildren
   }
 
   setChildren(children) {
