@@ -10,9 +10,9 @@ export class PageNode extends IntermediateNode {
 
   renderFn(h) {
     return (
-      <div id={this.path}>
+      <div>
         <h1>Page</h1>
-        <div>{this.children.map(child => child.renderFn(h))}</div>
+        <div style="margin: 15px">{this.children.map(child => child.renderFn(h))}</div>
       </div>)
   }
 }
