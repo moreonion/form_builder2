@@ -1,5 +1,3 @@
-export const BUILDER_ROOT_DIV_ID = 'root'
-
 import {NODE_TYPE_FIRST_NAME} from '../components/builder/nodes/contact/first-name'
 import {NODE_TYPE_LAST_NAME} from '../components/builder/nodes/contact/last-name'
 

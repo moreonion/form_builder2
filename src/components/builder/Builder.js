@@ -1,5 +1,3 @@
-import {BUILDER_ROOT_DIV_ID} from '../../config/builder'
-
 export default {
   functional: true,
   render(h, {props:{rootNode}}) {
@@ -8,7 +6,7 @@ export default {
      * E.g. Children of root node must be 'page' nodes
      */
     return (
-      <div id={BUILDER_ROOT_DIV_ID} style={{'margin-left': '32px'}}>
+      <div style={{'margin-left': '32px'}}>
         {rootNode.children.map(child => child.renderFn(h))}
       </div>)
   }
