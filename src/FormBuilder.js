@@ -51,7 +51,7 @@ export default {
               <Settings/>
               <Builder rootNode={this.rootNode}/>
             </el-col>
-            <el-col xs={24} sm={14}>
+            <el-col xs={24} sm={14} class="debug-out">
               <h4>Builder</h4>
               <pre style="font-size: 8px">{JSON.stringify(this.rootNode.toString(), null, 2)}</pre>
               {/* <h4>Palette</h4>

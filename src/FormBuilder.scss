@@ -1,7 +1,13 @@
 .wrapper {
   margin: 20px;
+  user-select: none;
 
   @media screen and (min-width: 768px) {
     margin: 5%;
   }
+}
+
+
+.debug-out {
+  user-select: none;
 }
