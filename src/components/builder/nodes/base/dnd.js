@@ -20,12 +20,12 @@ export class DnDNode extends IntermediateNode {
     this.dndGroup = dndGroup
   }
 
-  renderNode(h) {
+  renderFn(h) {
     const slots = {
       default: props => {
         return props.item instanceof AbstractNode ?
-          props.item.renderNode(h):
-          props.item.nodeFactory().renderNode(h)
+          props.item.renderFn(h):
+          props.item.nodeFactory().renderFn(h)
       }
     }
     return <DnDItems group={this.dndGroup} items={this.children} onUpdate={this.setChildren.bind(this)}

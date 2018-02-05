@@ -38,8 +38,8 @@ export class IntermediateNode extends AbstractNode {
     encodePath(this, this.path)
   }
 
-  renderNode(h) {
-    return this.children.map(child => child.renderNode(h))
+  renderFn(h) {
+    return this.children.map(child => child.renderFn(h))
   }
 
   toString() {

@@ -45,8 +45,7 @@ export default {
     }
   },
   render(h) {
-    const renderItem = props => props.item.renderItem(h, props.item)
-    const slots = {default: renderItem}
+    const slots = {default: props => props.item.renderFn(h, props.item)}
 
     const content = this.palette.groups.map((paletteGroup, i) => (
       <el-collapse value={this.activeName} accordion>

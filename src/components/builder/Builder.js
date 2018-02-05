@@ -9,7 +9,7 @@ export default {
      */
     return (
       <div id={BUILDER_ROOT_DIV_ID} style={{'margin-left': '32px'}}>
-        {rootNode.children.map(child => child.renderNode(h))}
+        {rootNode.children.map(child => child.renderFn(h))}
       </div>)
   }
 }

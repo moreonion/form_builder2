@@ -8,11 +8,11 @@ export class PageNode extends IntermediateNode {
     this.type = NODE_TYPE_PAGE
   }
 
-  renderNode(h) {
+  renderFn(h) {
     return (
       <div id={this.path}>
         <h1>Page</h1>
-        <div>{this.children.map(child => child.renderNode(h))}</div>
+        <div>{this.children.map(child => child.renderFn(h))}</div>
       </div>)
   }
 }

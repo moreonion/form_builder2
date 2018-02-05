@@ -11,7 +11,7 @@ export class TextFieldNode extends AbstractNode {
     this.labelWidth = labelWidth
   }
 
-  renderNode(h) {
+  renderFn(h) {
     return (
       <el-form id={this.path} label-position={this.labelPos} label-width={this.labelWidth}>
         <el-form-item label={this.label}>
