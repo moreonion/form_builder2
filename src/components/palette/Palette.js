@@ -11,7 +11,7 @@ export default {
   components: {DnDItems},
   computed: {
     paletteWrapperClsName: () => PALETTE_DND_WRAPER_CLASSNAME,
-    ...mapState('palette', ['activeName']),
+    ...mapState('palette', ['activeNames']),
     ...mapGetters('palette', {
       palette: 'paletteState'
     })
@@ -48,7 +48,7 @@ export default {
     const slots = {default: props => props.item.renderFn(h, props.item)}
 
     const content = this.palette.groups.map((paletteGroup, i) => (
-      <el-collapse value={this.activeName} accordion>
+      <el-collapse value={this.activeNames} accordion>
         <el-collapse-item title={paletteGroup.label} name={i}>
           <DnDItems group={PALETTE_DND_GROUP} items={paletteGroup.items} options={paletteGroup.dndOptions} scopedSlots={slots}/>
         </el-collapse-item>
