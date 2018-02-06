@@ -1,6 +1,7 @@
 {
   "presets": [["env", {"modules": false}]],
   "plugins": [
+    "transform-runtime",
     "transform-vue-jsx",
     "transform-object-rest-spread"
   ]
