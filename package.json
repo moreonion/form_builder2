@@ -1,7 +1,7 @@
 {
   "name": "mo-fb2",
   "description": "More Onion: Form Builder",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Onur Dogangönül <contact@dinony.com>",
   "private": true,
   "scripts": {
