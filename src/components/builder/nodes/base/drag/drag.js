@@ -1,8 +1,9 @@
 import faArrowsAlt from '@fortawesome/fontawesome-free-solid/faArrowsAlt'
 import {DnDHandle} from 'mo-vue-dnd'
-import {IntermediateNode} from '../intermediate'
 
 import './drag.scss'
+
+import {IntermediateNode} from '../intermediate'
 
 export const NODE_TYPE_DRAG = 'drag'
 
