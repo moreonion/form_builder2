@@ -15,7 +15,7 @@ export class DnDNode extends IntermediateNode {
   renderFn(h) {
     const slots = {default: props => props.item.renderFn(h)}
 
-    return <DnDItems group={this.dndGroup} items={this.children} onUpdate={this.setChildren.bind(this)}
-      group={this.dndGroup} options={this.dndOptions} scopedSlots={slots} keyFn={item => item.id}/>
+    return (<DnDItems group={this.dndGroup} items={this.children} onUpdate={this.setChildren.bind(this)}
+      options={this.dndOptions} scopedSlots={slots} keyFn={item => item.id}/>)
   }
 }
