@@ -1,5 +1,4 @@
 import {DnDOptions} from 'mo-vue-dnd'
-import { builderModule } from '../components/builder/store';
 
 export const PALETTE_DND_GROUP = 'palette'
 export const BUILDER_DND_GROUP = 'tree'
