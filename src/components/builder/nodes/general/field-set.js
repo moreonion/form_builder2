@@ -3,8 +3,8 @@ import {IntermediateNode} from '../base/intermediate'
 export const NODE_TYPE_FIELD_SET = 'field-set'
 
 export class FieldSetNode extends IntermediateNode {
-  constructor(initChildren=[], dndOptions=undefined) {
-    super(initChildren, dndOptions)
+  constructor(initChildren=[]) {
+    super(initChildren)
     this.type = NODE_TYPE_FIELD_SET
   }
 
