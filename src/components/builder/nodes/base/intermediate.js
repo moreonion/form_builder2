@@ -39,7 +39,6 @@ export class IntermediateNode extends AbstractNode {
   toString() {
     return {
       type: this.type,
-      path: this.path,
       children: this.children.map(child => child.toString())
     }
   }
