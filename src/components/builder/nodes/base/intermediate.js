@@ -13,25 +13,6 @@ export class IntermediateNode extends AbstractNode {
     this.children = children
   }
 
-  addChild(index, child) {
-    this.children.splice(index, 0, child)
-  }
-
-  pushChild(child) {
-    this.children.push(child)
-  }
-
-  removeChildByIndex(i) {
-    this.children.splice(i, 1)
-  }
-
-  removeChild(child) {
-    const index = children.findIndex(c => c === child)
-    if(index !== -1) {
-      this.children.splice(index, 1)
-    }
-  }
-
   renderFn(h) {
     return this.children.map(child => child.renderFn(h))
   }
