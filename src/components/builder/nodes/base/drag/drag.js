@@ -32,6 +32,7 @@ export class DragNode extends IntermediateNode {
 
   toString() {
     return {
+      id: this.id,
       type: this.type,
       child: this.children[0].toString()
     }
