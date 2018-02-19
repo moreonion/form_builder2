@@ -24,6 +24,8 @@ generalItemsOptions.cloneItemFn = createBuilderNode
 export const PALETTE_GENERAL_DND_OPTIONS = generalItemsOptions
 
 const builderOptions = new DnDOptions()
+builderOptions.allowItemRemoval = true
+builderOptions.wrapDnDHandle = false
 // Just allow dnd on itself (nested)
 builderOptions.permissions = [
   [PALETTE_DND_GROUP, BUILDER_DND_GROUP], // in: from palette or builder
