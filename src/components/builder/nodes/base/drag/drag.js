@@ -1,5 +1,5 @@
 import faArrowsAlt from '@fortawesome/fontawesome-free-solid/faArrowsAlt'
-import {DnDHandle} from 'mo-vue-dnd'
+import {DnDMdArea} from 'mo-vue-dnd'
 
 import './drag.scss'
 
@@ -16,15 +16,15 @@ export class DragNode extends IntermediateNode {
   renderFn(h, payload) {
     const classSettings = {
       'drag-node': true,
-      'drag-node--hover-state': this.hover
+      'drag-node--hover': this.hover
     }
     return (
       <div class={classSettings}>
-        <DnDHandle container={payload}>
-          <div class="drag-handle hover-handle">
+        <DnDMdArea>
+          <div class="drag-handle hover">
             <fa-icon icon={faArrowsAlt}/>
           </div>
-        </DnDHandle>
+        </DnDMdArea>
         <div class="edit-btn hover-handle">Edit</div>
         <div class="child-wrapper">{this.children[0].renderFn(h)}</div>
       </div>)
