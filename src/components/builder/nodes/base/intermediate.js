@@ -19,6 +19,7 @@ export class IntermediateNode extends AbstractNode {
 
   toString() {
     return {
+      id: this.id,
       type: this.type,
       children: this.children.map(child => child.toString())
     }

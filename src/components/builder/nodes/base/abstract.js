@@ -14,6 +14,7 @@ export class AbstractNode extends Renderable {
 
   toString() {
     return {
+      id: this.id,
       type: this.type
     }
   }
