@@ -7,7 +7,8 @@
   transition: border-color .5s;
 }
 
-.drag-node--hover {
+// drag-node-hover state
+.dn-hover {
   border-color: $light-gray;
 }
 
@@ -24,11 +25,11 @@
     opacity: 0;
     transition: opacity .5s;
   }
+}
 
-  &:hover {
-    .hover-handle {
-      opacity: 1;
-    }
+.dn-hover {
+  .hover-handle {
+    opacity: 1;
   }
 }
 

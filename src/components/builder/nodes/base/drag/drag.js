@@ -11,19 +11,18 @@ export class DragNode extends IntermediateNode {
   constructor(child) {
     super([child])
     this.type = NODE_TYPE_DRAG
+    this.hover = false
   }
 
   renderFn(h, payload) {
     const classSettings = {
       'drag-node': true,
-      'drag-node--hover': this.hover
+      'dn-hover': this.hover
     }
     return (
       <div class={classSettings}>
-        <DnDMdArea>
-          <div class="drag-handle hover">
-            <fa-icon icon={faArrowsAlt}/>
-          </div>
+        <DnDMdArea class="drag-handle hover-handle">
+          <fa-icon icon={faArrowsAlt}/>
         </DnDMdArea>
         <div class="edit-btn hover-handle">Edit</div>
         <div class="child-wrapper">{this.children[0].renderFn(h)}</div>
@@ -34,6 +33,7 @@ export class DragNode extends IntermediateNode {
     return {
       id: this.id,
       type: this.type,
+      hover: this.hover,
       child: this.children[0].toString()
     }
   }
