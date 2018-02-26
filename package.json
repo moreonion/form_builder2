@@ -8,9 +8,10 @@
     "lint": "eslint src/**/*.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "build:dev": "cross-env NODE_ENV=development webpack --progress --hide-modules",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build": "npm run modernizr && cross-env NODE_ENV=production webpack --progress --hide-modules",
     "build:analyze": "cross-env NODE_ENV=production webpack --config webpack.config.js --profile --json > stats.json && webpack-bundle-analyzer stats.json",
-    "deploy": "npm run build && tools/deploy.sh"
+    "deploy": "npm run build && tools/deploy.sh",
+    "modernizr": "modernizr -c modernizr-config.json -d gen/modernizr.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.3",
