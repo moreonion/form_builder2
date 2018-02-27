@@ -3,7 +3,13 @@ import {DnDMdArea} from 'mo-vue-dnd'
 
 import './drag.scss'
 
+import bus from '../../../../../bus'
 import {IntermediateNode} from '../intermediate'
+import {
+  BUILDER_NODE_TRACED, BUILDER_REFS_REQ,
+  BUILDER_REFS_REQD, BUILDER_BEFOREMOUNT,
+  RequestRefsPayload
+} from '../../../events'
 
 export const NODE_TYPE_DRAG = 'drag'
 
@@ -12,6 +18,38 @@ export class DragNode extends IntermediateNode {
     super([child])
     this.type = NODE_TYPE_DRAG
     this.hover = false
+    this.refId = `dn-${this.id}`
+    this.refs = null
+
+    this.addListeners()
+  }
+
+  addListeners() {
+    bus.$on(BUILDER_BEFOREMOUNT, this.onBuilderBM.bind(this))
+    bus.$on(BUILDER_REFS_REQD, this.onRefs.bind(this))
+    bus.$on(BUILDER_NODE_TRACED, this.onHover.bind(this))
+  }
+
+  onBuilderBM() {
+    bus.$emit(BUILDER_REFS_REQ, new RequestRefsPayload(this))
+  }
+
+  onRefs(payload) {
+    if(payload.node === this) {
+      this.refs = payload.refs
+    }
+  }
+
+  onHover(elem) {
+    this.hover = this.refs? elem === this.refs[this.refId]: false
+  }
+
+  destroy() {
+    bus.$off(BUILDER_BEFOREMOUNT, this.onBuilderBM.bind(this))
+    bus.$off(BUILDER_REFS_REQD, this.onRefs.bind(this))
+    bus.$off(BUILDER_NODE_TRACED, this.onHover.bind(this))
+
+    this.children.map(child => child.destroy())
   }
 
   renderFn(h, payload) {
@@ -19,8 +57,9 @@ export class DragNode extends IntermediateNode {
       'drag-node': true,
       'dn-hover': this.hover
     }
+
     return (
-      <div class={classSettings}>
+      <div ref={this.refId} class={classSettings}>
         <DnDMdArea class="drag-handle hover-handle">
           <fa-icon icon={faArrowsAlt}/>
         </DnDMdArea>
