@@ -20,7 +20,6 @@ export class DragNode extends IntermediateNode {
     this.hover = false
     this.refId = `dn-${this.id}`
     this.refs = null
-
     this.addListeners()
   }
 
@@ -28,6 +27,9 @@ export class DragNode extends IntermediateNode {
     bus.$on(BUILDER_BEFOREMOUNT, this.onBuilderBM.bind(this))
     bus.$on(BUILDER_REFS_REQD, this.onRefs.bind(this))
     bus.$on(BUILDER_NODE_TRACED, this.onHover.bind(this))
+
+    // Request refs directly when builder is already mounted
+    bus.$emit(BUILDER_REFS_REQ, new RequestRefsPayload(this))
   }
 
   onBuilderBM() {
