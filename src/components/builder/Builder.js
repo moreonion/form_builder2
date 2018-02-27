@@ -23,6 +23,8 @@ export default {
   beforeDestroy() {
     doc.removeEventListener('mousemove', this.onMousemove)
     bus.$off(BUILDER_REFS_REQ, this.onReqRefs)
+
+    this.rootNode.destroy()
   },
   methods: {
     onReqRefs(reqPayload) {

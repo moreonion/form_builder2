@@ -3,4 +3,7 @@ export default class Renderable {
   renderFn() {
     return <div></div>
   }
+
+  // Abstract
+  destory() {}
 }

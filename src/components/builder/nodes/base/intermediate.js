@@ -17,6 +17,10 @@ export class IntermediateNode extends AbstractNode {
     return this.children.map(child => child.renderFn(h))
   }
 
+  destroy() {
+    this.children.forEach(child => child.destroy())
+  }
+
   toString() {
     return {
       id: this.id,

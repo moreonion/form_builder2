@@ -49,7 +49,7 @@ export class DragNode extends IntermediateNode {
     bus.$off(BUILDER_REFS_REQD, this.onRefs.bind(this))
     bus.$off(BUILDER_NODE_TRACED, this.onHover.bind(this))
 
-    this.children.map(child => child.destroy())
+    this.children.forEach(child => child.destroy())
   }
 
   renderFn(h, payload) {
