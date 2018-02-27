@@ -1,7 +1,8 @@
+import faUser from '@fortawesome/fontawesome-free-solid/faUser'
+
 import AbstractItem from '../base/abstract'
 import {FirstNameNode, NODE_TYPE_FIRST_NAME} from '../../../builder/nodes/contact/first-name'
-
-import faUser from '@fortawesome/fontawesome-free-solid/faUser'
+import {DragNode} from '../../../builder/nodes/base/drag/drag'
 
 export default class FirstNameItem extends AbstractItem {
   constructor(label='First name', icon=faUser) {
@@ -10,6 +11,6 @@ export default class FirstNameItem extends AbstractItem {
   }
 
   nodeFactory() {
-    return new FirstNameNode()
+    return new DragNode(new FirstNameNode())
   }
 }
