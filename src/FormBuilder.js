@@ -5,7 +5,6 @@ import './FormBuilder.scss'
 
 import Palette from './components/palette/Palette'
 import Builder from './components/builder/Builder'
-import BuilderContext from './components/builder/context/Context'
 import Version from './components/version/Version'
 import Debug from './components/debug/Debug'
 // import Settings from './components/Settings'
@@ -47,9 +46,7 @@ export default {
             </el-col>
             <el-col xs={24} sm={14}>
               {/* <Settings/> */}
-              <BuilderContext>
-                <Builder rootNode={this.rootNode}/>
-              </BuilderContext>
+              <Builder rootNode={this.rootNode}/>
             </el-col>
           </el-row>
           <el-row>
