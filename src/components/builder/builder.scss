@@ -1,0 +1,80 @@
+@import "../../colors";
+
+$draggable-ui-color: #F1F1EF;
+$draggable-handle-size-desktop: 2rem;
+$draggable-vertical-margin: 0.5rem;
+$draggable-border-width: 0.125rem;
+$draggable-border: $draggable-border-width solid transparent;
+$draggable-border-hover: $draggable-border-width solid $draggable-ui-color;
+
+@mixin hover-btn($cursor: pointer) {
+  cursor: $cursor;
+  display: inline-block;
+  padding: 0.625rem 0.75rem;
+  background: $draggable-ui-color;
+  font-size: 0.75rem;
+}
+
+.mfb-draggable {
+  // background: rgba(100, 100, 250, 0.4); // debug
+  position: relative;
+  margin: $draggable-vertical-margin 0;
+  margin-left: $draggable-handle-size-desktop; // space for handle
+}
+
+.mfb-draggable-card {
+  position: relative;
+  border: $draggable-border;
+  transition: border-color .5s;
+  // background: rgba(200, 200, 200, 0.4); // debug
+
+  .mfb-draggable-handle {
+    position: absolute;
+    width: $draggable-handle-size-desktop + $draggable-border-width;
+    left: -($draggable-handle-size-desktop + $draggable-border-width);
+    top: -$draggable-border-width;
+    @include hover-btn(grab);
+  }
+
+  .mfb-draggable-edit-btn {
+    float: right;
+    position: relative;
+    top: -$draggable-border-width;
+    right: -$draggable-border-width;
+    background: $draggable-ui-color;
+    @include hover-btn();
+  }
+
+  .mfb-draggable-handle,
+  .mfb-draggable-edit-btn {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .5s;
+  }
+
+}
+
+// Show stuff on hover.
+.dnd-ctx:not(.dnd-ctx-drg) .mfb-draggable-hover, // don’t show handle on elements while dragging something over them
+.dnd-drag > .mfb-draggable // element being dragged
+{
+  & > .mfb-draggable-card {
+    border: $draggable-border-hover;
+
+    & > .mfb-draggable-handle,
+    & > .mfb-draggable-edit-btn {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+// Normally, `mfb-draggable` and the `mfb-draggable-card` inside are the same size.
+// When you drag an item, the mouse pointer is glued to it on the left, because the
+// handle is there. So you won’t hit the other items if you drag up or down vertically.
+// This trick enlarges the other draggables to the left, so you can drag an item to
+// their position with a straight vertical drag.
+.dnd-ctx-drg .mfb-draggable {
+  margin-left: 0;
+  padding-left: $draggable-handle-size-desktop;
+}

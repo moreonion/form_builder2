@@ -6,17 +6,23 @@ import {TextFieldNode} from './nodes/general/text'
 import {FieldSetNode} from './nodes/general/field-set';
 
 const initState = new IntermediateNode([
-  new PageNode([
-    new DnDNode([
-      new FieldSetNode([
-        new DnDNode([])
+  new DnDNode([
+    new PageNode([
+      new DnDNode([
+        new FieldSetNode([
+          new DnDNode([])
+        ])
+        // new TextFieldNode('Text 123'),
+        // new FieldSetNode([
+        //    new DnDNode([
+        //      new TextFieldNode('text', 'label')
+        //    ])
+        // ])
       ])
-      // new TextFieldNode('Text 123'),
-      // new FieldSetNode([
-      //    new DnDNode([
-      //      new TextFieldNode('text', 'label')
-      //    ])
-      // ])
+    ]),
+    new PageNode([
+      new DnDNode([
+      ])
     ])
   ])
 ])

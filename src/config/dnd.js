@@ -33,4 +33,7 @@ builderOptions.permissions = [
 // Do not clone nodes, just pass reference
 builderOptions.cloneItemFn = node => node
 
+// Drag elements only by their handle
+builderOptions.wrapDnDHandle = false
+
 export const BUILDER_DND_OPTIONS = builderOptions

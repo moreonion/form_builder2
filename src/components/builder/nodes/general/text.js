@@ -1,4 +1,5 @@
 import {AbstractNode} from '../base/abstract'
+import Draggable from '../../Draggable'
 
 export const NODE_TYPE_TEXT = 'text'
 
@@ -12,13 +13,16 @@ export class TextFieldNode extends AbstractNode {
     this.labelWidth = labelWidth
   }
 
-  renderFn(h) {
+  renderFn(h) {
     return (
-      <el-form label-position={this.labelPos} label-width={this.labelWidth}>
-        <el-form-item label={this.label}>
-          <el-input value={this.text} onChange={val => this.text=val}></el-input>
-        </el-form-item>
-      </el-form>)
+      <Draggable>
+        <el-form label-position={this.labelPos} label-width={this.labelWidth}>
+          <el-form-item label={this.label}>
+            <el-input value={this.text} onChange={val => this.text=val}></el-input>
+          </el-form-item>
+        </el-form>
+      </Draggable>
+    )
   }
 
   toString() {
