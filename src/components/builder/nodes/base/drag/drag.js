@@ -1,5 +1,5 @@
 import faArrowsAlt from '@fortawesome/fontawesome-free-solid/faArrowsAlt'
-import {DnDHandle} from 'mo-vue-dnd'
+import {DnDHandle} from 'mo-vue-dnd'
 
 import './drag.scss'
 
