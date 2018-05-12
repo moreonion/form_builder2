@@ -1,4 +1,5 @@
 import bus from '../../bus'
+import {DRAGGABLE_HOVER} from '../../events'
 import {IntermediateNode} from './nodes/base/intermediate'
 
 import './builder.scss'
@@ -18,8 +19,8 @@ export default {
         }
         return el
       }
-      // Emit `draggable-hover` if mouse hovers over a draggable or its children
-      bus.$emit('draggable-hover', {el: findAncestor(event.target, 'mfb-draggable')})
+      // Emit `DRAGGABLE_HOVER` if mouse hovers over a draggable or its children
+      bus.$emit(DRAGGABLE_HOVER, {el: findAncestor(event.target, 'mfb-draggable')})
     }
   },
   props: {

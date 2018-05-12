@@ -15,6 +15,10 @@ export default class AbstractItem extends Renderable {
     return null
   }
 
+  canDropAt(tree, parentId, idx) {
+    return true
+  }
+
   renderFn(h, item) {
     return (
       <div class="paletteItem">

@@ -1,4 +1,5 @@
 import bus from '../../bus'
+import {DRAGGABLE_HOVER} from '../../events'
 import {DnDMdArea} from 'mo-vue-dnd'
 
 import faArrowsAlt from '@fortawesome/fontawesome-free-solid/faArrowsAlt'
@@ -11,10 +12,10 @@ export default {
     }
   },
   mounted() {
-    bus.$on('draggable-hover', this.updateHoverState)
+    bus.$on(DRAGGABLE_HOVER, this.updateHoverState)
   },
   destroyed() {
-    bus.$off('draggable-hover', this.updateHoverState)
+    bus.$off(DRAGGABLE_HOVER, this.updateHoverState)
   },
   methods: {
     updateHoverState({el}) {

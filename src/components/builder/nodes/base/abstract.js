@@ -12,8 +12,13 @@ export class AbstractNode extends Renderable {
     this.type = NODE_TYPE_ABSTRACT
   }
 
+  canDropAt(tree, parentId, idx) {
+    return true
+  }
+
   toString() {
     return {
+      id: this.id,
       type: this.type
     }
   }

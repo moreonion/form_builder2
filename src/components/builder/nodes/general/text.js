@@ -27,6 +27,7 @@ export class TextFieldNode extends AbstractNode {
 
   toString() {
     return {
+      id: this.id,
       type: this.type,
       text: this.text,
       label: this.label
