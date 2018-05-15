@@ -1,10 +1,18 @@
 import bus from '../../bus'
 import {DRAGGABLE_HOVER} from '../../events'
-import {IntermediateNode} from './nodes/base/intermediate'
+import {Node} from './node'
+
+import {DnDItems} from 'mo-vue-dnd'
+
+import {BUILDER_DND_OPTIONS, BUILDER_DND_GROUP} from '../../config/dnd'
+import {componentName} from '../../config/plugins'
+
+import dropHandler from  './drop.js'
 
 import './builder.scss'
 
 export default {
+  name: 'Builder',
   mounted() {
     document.addEventListener('mousemove', this.onMousemove)
   },
@@ -25,17 +33,19 @@ export default {
   },
   props: {
     rootNode: {
-      type: IntermediateNode
+      type: Node
     }
   },
   render(h) {
-    /* All model checks must be applied before. Builder
-     * assumes valid model.
-     * E.g. Children of root node must be 'page' nodes
-     */
+    const slots = {default: props => props.item.renderFn(h)}
+    const ElementPreview = componentName(this.rootNode.type)
+
     return (
-      <div>
-        {this.rootNode.children.map(child => child.renderFn(h))}
-      </div>)
+      <ElementPreview element={this.rootNode}>
+        <DnDItems group={BUILDER_DND_GROUP} dropHandler={dropHandler}
+          items={this.rootNode.children} onUpdate={this.rootNode.setChildren.bind(this.rootNode)}
+          options={BUILDER_DND_OPTIONS} scopedSlots={slots} keyFn={item => item.id}/>
+      </ElementPreview>
+    )
   }
 }

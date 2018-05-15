@@ -11,16 +11,42 @@ export default function drop(itemIntersection) {
   const sc = itemInt.srcCtx
   const tc = itemInt.trgCtx
 
+  // A small guide to how this handler seems to work:
+  //
+  // `sc.cnt` - Array of all items in the container where the dragged item belonged,
+  //           in their original order, including the dragged item
+  // `sc.idx` - the index of the dragged item at its original position in its original container
+  // `tc.cnt` - Array of all items in the container that the dradgged item is to be added to,
+  //           in their original order, not including the dragged item
+  // tc.idx - the index where the dragged item would be added
+  //
+  // `trgResult` - Array of all items in the target container as it will look like if the
+  //               dragged item is dropped here - including the dragged item
+  //
+  // `this` refers to the DnDItems instance (container) that fired the handler
+
   const cloneItem = () => sc.options.cloneItemFn(sc.item, tc.grp)
   const trgIndex = itemInt.insBef ? tc.idx : tc.idx + 1
 
-  const tree = this.$store.state.builder.rootNode
-  const item = sc.cnt[sc.idx]
-  const parent = this.$el.getAttribute('data-node-id')
-  const parentIndex = itemInt.insBef || !tc.cnt.length ? tc.idx : tc.idx + 1
+  const operationAccepted = targetIndex => {
+    const tree = this.$store.state.builder.rootNode
+    const draggedNode = this.$store.state.builder.draggedNode // Get the dragged node from the store to be sure it’s not the palette item.
+    const newParent = this.$parent.$options.propsData.element // Get the target element via the DnDItems’ parent component.
+    var acceptedByParent, acceptsParent
 
-  tc.options.perms.in.tree = item.canDropAt(tree, parent, parentIndex)
-  console.log(tc.options.perms.in.tree ? 'may' : 'may not', 'drop', item.type, `(${item.id})`, 'in', parent, 'at position', parentIndex)
+    try {
+      acceptedByParent = this.$root.$options.plugins.types[newParent.type].acceptsChild(tree, newParent, draggedNode, targetIndex)
+    } catch (e) {
+      acceptedByParent = this.$root.$options.plugins.types['missing'].acceptsChild(tree, newParent, draggedNode, targetIndex)
+    }
+    try {
+      acceptsParent = this.$root.$options.plugins.types[draggedNode.type].acceptsParent(tree, newParent, draggedNode, targetIndex)
+    } catch (e) {
+      acceptsParent = this.$root.$options.plugins.types['missing'].acceptsParent(tree, newParent, draggedNode, targetIndex)
+    }
+
+    return acceptsParent && acceptedByParent
+  }
 
   if(itemInt.isSameContext) {
     // source=traget
@@ -63,6 +89,11 @@ export default function drop(itemIntersection) {
     debug.trgResult = trgResult
     bus.$emit('debug-drop', debug)
 
+    if (!operationAccepted(tItemIndex)) {
+      // Can’t drop the item here.
+      return null
+    }
+
     // const sd = td (source = target)
     const td = new DropContext(trgResult, sc.updateFn, needsUpdate)
     const tItemContext = new ItemContext(tc.grp, trgResult, tItemIndex, tc.options, tc.updateFn)
@@ -90,6 +121,11 @@ export default function drop(itemIntersection) {
     debug.srcResult = srcResult
     debug.trgResult = trgResult
     bus.$emit('debug-drop', debug)
+
+    if (!operationAccepted(tItemIndex)) {
+      // Can’t drop the item here.
+      return null
+    }
 
     const sd = new DropContext(srcResult, sc.updateFn, sc.options.allowItemRemoval)
     const td = new DropContext(trgResult, tc.updateFn, true)

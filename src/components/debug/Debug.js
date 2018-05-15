@@ -10,9 +10,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('palette', {
-      palette: 'paletteState'
-    }),
     ...mapState('builder', ['rootNode'])
   },
   mounted() {
@@ -31,8 +28,6 @@ export default {
         <pre id="builder">{JSON.stringify(this.debugDropData.trgResult, null, 2)}</pre>
         <h4>Builder</h4>
         <pre id="builder">{JSON.stringify(this.rootNode.toString(), null, 2)}</pre>
-        {/* <h4>Palette</h4>
-        <pre style="font-size: 8px">{JSON.stringify(this.palette, null, 2)}</pre> */}
       </div>)
   }
 }

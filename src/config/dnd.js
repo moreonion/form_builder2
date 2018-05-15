@@ -8,20 +8,17 @@ const palettePermissions = [
   [BUILDER_DND_GROUP]   // out: just to builder
 ]
 
-const createBuilderNode = item => item.nodeFactory()
+const createBuilderNode = item => item.nodeFactoryProxy()
 
-const contactItemsOptions = new DnDOptions()
-contactItemsOptions.permissions = palettePermissions
-contactItemsOptions.cloneItemFn = createBuilderNode
+const paletteOptions = new DnDOptions()
+paletteOptions.allowItemRemoval = false
+paletteOptions.permissions = palettePermissions
+paletteOptions.cloneItemFn = createBuilderNode
 
-export const PALETTE_CONTACT_DND_OPTIONS = contactItemsOptions
+// Don’t wrap item, the isAddable function wants to control if the item has a handle at all
+paletteOptions.wrapDnDHandle = false
 
-const generalItemsOptions = new DnDOptions()
-generalItemsOptions.allowItemRemoval = false
-generalItemsOptions.permissions = palettePermissions
-generalItemsOptions.cloneItemFn = createBuilderNode
-
-export const PALETTE_GENERAL_DND_OPTIONS = generalItemsOptions
+export const PALETTE_DND_OPTIONS = paletteOptions
 
 const builderOptions = new DnDOptions()
 // Just allow dnd on itself (nested)

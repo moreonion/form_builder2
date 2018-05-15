@@ -2,6 +2,7 @@ import {mapState, mapGetters} from 'vuex'
 import {DnDContext} from 'mo-vue-dnd'
 import bus from './bus'
 import {ITEM_DRAG, ITEM_DROP} from './events'
+import Item from './components/palette/item'
 
 import './FormBuilder.scss'
 
@@ -9,54 +10,37 @@ import Palette from './components/palette/Palette'
 import Builder from './components/builder/Builder'
 import Version from './components/version/Version'
 import Debug from './components/debug/Debug'
-// import Settings from './components/Settings'
-// import Legend from './components/Legend'
 
 var unwatchDnd
 
 export default {
   computed: {
-    ...mapGetters('palette', {
-      palette: 'paletteState'
-    }),
     ...mapState('builder', ['rootNode'])
   },
   mounted() {
     // Unless mo-vue-dnd emits more events, we have to watch child component state :-(
-    unwatchDnd = this.$refs.dndContext.$watch('state', function(val) {
+    unwatchDnd = this.$refs.dndContext.$watch('state', val => {
       if (val) {
-        bus.$emit(ITEM_DRAG)
-        console.log('ITEM_DRAG')
+        var draggedNode = this.$refs.dndContext.selIt.cnt[this.$refs.dndContext.selIt.idx]
+        // If it’s a palette item, get the according node.
+        if (draggedNode instanceof Item) {
+          draggedNode = draggedNode.nodeFactoryProxy()
+        }
+        bus.$emit(ITEM_DRAG, {node: draggedNode})
+        this.$store.commit('builder/dragNode', {node: draggedNode})
       } else {
-        bus.$emit(ITEM_DROP)
-        console.log('ITEM_DROP')
+        bus.$emit(ITEM_DROP, {node: this.$store.state.builder.draggedNode})
+        this.$store.commit('builder/dropNode')
       }
     })
   },
   beforeDestroy() {
     unwatchDnd()
   },
-  methods: {
-    prettyPrintPalette(palette) {
-      return {
-        groups: palette.groups.map(group => {
-          return {
-            label: group.label,
-            items: group.items.map(item => {
-              return {
-                label: item.label,
-                icon: item.icon.iconName
-              }
-            })
-          }
-        })
-      }
-    }
-  },
   render(h) {
-    const slots = {default: props => props.item.renderFn(h, props.item)}
+    const slots = {default: props => props.item.renderFn(h)}
     return (
-      <DnDContext scopedSlots={slots} debug={true} ref={'dndContext'}>
+      <DnDContext scopedSlots={slots} ref={'dndContext'}>
         <div class="wrapper">
           <el-row gutter={20}>
             <el-col xs={24} sm={8}>
