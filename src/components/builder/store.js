@@ -7,6 +7,23 @@ export const builderModule = {
     draggedNode: null
   },
   mutations: {
+    setChildren(state, {node, children}) {
+      node.children = children
+    },
+    addChild(state, {node, index, child}) {
+      node.children.splice(index, 0, child)
+    },
+    removeChildByIndex(state, {node, index}) {
+      node.children.splice(index, 1)
+    },
+    removeChild(state, {node, child}) {
+      for (var i = 0, j = node.children.length; i < j; i++) {
+        if (node.children[i] === child) {
+          node.children.splice(i, 1)
+          break
+        }
+      }
+    },
     dragNode(state, {node}) {
       state.draggedNode = node
     },

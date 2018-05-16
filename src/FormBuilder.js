@@ -33,6 +33,8 @@ export default {
         this.$store.commit('builder/dropNode')
       }
     })
+    // Node module needs a reference to vuex store.
+    this.$store.state.builder.rootNode.referenceStore(this.$store)
   },
   beforeDestroy() {
     unwatchDnd()

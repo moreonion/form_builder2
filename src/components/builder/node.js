@@ -10,6 +10,8 @@ import {getNewId} from './id'
 import dropHandler from  './drop'
 import {clone} from '../../utils'
 
+var $store
+
 export class Node {
   constructor(config, initChildren=[]) {
     this.id = getNewId()
@@ -23,27 +25,24 @@ export class Node {
     }
   }
 
+  referenceStore(vuexStore) {
+    $store = vuexStore
+  }
+
   setChildren(children) {
-    this.children = children
+    $store.commit('builder/setChildren', {node: this, children})
   }
 
   addChild(index, child) {
-    this.children.splice(index, 0, child)
+    $store.commit('builder/addChild', {node: this, index, child})
   }
 
-  pushChild(child) {
-    this.children.push(child)
-  }
-
-  removeChildByIndex(i) {
-    this.children.splice(i, 1)
+  removeChildByIndex(index) {
+    $store.commit('builder/removeChildByIndex', {node: this, index})
   }
 
   removeChild(child) {
-    const index = this.children.findIndex(c => c === child)
-    if(index !== -1) {
-      this.children.splice(index, 1)
-    }
+    $store.commit('builder/removeChild', {node: this, child})
   }
 
   renderFn(h, parentDragged=false) {
