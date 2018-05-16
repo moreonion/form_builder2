@@ -25,7 +25,16 @@ export default {
   },
 
   /** The config form vue component. */
-  config: null,
+  config: {
+    props: {
+      element: Object
+    },
+    template: `<el-form ref="form" :model="element" @submit.native.prevent>
+                 <el-form-item label="Fieldset legend">
+                   <el-input v-model="element.legend" />
+                 </el-form-item>
+               </el-form>`
+  },
 
   /**
     * Accepts or rejects a child.

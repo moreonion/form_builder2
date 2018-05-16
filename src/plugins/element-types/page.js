@@ -21,7 +21,16 @@ export default {
       )
     }
   },
-  config: null,
+  config: {
+    props: {
+      element: Object
+    },
+    template: `<el-form ref="form" :model="element" @submit.native.prevent>
+                 <el-form-item label="Page title">
+                   <el-input v-model="element.title" />
+                 </el-form-item>
+               </el-form>`
+  },
   acceptsChild(tree, parent, child, index) {
     return true
   },

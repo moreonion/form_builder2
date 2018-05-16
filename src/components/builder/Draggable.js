@@ -26,6 +26,9 @@ export default {
   methods: {
     updateHoverState({el}) {
       this.hovered = (el === this.$el)
+    },
+    editNode() {
+      this.$store.commit('config/editNode', {node: this.element})
     }
   },
   template: `<div :class="{'mfb-draggable': true, 'mfb-draggable-hover': hovered}">
@@ -33,7 +36,7 @@ export default {
                 <DnDMdArea class="mfb-draggable-handle">
                   <fa-icon :icon="faArrowsAlt"/>
                 </DnDMdArea>
-                <div class="mfb-draggable-edit-btn">Edit</div>
+                <a href="#" class="mfb-draggable-edit-btn" @click="editNode">Edit</a>
                 <slot name="preview" :dragged="dragged" :hovered="hovered"/>
               </div>
             </div>`

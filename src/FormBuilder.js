@@ -8,6 +8,7 @@ import './FormBuilder.scss'
 
 import Palette from './components/palette/Palette'
 import Builder from './components/builder/Builder'
+import ConfigDialog from './components/config/ConfigDialog'
 import Version from './components/version/Version'
 import Debug from './components/debug/Debug'
 
@@ -42,24 +43,28 @@ export default {
   render(h) {
     const slots = {default: props => props.item.renderFn(h)}
     return (
-      <DnDContext scopedSlots={slots} ref={'dndContext'}>
-        <div class="wrapper">
-          <el-row gutter={20}>
-            <el-col xs={24} sm={8}>
-              <Palette/>
-              <Version/>
-            </el-col>
-            <el-col xs={24} sm={14}>
-              {/* <Settings/> */}
-              <Builder rootNode={this.rootNode}/>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col>
-              <Debug/>
-            </el-col>
-          </el-row>
-        </div>
-      </DnDContext>)
+      <div>
+        <DnDContext scopedSlots={slots} ref={'dndContext'}>
+          <div class="wrapper">
+            <el-row gutter={20}>
+              <el-col xs={24} sm={8}>
+                <Palette/>
+                <Version/>
+              </el-col>
+              <el-col xs={24} sm={14}>
+                {/* <Settings/> */}
+                <Builder rootNode={this.rootNode}/>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col>
+                <Debug/>
+              </el-col>
+            </el-row>
+          </div>
+        </DnDContext>
+        <ConfigDialog />
+      </div>
+    )
   }
 }

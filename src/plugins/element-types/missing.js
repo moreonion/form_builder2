@@ -19,7 +19,12 @@ export default {
       )
     }
   },
-  config: null,
+  config: {
+    props: {
+      element: Object
+    },
+    template: `<p>Unfortunately I didn’t find a config component for a '{{element.type}}'.</p>`
+  },
   acceptsChild(tree, parent, child, index) {
     return false // if there is no plugin for the parent type, assume it doesn’t like children
   },
