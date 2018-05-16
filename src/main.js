@@ -20,6 +20,7 @@ import root from './plugins/element-types/root'
 import missing from './plugins/element-types/missing'
 import fieldset from './plugins/element-types/fieldset'
 import select from './plugins/element-types/select'
+import formatted from './plugins/element-types/formatted'
 
 if (page.preview) Vue.component(componentName('page'), page.preview)
 if (page.config) Vue.component(componentName('page', 'config'), page.config)
@@ -31,6 +32,8 @@ if (fieldset.preview) Vue.component(componentName('fieldset'), fieldset.preview)
 if (fieldset.config) Vue.component(componentName('fieldset', 'config'), fieldset.config)
 if (select.preview) Vue.component(componentName('select'), select.preview)
 if (select.config) Vue.component(componentName('select', 'config'), select.config)
+if (formatted.preview) Vue.component(componentName('formatted'), formatted.preview)
+if (formatted.config) Vue.component(componentName('formatted', 'config'), formatted.config)
 
 const plugins = {
   types: {
@@ -38,7 +41,8 @@ const plugins = {
     page,
     missing,
     fieldset,
-    select
+    select,
+    formatted
   }
 }
 

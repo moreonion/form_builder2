@@ -12,6 +12,7 @@ import {PALETTE_DND_GROUP, PALETTE_DND_OPTIONS} from '../../config/dnd'
 import page from '../../plugins/element-templates/page'
 import fieldset from '../../plugins/element-templates/fieldset'
 import select from '../../plugins/element-templates/select'
+import formatted from '../../plugins/element-templates/formatted'
 
 export default {
   name: 'Palette',
@@ -23,7 +24,8 @@ export default {
       elTemplates: [
         page,
         fieldset,
-        select
+        select,
+        formatted
       ]
     }
   },
