@@ -43,19 +43,38 @@ export default {
     }
   },
   methods: {
-    handleClose() {
-      this.$store.commit('config/leaveNode')
+    handleCancel(dialogDone) {
+      const done = () => {
+        this.$store.commit('config/leaveNode')
+        dialogDone()
+      }
+      if (typeof this.$refs.config.cancelCallback === 'function') {
+        this.$refs.config.cancelCallback(done)
+      } else if (typeof this.$refs.config.closeCallback === 'function') {
+        this.$refs.config.closeCallback(done)
+      } else {
+        done()
+      }
     },
     handleSave() {
-      const originalNode = this.originalNode
-      this.$store.commit('config/updateNode', {editedNode: this.element})
-      bus.$emit(ELEMENT_UPDATE, originalNode)
-    }
+      const done = () => {
+        const originalNode = this.originalNode
+        this.$store.commit('config/updateNode', {editedNode: this.element})
+        bus.$emit(ELEMENT_UPDATE, originalNode)
+      }
+      if (typeof this.$refs.config.saveCallback === 'function') {
+        this.$refs.config.saveCallback(done)
+      } else if (typeof this.$refs.config.closeCallback === 'function') {
+        this.$refs.config.closeCallback(done)
+      } else {
+        done()
+      }
+    },
   },
-  template: `<el-dialog :title="title" :visible="show" width="40%" :before-close="handleClose">
-               <component :is="configComponent" :element.sync="element" />
+  template: `<el-dialog :title="title" :visible="show" width="40%" :before-close="handleCancel">
+               <component :is="configComponent" :element.sync="element" ref="config" />
                <span slot="footer" class="dialog-footer">
-                 <el-button @click="handleClose">Cancel</el-button>
+                 <el-button @click="handleCancel(() => {})">Cancel</el-button>
                  <el-button type="primary" @click="handleSave">Save</el-button>
                </span>
              </el-dialog>`
