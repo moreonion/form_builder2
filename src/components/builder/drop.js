@@ -1,6 +1,6 @@
-import DropResult from '../../../node_modules/mo-vue-dnd/src/drop/DropResult'
-import DropContext from '../../../node_modules/mo-vue-dnd/src/drop/DropContext'
-import ItemContext from '../../../node_modules/mo-vue-dnd/src/items/ItemContext'
+import DropResult from './dnd-dependencies/DropResult'
+import DropContext from './dnd-dependencies/DropContext'
+import ItemContext from './dnd-dependencies/ItemContext'
 
 import bus from '../../bus'
 
