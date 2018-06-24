@@ -2,10 +2,11 @@ import Vue from 'vue'
 
 import './global.scss'
 
+import './config/globalObj'
 import './vendor'
-
 import {store} from './store'
-
+import eventBus from './bus'
+import events from './events'
 import FormBuilder from './FormBuilder'
 
 import {componentName} from './config/plugins'
@@ -14,42 +15,25 @@ import {componentName} from './config/plugins'
 import {DnDMdArea} from 'mo-vue-dnd'
 Vue.component('DnDMdArea', DnDMdArea)
 
-// TODO: Get plugins from global scope and register their components in a loop
-import page from './plugins/element-types/page'
-import root from './plugins/element-types/root'
-import missing from './plugins/element-types/missing'
-import fieldset from './plugins/element-types/fieldset'
-import select from './plugins/element-types/select'
-import formatted from './plugins/element-types/formatted'
-
-if (page.preview) Vue.component(componentName('page'), page.preview)
-if (page.config) Vue.component(componentName('page', 'config'), page.config)
-if (root.preview) Vue.component(componentName('root'), root.preview)
-if (root.config) Vue.component(componentName('root', 'config'), root.config)
-if (missing.preview) Vue.component(componentName('missing'), missing.preview)
-if (missing.config) Vue.component(componentName('missing', 'config'), missing.config)
-if (fieldset.preview) Vue.component(componentName('fieldset'), fieldset.preview)
-if (fieldset.config) Vue.component(componentName('fieldset', 'config'), fieldset.config)
-if (select.preview) Vue.component(componentName('select'), select.preview)
-if (select.config) Vue.component(componentName('select', 'config'), select.config)
-if (formatted.preview) Vue.component(componentName('formatted'), formatted.preview)
-if (formatted.config) Vue.component(componentName('formatted', 'config'), formatted.config)
-
-const plugins = {
-  types: {
-    root,
-    page,
-    missing,
-    fieldset,
-    select,
-    formatted
+// Register plugin components
+for (let type in window.moFormBuilder.plugins.types) {
+  if (window.moFormBuilder.plugins.types.hasOwnProperty(type)) {
+    if (window.moFormBuilder.plugins.types[type].preview) {
+      Vue.component(componentName(type, 'preview'), window.moFormBuilder.plugins.types[type].preview)
+    }
+    if (window.moFormBuilder.plugins.types[type].config) {
+      Vue.component(componentName(type, 'config'), window.moFormBuilder.plugins.types[type].config)
+    }
   }
 }
+
+Vue.prototype.$eventBus = eventBus
+Vue.prototype.$events = events
 
 new Vue({
   el: '#app',
   store,
-  plugins,
+  plugins: window.moFormBuilder.plugins,
   render() {
     return <FormBuilder/>
   }

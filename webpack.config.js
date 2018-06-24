@@ -64,6 +64,13 @@ module.exports = {
     new webpack.BannerPlugin(banner)
   ],
   devServer: {
+    contentBase: [
+      __dirname,
+      // For development, the `mfb-plugins` and `mfb-plugin-commons` directories
+      // have to be in the same directory as the form builder app.
+      path.join(__dirname, '..', 'mfb-plugins', 'lib'),
+      path.join(__dirname, '..', 'mfb-plugin-commons', 'lib')
+    ],
     historyApiFallback: true,
     noInfo: true,
     overlay: true,

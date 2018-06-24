@@ -7,26 +7,14 @@ import Item from './item'
 import {ITEM_DROP} from '../../events'
 import {PALETTE_DND_GROUP, PALETTE_DND_OPTIONS} from '../../config/dnd'
 
-// TODO: get groups from server
-// TODO: get plugins from global scope, combine them with drupal settings
-import page from '../../plugins/element-templates/page'
-import fieldset from '../../plugins/element-templates/fieldset'
-import select from '../../plugins/element-templates/select'
-import formatted from '../../plugins/element-templates/formatted'
-
 export default {
   name: 'Palette',
   data() {
     return {
+      // TODO get groups from Drupal settings
       groups: ['CRM fields', 'Generic fields', 'Containers'],
       expanded: [0, 1, 2],
-      // TODO register plugins automatically:
-      elTemplates: [
-        page,
-        fieldset,
-        select,
-        formatted
-      ]
+      elTemplates: window.moFormBuilder.plugins.templates
     }
   },
   computed: {

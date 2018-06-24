@@ -1,4 +1,5 @@
 import initState from './init-state'
+import {Node} from './node'
 
 export const builderModule = {
   namespaced: true,
@@ -29,6 +30,13 @@ export const builderModule = {
     },
     dropNode(state) {
       state.draggedNode = null
+    },
+    setElementProperty(state, {element, key, value}) {
+      if (element instanceof Node) {
+        if (key && value && ['id', 'type'].indexOf(key) === -1) {
+          element[key] = value
+        }
+      }
     }
   }
 }
