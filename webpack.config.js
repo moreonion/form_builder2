@@ -55,11 +55,19 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
       'mo-vue-dnd/mo-vue-dnd.css': 'mo-vue-dnd/dist/mo-vue-dnd.css'
     }
   },
+  externals: {
+    'axios': 'campaignion_vue.axios',
+    'element-ui': 'campaignion_vue.element',
+    'element-ui/lib/locale': 'campaignion_vue.elementLocale',
+    'element-ui/lib/transitions/collapse-transition': 'campaignion_vue.element',
+    'vue': 'campaignion_vue.Vue',
+    'vuex': 'campaignion_vue.Vuex'
+  },
   plugins: [
+    // element-ui: replace default Chinese strings with English strings.
     new webpack.NormalModuleReplacementPlugin(/element-ui[\/\\]lib[\/\\]locale[\/\\]lang[\/\\]zh-CN/, 'element-ui/lib/locale/lang/en'),
     new webpack.BannerPlugin(banner)
   ],
@@ -69,7 +77,8 @@ module.exports = {
       // For development, the `mfb-plugins` and `mfb-plugin-commons` directories
       // have to be in the same directory as the form builder app.
       path.join(__dirname, '..', 'mfb-plugins', 'lib'),
-      path.join(__dirname, '..', 'mfb-plugin-commons', 'lib')
+      path.join(__dirname, '..', 'mfb-plugin-commons', 'lib'),
+      '/home/maya/mo/camp/overrides/campaignion/campaignion_vue/js'
     ],
     historyApiFallback: true,
     noInfo: true,

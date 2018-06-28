@@ -1,24 +1,34 @@
+/* global Drupal, require */
+
 import Vue from 'vue'
 import {
-  Button, Row, Col, Collapse, CollapseItem, Dialog,
-  Form, FormItem, Input, MessageBox
+  Button, Col, Collapse, CollapseItem, Dialog,
+  Dropdown, DropdownItem, DropdownMenu, Form, FormItem, Input, MessageBox,
+  Option, Row, Select, Switch
 } from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 
-import lang from 'element-ui/lib/locale/lang/en'
-import locale from 'element-ui/lib/locale'
-
-locale.use(lang)
+// Set language for element-ui.
+if (Drupal.settings.campaignion_vue && Drupal.settings.campaignion_vue.element_ui_strings) {
+  const locale = require('element-ui/lib/locale')
+  locale.use(Drupal.settings.campaignion_vue.element_ui_strings)
+}
 
 Vue.use(Button)
-Vue.use(Row)
 Vue.use(Col)
 Vue.use(Collapse)
 Vue.use(CollapseItem)
 Vue.use(Dialog)
+Vue.use(Dropdown)
+Vue.use(DropdownItem)
+Vue.use(DropdownMenu)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
+Vue.use(Option)
+Vue.use(Row)
+Vue.use(Select)
+Vue.use(Switch)
 
 Vue.prototype.$msgbox = MessageBox
 Vue.prototype.$alert = MessageBox.alert
