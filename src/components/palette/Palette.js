@@ -1,19 +1,17 @@
 import {mapState} from 'vuex'
 import {DnDItems} from 'mo-vue-dnd'
-import bus from '../../bus'
 
 import Item from './item'
 
-import {ITEM_DROP} from '../../events'
 import {PALETTE_DND_GROUP, PALETTE_DND_OPTIONS} from '../../config/dnd'
 
 export default {
   name: 'Palette',
   data() {
     return {
-      // TODO get groups from Drupal settings
-      groups: ['CRM fields', 'Generic fields', 'Containers'],
-      expanded: [0, 1, 2],
+      groups: Drupal.settings.campaignion_form_builder.paletteGroups.map(group => group.name),
+      groupLabels: Drupal.settings.campaignion_form_builder.paletteGroups.map(group => group.label),
+      expanded: Drupal.settings.campaignion_form_builder.paletteGroups.map((group, i) => i), // Every group is expanded by default.
       elTemplates: window.moFormBuilder.plugins.templates
     }
   },
@@ -37,12 +35,12 @@ export default {
   render(h) {
     const slots = {default: props => props.item.renderFn(h)}
 
-    const content = this.groups.map((paletteGroup, i) => (
+    const content = this.groups.map((groupName, i) => (
       <el-collapse value={this.expanded} onChange={this.onCollapseToggle}>
-        <el-collapse-item title={paletteGroup} name={i}>
+        <el-collapse-item title={this.groupLabels[i]} name={i}>
           <DnDItems group={PALETTE_DND_GROUP}
             options={PALETTE_DND_OPTIONS}
-            items={this.itemsByGroup(this.groups[i])}
+            items={this.itemsByGroup(groupName)}
             scopedSlots={slots} />
         </el-collapse-item>
       </el-collapse>))
