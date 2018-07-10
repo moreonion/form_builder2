@@ -21,13 +21,13 @@ export default {
     return (
       <div class="debug">
         <h4>itemInt</h4>
-        <pre id="builder">{JSON.stringify(this.debugDropData.itemInt, null, 2)}</pre>
+        <pre>{JSON.stringify(this.debugDropData.itemInt, null, 2)}</pre>
         <h4>srcResult</h4>
-        <pre id="builder">{JSON.stringify(this.debugDropData.srcResult, null, 2)}</pre>
+        <pre>{JSON.stringify(this.debugDropData.srcResult, null, 2)}</pre>
         <h4>trgResult</h4>
-        <pre id="builder">{JSON.stringify(this.debugDropData.trgResult, null, 2)}</pre>
+        <pre>{JSON.stringify(this.debugDropData.trgResult, null, 2)}</pre>
         <h4>Builder</h4>
-        <pre id="builder">{JSON.stringify(this.rootNode.toString(), null, 2)}</pre>
+        <pre>{JSON.stringify(this.rootNode.toString(), null, 2)}</pre>
       </div>)
   }
 }
