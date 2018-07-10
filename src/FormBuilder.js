@@ -11,11 +11,20 @@ import Builder from './components/builder/Builder'
 import ConfigDialog from './components/config/ConfigDialog'
 // import Debug from './components/debug/Debug'
 
+import {PALETTE_DISPLAY_BREAKPOINT} from './config/general'
+
 var unwatchDnd
+var resizeHandler
 
 export default {
   computed: {
     ...mapState('builder', ['rootNode'])
+  },
+  data() {
+    return {
+      windowWidth: window.innerWidth,
+      palettePopoverVisible: false
+    }
   },
   mounted() {
     // Unless mo-vue-dnd emits more events, we have to watch child component state :-(
@@ -33,28 +42,57 @@ export default {
         this.$store.commit('builder/dropNode')
       }
     })
+
     // Node module needs a reference to vuex store.
     this.$store.state.builder.rootNode.referenceStore(this.$store)
+
+    resizeHandler = () => {
+      this.windowWidth = window.innerWidth
+    }
+    window.addEventListener('resize', resizeHandler)
+
+    // Hide mobile palette popover on drag.
+    bus.$on(ITEM_DRAG, this.itemDragHandler)
   },
   beforeDestroy() {
     unwatchDnd()
+    window.removeEventListener('resize', resizeHandler)
+    bus.$off(ITEM_DRAG, this.itemDragHandler)
+  },
+  methods: {
+    itemDragHandler() {
+      this.palettePopoverVisible = false
+    },
+    text(text) {
+      switch (text) {
+        case 'show palette dropdown': return Drupal.t('Add field')
+      }
+    }
   },
   render(h) {
     const slots = {default: props => props.item.renderFn(h)}
+    const mobilePalette = this.windowWidth < PALETTE_DISPLAY_BREAKPOINT ?
+      <el-popover
+        class="mfb-show-mobile-palette"
+        v-model={this.palettePopoverVisible}
+        placement="bottom"
+        visible-arrow={false}
+        width={this.windowWidth - 10}
+        trigger="click">
+        <el-button type="primary" slot="reference">
+          {this.text('show palette dropdown')}<i class="el-icon-caret-bottom el-icon--right"></i>
+        </el-button>
+        <Palette />
+      </el-popover>
+      : null
+    const desktopPalette = this.windowWidth >= PALETTE_DISPLAY_BREAKPOINT ? <Palette /> : null
+
     return (
       <div>
         <DnDContext scopedSlots={slots} ref={'dndContext'}>
-          <div class="wrapper">
-            <el-row gutter={20}>
-              <el-col xs={24} sm={8}>
-                <Palette/>
-              </el-col>
-              <el-col xs={24} sm={14}>
-                {/* <Settings/> */}
-                <Builder rootNode={this.rootNode}/>
-              </el-col>
-            </el-row>
-          </div>
+          {mobilePalette}
+          <Builder rootNode={this.rootNode}/>
+          {desktopPalette}
         </DnDContext>
         <ConfigDialog />
       </div>

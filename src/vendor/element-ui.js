@@ -4,7 +4,7 @@ import Vue from 'vue'
 import {
   Button, Col, Collapse, CollapseItem, Dialog,
   Dropdown, DropdownItem, DropdownMenu, Form, FormItem, Input, MessageBox,
-  Option, Row, Select, Switch
+  Option, Popover, Row, Select, Switch
 } from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 
@@ -26,6 +26,7 @@ Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
 Vue.use(Option)
+Vue.use(Popover)
 Vue.use(Row)
 Vue.use(Select)
 Vue.use(Switch)
