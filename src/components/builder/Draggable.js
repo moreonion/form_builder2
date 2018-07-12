@@ -29,6 +29,11 @@ export default {
     },
     editNode() {
       this.$store.commit('config/editNode', {node: this.element})
+    },
+    text(text) {
+      switch (text) {
+        case 'edit field': return Drupal.t('Edit')
+      }
     }
   },
   template: `<div :class="{'mfb-draggable': true, 'mfb-draggable-hover': hovered}">
@@ -36,7 +41,7 @@ export default {
                 <DnDMdArea class="mfb-draggable-handle">
                   <fa-icon :icon="faArrowsAlt"/>
                 </DnDMdArea>
-                <a href="#" class="mfb-draggable-edit-btn" @click="editNode">Edit</a>
+                <a href="#" class="mfb-draggable-edit-btn" @click="editNode">{{text('edit field')}}</a>
                 <slot name="preview" :dragged="dragged" :hovered="hovered"/>
               </div>
             </div>`

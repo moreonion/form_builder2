@@ -2,7 +2,8 @@
 
 $draggable-ui-color: #F1F1EF;
 $draggable-handle-size-desktop: 2rem;
-$draggable-vertical-margin: 0.5rem;
+$draggable-vertical-padding: 0.5rem;
+$draggable-horizontal-padding: 0.5rem;
 $draggable-border-width: 0.125rem;
 $draggable-border: $draggable-border-width solid transparent;
 $draggable-border-hover: $draggable-border-width solid $draggable-ui-color;
@@ -16,33 +17,41 @@ $draggable-border-hover: $draggable-border-width solid $draggable-ui-color;
 }
 
 .mfb-draggable {
-  // background: rgba(100, 100, 250, 0.4); // debug
   position: relative;
-  margin: $draggable-vertical-margin 0;
-  margin-left: $draggable-handle-size-desktop; // space for handle
 }
 
 .mfb-draggable-card {
   position: relative;
   border: $draggable-border;
+  padding-left: $draggable-handle-size-desktop;
+  min-height: $draggable-handle-size-desktop + $draggable-border-width;
   transition: border-color .5s;
-  // background: rgba(200, 200, 200, 0.4); // debug
 
   .mfb-draggable-handle {
     position: absolute;
     width: $draggable-handle-size-desktop + $draggable-border-width;
-    left: -($draggable-handle-size-desktop + $draggable-border-width);
+    height: calc(100% + 2 * #{$draggable-border-width});
+    left: -$draggable-border-width;
     top: -$draggable-border-width;
     @include hover-btn(grab);
+
+    svg {
+      height: 100%;
+    }
   }
 
   .mfb-draggable-edit-btn {
-    float: right;
-    position: relative;
+    position: absolute;
     top: -$draggable-border-width;
     right: -$draggable-border-width;
-    background: $draggable-ui-color;
     @include hover-btn();
+    font-size: 0.95rem;
+    text-decoration: none;
+    color: #333;
+
+    &:hover, &:active {
+      background: darken($draggable-ui-color, 3%);
+    }
   }
 
   .mfb-draggable-handle,
@@ -51,7 +60,19 @@ $draggable-border-hover: $draggable-border-width solid $draggable-ui-color;
     opacity: 0;
     transition: opacity .5s;
   }
+}
 
+.dnd-cont {
+  min-height: 4rem;
+}
+
+.dnd-it {
+  padding: 0 $draggable-horizontal-padding $draggable-vertical-padding;
+}
+
+.dnd-drag {
+  padding-left: $draggable-horizontal-padding;
+  padding-right: $draggable-horizontal-padding;
 }
 
 // Show stuff on hover.
@@ -67,14 +88,4 @@ $draggable-border-hover: $draggable-border-width solid $draggable-ui-color;
       opacity: 1;
     }
   }
-}
-
-// Normally, `mfb-draggable` and the `mfb-draggable-card` inside are the same size.
-// When you drag an item, the mouse pointer is glued to it on the left, because the
-// handle is there. So you won’t hit the other items if you drag up or down vertically.
-// This trick enlarges the other draggables to the left, so you can drag an item to
-// their position with a straight vertical drag.
-.dnd-ctx-drg .mfb-draggable {
-  margin-left: 0;
-  padding-left: $draggable-handle-size-desktop;
 }

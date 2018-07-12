@@ -78,7 +78,8 @@ module.exports = {
       // have to be in the same directory as the form builder app.
       path.join(__dirname, '..', 'mfb-plugins', 'lib'),
       path.join(__dirname, '..', 'mfb-plugin-commons', 'lib'),
-      '/home/maya/mo/camp/overrides/campaignion/campaignion_vue/js'
+      '/home/maya/mo/camp/overrides/campaignion/campaignion_vue/js',
+      '/home/maya/mo/camp/overrides/ae_admin'
     ],
     historyApiFallback: true,
     noInfo: true,

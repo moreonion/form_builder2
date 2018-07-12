@@ -1,4 +1,4 @@
-/* global Drupal, require */
+/* global require */
 
 import Vue from 'vue'
 import {

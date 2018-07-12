@@ -66,6 +66,8 @@ export default {
     text(text) {
       switch (text) {
         case 'show palette dropdown': return Drupal.t('Add field')
+        case 'Add new form fields': return Drupal.t('Add new form fields')
+        case 'Form preview': return Drupal.t('Form preview')
       }
     }
   },
@@ -85,13 +87,21 @@ export default {
         <Palette />
       </el-popover>
       : null
-    const desktopPalette = this.windowWidth >= PALETTE_DISPLAY_BREAKPOINT ? <Palette /> : null
+    const desktopPalette = this.windowWidth >= PALETTE_DISPLAY_BREAKPOINT ?
+      <section>
+        <h1>{this.text('Add new form fields')}</h1>
+        <Palette />
+      </section>
+      : null
 
     return (
       <div>
         <DnDContext scopedSlots={slots} ref={'dndContext'}>
           {mobilePalette}
-          <Builder rootNode={this.rootNode}/>
+          <section>
+            <h1>{this.text('Form preview')}</h1>
+            <Builder rootNode={this.rootNode}/>
+          </section>
           {desktopPalette}
         </DnDContext>
         <ConfigDialog />

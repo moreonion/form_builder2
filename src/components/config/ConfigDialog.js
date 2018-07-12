@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     title() {
-      return 'Configure field'
+      return this.text('Configure field')
     },
     configComponent() {
       var name = this.element ? componentName(this.element.type, 'config') : null
@@ -70,6 +70,11 @@ export default {
         done()
       }
     },
+    text(text) {
+      switch (text) {
+        case 'Configure field': return Drupal.t('Configure field')
+      }
+    }
   },
   template: `<el-dialog :title="title" :visible="show" width="40%" :before-close="handleCancel">
                <component :is="configComponent" :element.sync="element" ref="config" />

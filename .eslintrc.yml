@@ -4,6 +4,7 @@ env:
 extends: 'eslint:recommended'
 globals:
   global: true
+  Drupal: true
 parserOptions:
   ecmaFeatures:
     jsx: true
