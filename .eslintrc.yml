@@ -1,24 +1,20 @@
+root: true
+extends: standard
 env:
   browser: true
   es6: true
-extends: 'eslint:recommended'
+  node: true
 globals:
-  global: true
-  Drupal: true
+  global: false
+  Drupal: false
 parserOptions:
   ecmaFeatures:
     jsx: true
   sourceType: module
 rules:
-  indent:
+  allow-parens: 0
+  generator-star-spacing: 0
+  no-multi-spaces:
     - error
-    - 2
-  linebreak-style:
-    - error
-    - unix
-  quotes:
-    - error
-    - single
-  semi:
-    - error
-    - never
+    - {ignoreEOLComments: true}
+  no-debugger: 0

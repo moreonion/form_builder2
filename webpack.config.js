@@ -32,7 +32,7 @@ module.exports = {
           {loader: 'style-loader'},
           {loader: 'css-loader', options: {importLoaders: 2}},
           {loader: 'postcss-loader'},
-          {loader: 'sass-loader'},
+          {loader: 'sass-loader'}
         ]
       },
       {
@@ -68,7 +68,7 @@ module.exports = {
   },
   plugins: [
     // element-ui: replace default Chinese strings with English strings.
-    new webpack.NormalModuleReplacementPlugin(/element-ui[\/\\]lib[\/\\]locale[\/\\]lang[\/\\]zh-CN/, 'element-ui/lib/locale/lang/en'),
+    new webpack.NormalModuleReplacementPlugin(/element-ui[/\\]lib[/\\]locale[/\\]lang[/\\]zh-CN/, 'element-ui/lib/locale/lang/en'),
     new webpack.BannerPlugin(banner)
   ],
   devServer: {

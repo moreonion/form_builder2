@@ -1,6 +1,8 @@
 // This module is used to provide the Drupal global in development and test mode.
 // Functions taken from drupal.js.
 
+/* eslint-disable one-var, indent, space-before-function-paren, eqeqeq, brace-style, semi, no-redeclare */
+
 window.Drupal = {
   settings: {
     campaignion_form_builder: {
