@@ -33,8 +33,12 @@ export const builderModule = {
     },
     setElementProperty(state, {element, key, value}) {
       if (element instanceof Node) {
-        if (key && value && ['id', 'type'].indexOf(key) === -1) {
-          element[key] = value
+        if (key && typeof value !== 'undefined' && ['id', 'type'].indexOf(key) === -1) {
+          if (typeof element[key] !== 'undefined') {
+            element[key] = value
+          } else {
+            throw (new Error(`Tried to add property '${key}' to ${element.type}. Please declare the property in the element template.`))
+          }
         }
       }
     }
