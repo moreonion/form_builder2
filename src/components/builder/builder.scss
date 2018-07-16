@@ -24,7 +24,7 @@ $draggable-border-hover: $draggable-border-width solid $draggable-ui-color;
   position: relative;
   border: $draggable-border;
   padding-left: $draggable-handle-size-desktop;
-  min-height: $draggable-handle-size-desktop + $draggable-border-width;
+  min-height: 2.5rem;
   transition: border-color .5s;
 
   .mfb-draggable-handle {
@@ -48,6 +48,7 @@ $draggable-border-hover: $draggable-border-width solid $draggable-ui-color;
     font-size: 0.95rem;
     text-decoration: none;
     color: #333;
+    z-index: 1;
 
     &:hover, &:active {
       background: darken($draggable-ui-color, 3%);
