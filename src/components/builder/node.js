@@ -23,6 +23,16 @@ export class Node {
         this[key] = config[key]
       }
     }
+
+    // 'Private' property for the preview component’s data that has to be
+    // persisted when the component is being destroyed during drag’n’drop.
+    var _previewData = null
+    this.setPreviewData = function (data) {
+      _previewData = data
+    }
+    this.getPreviewData = function () {
+      return _previewData
+    }
   }
 
   referenceStore(vuexStore) {
