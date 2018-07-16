@@ -1,4 +1,4 @@
-import {mapState, mapGetters} from 'vuex'
+import {mapState} from 'vuex'
 import {DnDContext} from 'mo-vue-dnd'
 import bus from './bus'
 import {ITEM_DRAG, ITEM_DROP} from './events'
@@ -18,11 +18,11 @@ var resizeHandler
 
 export default {
   computed: {
-    ...mapState('builder', ['rootNode'])
+    ...mapState('builder', ['rootNode']),
+    ...mapState(['windowWidth'])
   },
   data() {
     return {
-      windowWidth: window.innerWidth,
       palettePopoverVisible: false
     }
   },
@@ -47,7 +47,7 @@ export default {
     this.$store.state.builder.rootNode.referenceStore(this.$store)
 
     resizeHandler = () => {
-      this.windowWidth = window.innerWidth
+      this.$store.commit('updateWindowWidth')
       // Close popover when screen turned big.
       if (this.windowWidth >= PALETTE_DISPLAY_BREAKPOINT) {
         this.palettePopoverVisible = false
@@ -57,6 +57,12 @@ export default {
 
     // Hide mobile palette popover on drag.
     bus.$on(ITEM_DRAG, this.itemDragHandler)
+
+    // Does the user touch the device?
+    window.addEventListener('touchstart', function firstTouchHandler () {
+      document.body.classList.add('user-touches')
+      window.removeEventListener('touchstart', firstTouchHandler, false)
+    }, false)
   },
   beforeDestroy() {
     unwatchDnd()

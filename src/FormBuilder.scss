@@ -1,3 +1,7 @@
+.mfb-app {
+  user-select: none; // Touch drag’n’drop needs this.
+}
+
 .mfb-palette-mobile {
   padding: 0;
   border: 0 none;

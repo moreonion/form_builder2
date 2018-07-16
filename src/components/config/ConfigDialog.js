@@ -86,7 +86,7 @@ export default {
                >
                <component :is="configComponent" :element.sync="element" ref="config" />
                <span slot="footer" class="dialog-footer">
-                 <el-button @click="handleCancel(() => {})">Cancel</el-button>
+                 <el-button @click="handleCancel(function () {})">Cancel</el-button>
                  <el-button type="primary" @click="handleSave">Save</el-button>
                </span>
              </el-dialog>`

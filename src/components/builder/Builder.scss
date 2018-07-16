@@ -76,10 +76,10 @@ $draggable-border-hover: $draggable-border-width solid $draggable-ui-color;
   padding-right: $draggable-horizontal-padding;
 }
 
-// Show stuff on hover.
+// Show stuff on hover or when user touches the device.
 .dnd-ctx:not(.dnd-ctx-drg) .mfb-draggable-hover, // don’t show handle on elements while dragging something over them
-.dnd-drag > .mfb-draggable // element being dragged
-{
+.dnd-drag > .mfb-draggable, // element being dragged
+.user-touches .mfb-draggable {
   & > .mfb-draggable-card {
     border: $draggable-border-hover;
 
