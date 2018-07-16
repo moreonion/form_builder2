@@ -13,13 +13,18 @@
     <script type="text/javascript" src="mfb-plugin-commons.js"></script>
     <script type="text/javascript" src="mfb-plugins.js"></script>
 
-    <link rel="stylesheet" href="modules_css/vue_app_overrides.css">
+    <link rel="stylesheet" href="mfb-plugin-commons.css">
+    <link rel="stylesheet" href="mfb-plugins.css">
 
     <meta charset="utf-8">
     <title>fb2</title>
   </head>
   <body>
+    <!-- Styles in body to override app styles injected into the head by webpack. -->
+    <link rel="stylesheet" href="modules_css/vue_app_overrides.css">
+
     <div id="app"></div>
     <script src="dist/build.js"></script>
+
   </body>
 </html>
