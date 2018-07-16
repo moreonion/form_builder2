@@ -9,7 +9,6 @@ window.Drupal = {
       paletteGroups: [
         // Labels are supposed to be provided by the backend in transition.
         {name: 'crm', label: 'CRM fields'},
-        {name: 'special', label: 'Very special test group'},
         {name: 'generic', label: 'Generic fields'}
       ]
     }

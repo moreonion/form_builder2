@@ -48,6 +48,10 @@ export default {
 
     resizeHandler = () => {
       this.windowWidth = window.innerWidth
+      // Close popover when screen turned big.
+      if (this.windowWidth >= PALETTE_DISPLAY_BREAKPOINT) {
+        this.palettePopoverVisible = false
+      }
     }
     window.addEventListener('resize', resizeHandler)
 
@@ -76,29 +80,30 @@ export default {
     const mobilePalette = this.windowWidth < PALETTE_DISPLAY_BREAKPOINT ?
       <el-popover
         class="mfb-show-mobile-palette"
+        popper-class="mfb-palette mfb-palette-mobile"
         v-model={this.palettePopoverVisible}
         placement="bottom"
         visible-arrow={false}
         width={this.windowWidth - 10}
         trigger="click">
-        <el-button type="primary" slot="reference">
+        <el-button slot="reference">
           {this.text('show palette dropdown')}<i class="el-icon-caret-bottom el-icon--right"></i>
         </el-button>
         <Palette />
       </el-popover>
       : null
     const desktopPalette = this.windowWidth >= PALETTE_DISPLAY_BREAKPOINT ?
-      <section>
+      <section class="mfb-palette mfb-palette-desktop">
         <h1>{this.text('Add new form fields')}</h1>
         <Palette />
       </section>
       : null
 
     return (
-      <div>
+      <div class="mfb-app">
         <DnDContext scopedSlots={slots} ref={'dndContext'}>
           {mobilePalette}
-          <section>
+          <section class="mfb-builder">
             <h1>{this.text('Form preview')}</h1>
             <Builder rootNode={this.rootNode}/>
           </section>

@@ -45,6 +45,6 @@ export default {
         </el-collapse-item>
       </el-collapse>))
 
-    return <div class="mfb-palette">{content}</div>
+    return <div class="mfb-palette-boxes">{content}</div>
   }
 }

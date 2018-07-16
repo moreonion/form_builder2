@@ -9,7 +9,7 @@ import {componentName} from '../../config/plugins'
 
 import dropHandler from  './drop.js'
 
-import './builder.scss'
+import './Builder.scss'
 
 export default {
   name: 'Builder',

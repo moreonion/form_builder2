@@ -1,6 +1,4 @@
-@import "../../colors";
-
-$draggable-ui-color: #F1F1EF;
+$draggable-ui-color: #f0ede8;
 $draggable-handle-size-desktop: 2rem;
 $draggable-vertical-padding: 0.5rem;
 $draggable-horizontal-padding: 0.5rem;
@@ -14,6 +12,16 @@ $draggable-border-hover: $draggable-border-width solid $draggable-ui-color;
   padding: 0.625rem 0.75rem;
   background: $draggable-ui-color;
   font-size: 0.75rem;
+}
+
+.mfb-builder {
+  .dnd-cont {
+    min-height: 4rem;
+  }
+
+  .dnd-it {
+    padding: 0 $draggable-horizontal-padding $draggable-vertical-padding;
+  }
 }
 
 .mfb-draggable {
@@ -61,14 +69,6 @@ $draggable-border-hover: $draggable-border-width solid $draggable-ui-color;
     opacity: 0;
     transition: opacity .5s;
   }
-}
-
-.dnd-cont {
-  min-height: 4rem;
-}
-
-.dnd-it {
-  padding: 0 $draggable-horizontal-padding $draggable-vertical-padding;
 }
 
 .dnd-drag {
