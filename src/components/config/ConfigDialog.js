@@ -76,7 +76,14 @@ export default {
       }
     }
   },
-  template: `<el-dialog :title="title" :visible="show" width="40%" :before-close="handleCancel">
+  template: `<el-dialog
+               class="mfb-config-dialog"
+               width="40%"
+               :title="title"
+               :visible="show"
+               :close-on-click-modal="false"
+               :before-close="handleCancel"
+               >
                <component :is="configComponent" :element.sync="element" ref="config" />
                <span slot="footer" class="dialog-footer">
                  <el-button @click="handleCancel(() => {})">Cancel</el-button>
