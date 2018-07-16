@@ -54,6 +54,8 @@
     "webpack-dev-server": "^2.11.1"
   },
   "browserslist": [
-    "> 1%"
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
   ]
 }
