@@ -43,8 +43,8 @@ export default {
       }
     })
 
-    // Node module needs a reference to vuex store.
-    this.$store.state.builder.rootNode.referenceStore(this.$store)
+    // Node module needs a reference to the root Vue instance.
+    this.$store.state.builder.rootNode.referenceVueInstance(this.$root)
 
     resizeHandler = () => {
       this.$store.commit('updateWindowWidth')

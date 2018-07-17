@@ -10,7 +10,7 @@ import {getNewId} from './id'
 import dropHandler from  './drop'
 import {clone} from '../../utils'
 
-var $store
+var $root
 
 export class Node {
   constructor(config, initChildren=[]) {
@@ -33,26 +33,53 @@ export class Node {
     this.getPreviewData = function () {
       return _previewData
     }
+
+    // 'Private' parent property.
+    var _parent
+    this.setParent = function (parent) {
+      _parent = parent
+    }
+    this.getParent = function () {
+      return _parent
+    }
   }
 
-  referenceStore(vuexStore) {
-    $store = vuexStore
+  referenceVueInstance(vueInstance) {
+    $root = vueInstance
   }
 
   setChildren(children) {
-    $store.commit('builder/setChildren', {node: this, children})
+    $root.$store.commit('builder/setChildren', {node: this, children})
   }
 
   addChild(index, child) {
-    $store.commit('builder/addChild', {node: this, index, child})
+    $root.$store.commit('builder/addChild', {node: this, index, child})
   }
 
   removeChildByIndex(index) {
-    $store.commit('builder/removeChildByIndex', {node: this, index})
+    $root.$store.commit('builder/removeChildByIndex', {node: this, index})
   }
 
   removeChild(child) {
-    $store.commit('builder/removeChild', {node: this, child})
+    $root.$store.commit('builder/removeChild', {node: this, child})
+  }
+
+  isRemovable() {
+    if ($root.$options.plugins.types[this.type] && typeof $root.$options.plugins.types[this.type].acceptsDeletion === 'function') {
+      return $root.$options.plugins.types[this.type].acceptsDeletion($root.$store.state.builder.rootNode, this)
+    } else {
+      // In doubt let it be removable.
+      return true
+    }
+  }
+
+  removeNode() {
+    if (this.isRemovable()) {
+      $root.$store.commit('builder/removeChild', {node: this.getParent(), child: this})
+      return true
+    } else {
+      return false
+    }
   }
 
   renderFn(h, parentDragged=false) {
@@ -88,13 +115,5 @@ export class Node {
     }
 
     return (<Draggable element={this} scopedSlots={slots} />)
-  }
-
-  toString() {
-    return {
-      id: this.id,
-      type: this.type,
-      children: this.children.map(child => child.toString())
-    }
   }
 }

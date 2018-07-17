@@ -10,9 +10,13 @@ export const builderModule = {
   mutations: {
     setChildren(state, {node, children}) {
       node.children = children
+      for (let i = 0, j = node.children.length; i < j; i++) {
+        node.children[i].setParent(node)
+      }
     },
     addChild(state, {node, index, child}) {
       node.children.splice(index, 0, child)
+      child.setParent(node)
     },
     removeChildByIndex(state, {node, index}) {
       node.children.splice(index, 1)
