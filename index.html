@@ -25,8 +25,14 @@
     <!-- Styles in body to override app styles injected into the head by webpack. -->
     <link rel="stylesheet" href="modules_css/vue_app_overrides.css">
 
-    <div id="app"></div>
+    <a href="#" id="trigger-request-leave-page">Trigger request-leave-page</a>
+    <a href="#" id="trigger-request-submit-page">Trigger request-submit-page</a>
+    <hr>
+
+    <div class="mfb-app"></div>
     <script src="dist/build.js"></script>
+
+    <script type="text/javascript" src="interrupt-submit-stub.js"></script>
 
   </body>
 </html>

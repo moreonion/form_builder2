@@ -1,21 +1,20 @@
 {
   "tree": {
-    "type": "root",
-    "id": 0,
     "children": [
       {
+        "children": [],
+        "id": 9,
         "type": "page",
-        "label": "My first real page",
-        "id": 1,
-        "formKey": "page_0",
-        "wrapperCls": "",
+        "label": "New page",
+        "formKey": "page_1",
+        "wrapperCls": ""
+      },
+      {
         "children": [
           {
-            "type": "fieldset",
-            "label": "my fieldset",
-            "id": 4,
             "children": [
               {
+                "children": [],
                 "type": "radios",
                 "label": "New radios",
                 "id": 5,
@@ -26,9 +25,18 @@
                 },
                 "labelDisplay": {
                   "options": [
-                    {"value": "before", "label": "Above"},
-                    {"value": "inline", "label": "Inline"},
-                    {"value": "none", "label": "None"}
+                    {
+                      "value": "before",
+                      "label": "Above"
+                    },
+                    {
+                      "value": "inline",
+                      "label": "Inline"
+                    },
+                    {
+                      "value": "none",
+                      "label": "None"
+                    }
                   ],
                   "value": "before"
                 },
@@ -36,16 +44,29 @@
                 "private": false,
                 "wrapperCls": "",
                 "options": [
-                  {"value": "1", "label": "One"},
-                  {"value": "2", "label": "Two"},
-                  {"value": "3", "label": "Three"}
+                  {
+                    "value": "1",
+                    "label": "One"
+                  },
+                  {
+                    "value": "2",
+                    "label": "Two"
+                  },
+                  {
+                    "value": "3",
+                    "label": "Three"
+                  }
                 ],
                 "customOption": false,
                 "customOptionLabel": "Other..."
               }
-            ]
+            ],
+            "type": "fieldset",
+            "label": "my fieldset",
+            "id": 4
           },
           {
+            "children": [],
             "type": "radios",
             "label": "New radios",
             "id": 7,
@@ -56,9 +77,18 @@
             },
             "labelDisplay": {
               "options": [
-                {"value": "before", "label": "Above"},
-                {"value": "inline", "label": "Inline"},
-                {"value": "none", "label": "None"}
+                {
+                  "value": "before",
+                  "label": "Above"
+                },
+                {
+                  "value": "inline",
+                  "label": "Inline"
+                },
+                {
+                  "value": "none",
+                  "label": "None"
+                }
               ],
               "value": "before"
             },
@@ -66,15 +96,78 @@
             "private": false,
             "wrapperCls": "",
             "options": [
-              {"value": "1", "label": "One"},
-              {"value": "2", "label": "Two"},
-              {"value": "3", "label": "Three"}
+              {
+                "value": "1",
+                "label": "One"
+              },
+              {
+                "value": "2",
+                "label": "Two"
+              },
+              {
+                "value": "3",
+                "label": "Three"
+              }
             ],
             "customOption": false,
             "customOptionLabel": "Other..."
+          },
+          {
+            "children": [],
+            "id": 8,
+            "type": "radios",
+            "label": "My radios",
+            "formKey": "radios_1",
+            "description": {
+              "text": "",
+              "enabled": false
+            },
+            "labelDisplay": {
+              "options": [
+                {
+                  "value": "before",
+                  "label": "Above"
+                },
+                {
+                  "value": "inline",
+                  "label": "Inline"
+                },
+                {
+                  "value": "none",
+                  "label": "None"
+                }
+              ],
+              "value": "before"
+            },
+            "required": false,
+            "private": false,
+            "wrapperCls": "",
+            "options": [
+              {
+                "value": "1",
+                "label": "One"
+              },
+              {
+                "value": "2",
+                "label": "Two"
+              },
+              {
+                "value": "3",
+                "label": "Three"
+              }
+            ],
+            "customOption": true,
+            "customOptionLabel": "Other..."
           }
-        ]
+        ],
+        "type": "page",
+        "label": "My first real page",
+        "id": 1,
+        "formKey": "page_0",
+        "wrapperCls": ""
       }
-    ]
+    ],
+    "type": "root",
+    "id": 0
   }
 }

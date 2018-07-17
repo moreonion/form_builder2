@@ -33,7 +33,7 @@ Vue.prototype.$events = events
 
 // eslint-disable-next-line no-new
 new Vue({
-  el: '#app',
+  el: '.mfb-app',
   store,
   plugins,
   render () {

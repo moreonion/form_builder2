@@ -25,3 +25,9 @@ export function parseTree (obj) {
 
   return new Node(config, childNodes)
 }
+
+export function dispatch (el, type) {
+  const e = document.createEvent('Event')
+  e.initEvent(type, true, true)
+  el.dispatchEvent(e)
+}

@@ -3,7 +3,7 @@ import bus from './bus'
 import {ITEM_DRAG, ITEM_DROP} from './events'
 import Item from './components/palette/item'
 import tree from './api/tree'
-import {parseTree} from './utils'
+import {parseTree, dispatch} from './utils'
 
 import './FormBuilder.scss'
 
@@ -15,19 +15,22 @@ import ConfigDialog from './components/config/ConfigDialog' // eslint-disable-li
 
 import {PALETTE_DISPLAY_BREAKPOINT} from './config/general'
 
-var unwatchDnd
-var resizeHandler
+var unwatchDnd, resizeHandler, leavePageHandler
 
 export default {
   computed: {
     ...mapState('builder', ['rootNode']),
+    ...mapState('config', ['originalNode']),
     ...mapState(['windowWidth'])
   },
+
   data () {
     return {
+      unsavedChanges: true, // TODO unsaved changes management
       palettePopoverVisible: false
     }
   },
+
   mounted () {
     tree.get().then(
       response => {
@@ -72,16 +75,83 @@ export default {
       document.body.classList.add('user-touches')
       window.removeEventListener('touchstart', firstTouchHandler, false)
     }, false)
+
+    // Listen to events by interrupt-submit.js
+    leavePageHandler = e => {
+      if (e.type === 'request-leave-page') {
+        if (this.unsavedChanges) {
+          this.$confirm(this.text('unsaved changes'), this.text('unsaved changes title'), {
+            confirmButtonText: this.text('Go back anyway'),
+            cancelButtonText: this.text('Stay on page'),
+            type: 'warning'
+          }).then(() => { this.leavePage() }, () => { this.stayOnPage() })
+        } else {
+          this.leavePage()
+        }
+        return
+      }
+
+      var validationFailed = false // TODO add validation
+      if (validationFailed) {
+        this.$confirm(this.text('invalid data'), this.text('invalid data title'), {
+          confirmButtonText: this.text('Save anyway'),
+          cancelButtonText: this.text('Cancel'),
+          type: 'warning'
+        }).then(() => { this.putData() }, () => { this.stayOnPage() })
+        return
+      }
+
+      this.putData()
+    }
+    this.$el.addEventListener('request-submit-page', leavePageHandler)
+    this.$el.addEventListener('request-leave-page', leavePageHandler)
   },
+
   beforeDestroy () {
     unwatchDnd()
     window.removeEventListener('resize', resizeHandler)
+    this.$el.removeEventListener('request-submit-page', leavePageHandler)
+    this.$el.removeEventListener('request-leave-page', leavePageHandler)
     bus.$off(ITEM_DRAG, this.itemDragHandler)
   },
+
+  watch: {
+    // Don’t accidentially submit Drupal form while dialogs are open.
+    originalNode (val) {
+      this.disableDrupalSubmits(val)
+    }
+  },
+
   methods: {
     itemDragHandler () {
       this.palettePopoverVisible = false
     },
+
+    disableDrupalSubmits (bool) {
+      const inputs = document.querySelectorAll('.form-actions.form-wrapper input[type=submit]')
+      for (var i = 0, j = inputs.length; i < j; i++) {
+        inputs[i].disabled = bool
+      }
+    },
+
+    leavePage () {
+      dispatch(this.$el, 'resume-leave-page')
+    },
+
+    stayOnPage () {
+      dispatch(this.$el, 'cancel-leave-page')
+    },
+
+    putData () {
+      const data = this.rootNode
+      tree.put(data).then(response => {
+        this.leavePage()
+      }, response => {
+        this.stayOnPage()
+        this.$alert(this.text('tree saving error'), this.text('Error'))
+      })
+    },
+
     text (text) {
       switch (text) {
         case 'show palette dropdown': return Drupal.t('Add field')
@@ -89,9 +159,20 @@ export default {
         case 'Form preview': return Drupal.t('Form preview')
         case 'Error': return Drupal.t('Error')
         case 'tree loading error': return Drupal.t('Unable to load tree. Please contact support if the problem persists.')
+        case 'tree saving error': return Drupal.t('Unable to save tree. Please contact support if the problem persists.')
+        case 'unsaved changes': return Drupal.t('You have unsaved changes!\rYou will lose your changes if you go back.')
+        case 'unsaved changes title': return Drupal.t('Unsaved changes')
+        case 'Go back anyway': return Drupal.t('Go back anyway')
+        case 'Stay on page': return Drupal.t('Stay on page')
+        case 'invalid data title': return Drupal.t('Invalid data')
+        case 'invalid data': return Drupal.t('There are validation errors (see error notices).\rYour campaign might not work as you intended.')
+        case 'Save anyway': return Drupal.t('Save anyway')
+        case 'OK': return Drupal.t('OK')
+        case 'Cancel': return Drupal.t('Cancel')
       }
     }
   },
+
   render (h) {
     const slots = {default: props => props.item.renderFn(h)}
     const mobilePalette = this.windowWidth < PALETTE_DISPLAY_BREAKPOINT
@@ -119,7 +200,7 @@ export default {
     const builder = this.rootNode ? <Builder rootNode={this.rootNode} /> : null
 
     return (
-      <div class="mfb-app">
+      <div class="mfb-app" data-interrupt-submit data-has-unsaved-changes={this.unsavedChanges}>
         <DnDContext scopedSlots={slots} ref={'dndContext'}>
           {mobilePalette}
           <section class="mfb-builder">
