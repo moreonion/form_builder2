@@ -3,7 +3,9 @@ import {Node} from './node'
 const initState = new Node({type: 'root'}, [
   new Node({
     type: 'page',
-    title: 'My first page'
+    label: 'My first page',
+    formKey: 'page_0',
+    wrapperCls: ''
   }, [])
 ])
 
