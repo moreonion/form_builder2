@@ -1,13 +1,15 @@
-import initState from './init-state'
 import {Node} from './node'
 
 export const builderModule = {
   namespaced: true,
   state: {
-    rootNode: initState,
+    rootNode: null,
     draggedNode: null
   },
   mutations: {
+    setRoot (state, {node}) {
+      state.rootNode = node
+    },
     setChildren (state, {node, children}) {
       node.children = children
       for (let i = 0, j = node.children.length; i < j; i++) {

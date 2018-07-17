@@ -9,13 +9,15 @@ import {getNewId} from './id'
 
 import dropHandler from './drop'
 import {clone} from '../../utils'
-
-var $root
+import {store} from '../../store'
+import plugins from '../../plugins'
 
 export class Node {
   constructor (config, initChildren = []) {
-    this.id = getNewId()
-    this.children = initChildren
+    if (typeof config.id === 'undefined') {
+      this.id = getNewId()
+    }
+    this.setChildren(initChildren)
 
     config = clone(config) // get rid of any object references
     for (let key in config) {
@@ -44,29 +46,25 @@ export class Node {
     }
   }
 
-  referenceVueInstance (vueInstance) {
-    $root = vueInstance
-  }
-
   setChildren (children) {
-    $root.$store.commit('builder/setChildren', {node: this, children})
+    store.commit('builder/setChildren', {node: this, children})
   }
 
   addChild (index, child) {
-    $root.$store.commit('builder/addChild', {node: this, index, child})
+    store.commit('builder/addChild', {node: this, index, child})
   }
 
   removeChildByIndex (index) {
-    $root.$store.commit('builder/removeChildByIndex', {node: this, index})
+    store.commit('builder/removeChildByIndex', {node: this, index})
   }
 
   removeChild (child) {
-    $root.$store.commit('builder/removeChild', {node: this, child})
+    store.commit('builder/removeChild', {node: this, child})
   }
 
   isRemovable () {
-    if ($root.$options.plugins.types[this.type] && typeof $root.$options.plugins.types[this.type].acceptsDeletion === 'function') {
-      return $root.$options.plugins.types[this.type].acceptsDeletion($root.$store.state.builder.rootNode, this)
+    if (plugins.types[this.type] && typeof plugins.types[this.type].acceptsDeletion === 'function') {
+      return plugins.types[this.type].acceptsDeletion(store.state.builder.rootNode, this)
     } else {
       // In doubt let it be removable.
       return true
@@ -75,7 +73,7 @@ export class Node {
 
   removeNode () {
     if (this.isRemovable()) {
-      $root.$store.commit('builder/removeChild', {node: this.getParent(), child: this})
+      store.commit('builder/removeChild', {node: this.getParent(), child: this})
       return true
     } else {
       return false

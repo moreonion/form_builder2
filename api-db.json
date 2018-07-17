@@ -1,0 +1,80 @@
+{
+  "tree": {
+    "type": "root",
+    "id": 0,
+    "children": [
+      {
+        "type": "page",
+        "label": "My first real page",
+        "id": 1,
+        "formKey": "page_0",
+        "wrapperCls": "",
+        "children": [
+          {
+            "type": "fieldset",
+            "label": "my fieldset",
+            "id": 4,
+            "children": [
+              {
+                "type": "radios",
+                "label": "New radios",
+                "id": 5,
+                "formKey": "radios_2",
+                "description": {
+                  "text": "",
+                  "enabled": false
+                },
+                "labelDisplay": {
+                  "options": [
+                    {"value": "before", "label": "Above"},
+                    {"value": "inline", "label": "Inline"},
+                    {"value": "none", "label": "None"}
+                  ],
+                  "value": "before"
+                },
+                "required": false,
+                "private": false,
+                "wrapperCls": "",
+                "options": [
+                  {"value": "1", "label": "One"},
+                  {"value": "2", "label": "Two"},
+                  {"value": "3", "label": "Three"}
+                ],
+                "customOption": false,
+                "customOptionLabel": "Other..."
+              }
+            ]
+          },
+          {
+            "type": "radios",
+            "label": "New radios",
+            "id": 7,
+            "formKey": "radios_0",
+            "description": {
+              "text": "",
+              "enabled": false
+            },
+            "labelDisplay": {
+              "options": [
+                {"value": "before", "label": "Above"},
+                {"value": "inline", "label": "Inline"},
+                {"value": "none", "label": "None"}
+              ],
+              "value": "before"
+            },
+            "required": false,
+            "private": false,
+            "wrapperCls": "",
+            "options": [
+              {"value": "1", "label": "One"},
+              {"value": "2", "label": "Two"},
+              {"value": "3", "label": "Three"}
+            ],
+            "customOption": false,
+            "customOptionLabel": "Other..."
+          }
+        ]
+      }
+    ]
+  }
+}

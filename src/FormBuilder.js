@@ -2,6 +2,8 @@ import {mapState} from 'vuex'
 import bus from './bus'
 import {ITEM_DRAG, ITEM_DROP} from './events'
 import Item from './components/palette/item'
+import tree from './api/tree'
+import {parseTree} from './utils'
 
 import './FormBuilder.scss'
 
@@ -27,6 +29,16 @@ export default {
     }
   },
   mounted () {
+    tree.get().then(
+      response => {
+        this.$store.commit('builder/setRoot', {node: parseTree(response.data)})
+      },
+      err => {
+        this.$alert(this.text('tree loading error'), this.text('Error'))
+        console.error(err)
+      }
+    )
+
     // Unless mo-vue-dnd emits more events, we have to watch child component state :-(
     unwatchDnd = this.$refs.dndContext.$watch('state', val => {
       if (val) {
@@ -42,9 +54,6 @@ export default {
         this.$store.commit('builder/dropNode')
       }
     })
-
-    // Node module needs a reference to the root Vue instance.
-    this.$store.state.builder.rootNode.referenceVueInstance(this.$root)
 
     resizeHandler = () => {
       this.$store.commit('updateWindowWidth')
@@ -78,6 +87,8 @@ export default {
         case 'show palette dropdown': return Drupal.t('Add field')
         case 'Add new form fields': return Drupal.t('Add new form fields')
         case 'Form preview': return Drupal.t('Form preview')
+        case 'Error': return Drupal.t('Error')
+        case 'tree loading error': return Drupal.t('Unable to load tree. Please contact support if the problem persists.')
       }
     }
   },
@@ -105,13 +116,15 @@ export default {
       </section>
       : null
 
+    const builder = this.rootNode ? <Builder rootNode={this.rootNode} /> : null
+
     return (
       <div class="mfb-app">
         <DnDContext scopedSlots={slots} ref={'dndContext'}>
           {mobilePalette}
           <section class="mfb-builder">
             <h1>{this.text('Form preview')}</h1>
-            <Builder rootNode={this.rootNode}/>
+            {builder}
           </section>
           {desktopPalette}
         </DnDContext>

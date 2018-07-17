@@ -10,7 +10,10 @@ window.Drupal = {
         // Labels are supposed to be provided by the backend in transition.
         {name: 'crm', label: 'CRM fields'},
         {name: 'generic', label: 'Generic fields'}
-      ]
+      ],
+      endpoints: {
+        tree: 'http://localhost:8081/tree'
+      }
     }
   },
 
