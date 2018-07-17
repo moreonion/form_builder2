@@ -5,7 +5,7 @@
   "author": "Onur Dogangönül <contact@dinony.com>",
   "private": true,
   "scripts": {
-    "lint": "eslint src/**/*.js",
+    "lint": "eslint 'src/**/*.js'",
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "build:dev": "cross-env NODE_ENV=development webpack --progress --hide-modules",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",

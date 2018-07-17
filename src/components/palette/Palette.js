@@ -1,5 +1,5 @@
 import {mapState} from 'vuex'
-import {DnDItems} from 'mo-vue-dnd'
+import {DnDItems} from 'mo-vue-dnd' // eslint-disable-line no-unused-vars
 
 import Item from './item'
 
@@ -7,7 +7,7 @@ import {PALETTE_DND_GROUP, PALETTE_DND_OPTIONS} from '../../config/dnd'
 
 export default {
   name: 'Palette',
-  data() {
+  data () {
     return {
       groups: Drupal.settings.campaignion_form_builder.paletteGroups.map(group => group.name),
       groupLabels: Drupal.settings.campaignion_form_builder.paletteGroups.map(group => group.label),
@@ -19,7 +19,7 @@ export default {
     ...mapState('builder', ['rootNode'])
   },
   methods: {
-    itemsByGroup(group) {
+    itemsByGroup (group) {
       const items = []
       this.elTemplates.filter(elTemplate => elTemplate.group === group)
         .sort((a, b) => a - b)
@@ -28,11 +28,11 @@ export default {
         })
       return items
     },
-    onCollapseToggle(expanded) {
+    onCollapseToggle (expanded) {
       this.expanded = expanded
     }
   },
-  render(h) {
+  render (h) {
     const slots = {default: props => props.item.renderFn(h)}
 
     const content = this.groups.map((groupName, i) => (

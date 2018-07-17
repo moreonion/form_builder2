@@ -1,25 +1,25 @@
 import Vue from 'vue'
 
-import Draggable from './Draggable'
-import {DnDItems} from 'mo-vue-dnd'
+import Draggable from './Draggable' // eslint-disable-line no-unused-vars
+import {DnDItems} from 'mo-vue-dnd' // eslint-disable-line no-unused-vars
 
 import {BUILDER_DND_OPTIONS, BUILDER_DND_GROUP} from '../../config/dnd'
 import {componentName} from '../../config/plugins'
 import {getNewId} from './id'
 
-import dropHandler from  './drop'
+import dropHandler from './drop'
 import {clone} from '../../utils'
 
 var $root
 
 export class Node {
-  constructor(config, initChildren=[]) {
+  constructor (config, initChildren = []) {
     this.id = getNewId()
     this.children = initChildren
 
     config = clone(config) // get rid of any object references
     for (let key in config) {
-      if(config.hasOwnProperty(key) ) {
+      if (config.hasOwnProperty(key)) {
         this[key] = config[key]
       }
     }
@@ -44,27 +44,27 @@ export class Node {
     }
   }
 
-  referenceVueInstance(vueInstance) {
+  referenceVueInstance (vueInstance) {
     $root = vueInstance
   }
 
-  setChildren(children) {
+  setChildren (children) {
     $root.$store.commit('builder/setChildren', {node: this, children})
   }
 
-  addChild(index, child) {
+  addChild (index, child) {
     $root.$store.commit('builder/addChild', {node: this, index, child})
   }
 
-  removeChildByIndex(index) {
+  removeChildByIndex (index) {
     $root.$store.commit('builder/removeChildByIndex', {node: this, index})
   }
 
-  removeChild(child) {
+  removeChild (child) {
     $root.$store.commit('builder/removeChild', {node: this, child})
   }
 
-  isRemovable() {
+  isRemovable () {
     if ($root.$options.plugins.types[this.type] && typeof $root.$options.plugins.types[this.type].acceptsDeletion === 'function') {
       return $root.$options.plugins.types[this.type].acceptsDeletion($root.$store.state.builder.rootNode, this)
     } else {
@@ -73,7 +73,7 @@ export class Node {
     }
   }
 
-  removeNode() {
+  removeNode () {
     if (this.isRemovable()) {
       $root.$store.commit('builder/removeChild', {node: this.getParent(), child: this})
       return true
@@ -82,7 +82,7 @@ export class Node {
     }
   }
 
-  renderFn(h, parentDragged=false) {
+  renderFn (h, parentDragged = false) {
     var ElementPreview = componentName(this.type)
     if (!Vue.options.components[ElementPreview]) {
       ElementPreview = componentName('missing')

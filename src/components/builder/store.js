@@ -8,20 +8,20 @@ export const builderModule = {
     draggedNode: null
   },
   mutations: {
-    setChildren(state, {node, children}) {
+    setChildren (state, {node, children}) {
       node.children = children
       for (let i = 0, j = node.children.length; i < j; i++) {
         node.children[i].setParent(node)
       }
     },
-    addChild(state, {node, index, child}) {
+    addChild (state, {node, index, child}) {
       node.children.splice(index, 0, child)
       child.setParent(node)
     },
-    removeChildByIndex(state, {node, index}) {
+    removeChildByIndex (state, {node, index}) {
       node.children.splice(index, 1)
     },
-    removeChild(state, {node, child}) {
+    removeChild (state, {node, child}) {
       for (var i = 0, j = node.children.length; i < j; i++) {
         if (node.children[i] === child) {
           node.children.splice(i, 1)
@@ -29,13 +29,13 @@ export const builderModule = {
         }
       }
     },
-    dragNode(state, {node}) {
+    dragNode (state, {node}) {
       state.draggedNode = node
     },
-    dropNode(state) {
+    dropNode (state) {
       state.draggedNode = null
     },
-    setElementProperty(state, {element, key, value}) {
+    setElementProperty (state, {element, key, value}) {
       if (element instanceof Node) {
         if (key && typeof value !== 'undefined' && ['id', 'type'].indexOf(key) === -1) {
           if (typeof element[key] !== 'undefined') {

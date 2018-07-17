@@ -1,15 +1,15 @@
-import {DnDMdArea} from 'mo-vue-dnd'
+import {DnDMdArea} from 'mo-vue-dnd' // eslint-disable-line no-unused-vars
 import {Node} from '../builder/node'
 
 var $store
 
 export default class Item {
-  constructor(elTemplate, vuexStore) {
+  constructor (elTemplate, vuexStore) {
     this.elTemplate = elTemplate
     $store = vuexStore
   }
 
-  nodeFactoryProxy() {
+  nodeFactoryProxy () {
     if (!$store.state.builder.draggedNode) {
       // Get the config from the factory.
       const config = this.elTemplate.factory($store.state.builder.rootNode)
@@ -19,9 +19,9 @@ export default class Item {
     return $store.state.builder.draggedNode
   }
 
-  renderFn(h) {
+  renderFn (h) {
     const isAddable = this.elTemplate.isAddable(this.tree)
-    const Wrapper = isAddable ? 'DnDMdArea' : 'div'
+    const Wrapper = isAddable ? 'DnDMdArea' : 'div' // eslint-disable-line no-unused-vars
 
     return (
       <Wrapper class={{'mfb-palette-item': true, 'mfb-palette-item-disabled': !isAddable}}>

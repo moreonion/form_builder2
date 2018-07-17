@@ -1,10 +1,10 @@
-import {mapState, mapGetters} from 'vuex'
+import {mapState} from 'vuex'
 import './Debug.scss'
 
 import bus from '../../bus'
 
 export default {
-  data() {
+  data () {
     return {
       debugDropData: {}
     }
@@ -12,12 +12,12 @@ export default {
   computed: {
     ...mapState('builder', ['rootNode'])
   },
-  mounted() {
+  mounted () {
     bus.$on('debug-drop', payload => {
       this.debugDropData = payload
     })
   },
-  render() {
+  render () {
     return (
       <div class="debug">
         <h4>itemInt</h4>

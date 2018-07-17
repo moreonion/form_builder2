@@ -6,31 +6,31 @@ import faArrowsAlt from '@fortawesome/fontawesome-free-solid/faArrowsAlt'
 export default {
   name: 'Draggable',
   props: ['element'],
-  data() {
+  data () {
     return {
       hovered: false,
       faArrowsAlt
     }
   },
   computed: {
-    dragged() {
+    dragged () {
       return this.$store.state.builder.draggedNode === this.element
     }
   },
-  mounted() {
+  mounted () {
     bus.$on(DRAGGABLE_HOVER, this.updateHoverState)
   },
-  beforeDestroy() {
+  beforeDestroy () {
     bus.$off(DRAGGABLE_HOVER, this.updateHoverState)
   },
   methods: {
-    updateHoverState({el}) {
+    updateHoverState ({el}) {
       this.hovered = (el === this.$el)
     },
-    editNode() {
+    editNode () {
       this.$store.commit('config/editNode', {node: this.element})
     },
-    text(text) {
+    text (text) {
       switch (text) {
         case 'edit field': return Drupal.t('Edit')
       }

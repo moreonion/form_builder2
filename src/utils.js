@@ -1,3 +1,3 @@
-export function clone(obj) {
+export function clone (obj) {
   return JSON.parse(JSON.stringify(obj))
 }

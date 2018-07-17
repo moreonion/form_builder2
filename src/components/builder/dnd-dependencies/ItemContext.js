@@ -1,6 +1,6 @@
 // ItemContext
 export default class ItemCtx {
-  constructor(group, container, index, options, updateFn) {
+  constructor (group, container, index, options, updateFn) {
     this.grp = group
     this.cnt = container
     this.idx = index
@@ -8,11 +8,11 @@ export default class ItemCtx {
     this.updateFn = updateFn
   }
 
-  get item() {
+  get item () {
     return this.cnt[this.idx]
   }
 
-  allowsDrop(srcCtx) {
+  allowsDrop (srcCtx) {
     const sc = srcCtx
     const tc = this // this has target role
     const sPerms = sc.options.permissions
@@ -22,7 +22,7 @@ export default class ItemCtx {
     return sAllowsOut && tAllowsIn
   }
 
-  equals(other) {
+  equals (other) {
     return this.grp === other.grp &&
       this.cnt === other.cnt &&
       this.idx === other.idx

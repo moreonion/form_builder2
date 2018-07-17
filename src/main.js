@@ -7,7 +7,7 @@ import './vendor'
 import {store} from './store'
 import eventBus from './bus'
 import events from './events'
-import FormBuilder from './FormBuilder'
+import FormBuilder from './FormBuilder' // eslint-disable-line no-unused-vars
 
 import {componentName} from './config/plugins'
 
@@ -30,11 +30,12 @@ for (let type in window.moFormBuilder.plugins.types) {
 Vue.prototype.$eventBus = eventBus
 Vue.prototype.$events = events
 
+// eslint-disable-next-line no-new
 new Vue({
   el: '#app',
   store,
   plugins: window.moFormBuilder.plugins,
-  render() {
+  render () {
     return <FormBuilder/>
   }
 })

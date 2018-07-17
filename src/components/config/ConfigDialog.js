@@ -8,17 +8,17 @@ import {clone} from '../../utils'
 
 export default {
   name: 'ConfigDialog',
-  data() {
+  data () {
     return {
       show: false,
       element: null
     }
   },
   computed: {
-    title() {
+    title () {
       return this.text('Configure field')
     },
-    configComponent() {
+    configComponent () {
       var name = this.element ? componentName(this.element.type, 'config') : null
       if (name && !Vue.options.components[name]) {
         name = componentName('missing', 'config')
@@ -27,12 +27,12 @@ export default {
     },
     ...mapState('config', ['originalNode'])
   },
-  mounted() {
+  mounted () {
   },
-  beforeDestroy() {
+  beforeDestroy () {
   },
   watch: {
-    originalNode(val) {
+    originalNode (val) {
       if (val) {
         this.element = clone(val)
         this.show = true
@@ -43,7 +43,7 @@ export default {
     }
   },
   methods: {
-    handleCancel(dialogDone) {
+    handleCancel (dialogDone) {
       const done = () => {
         this.$store.commit('config/leaveNode')
         dialogDone()
@@ -56,7 +56,7 @@ export default {
         done()
       }
     },
-    handleSave() {
+    handleSave () {
       const done = () => {
         const originalNode = this.originalNode
         this.$store.commit('config/updateNode', {editedNode: this.element})
@@ -70,7 +70,7 @@ export default {
         done()
       }
     },
-    text(text) {
+    text (text) {
       switch (text) {
         case 'Configure field': return Drupal.t('Configure field')
       }

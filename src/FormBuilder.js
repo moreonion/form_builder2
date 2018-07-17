@@ -1,14 +1,14 @@
 import {mapState} from 'vuex'
-import {DnDContext} from 'mo-vue-dnd'
 import bus from './bus'
 import {ITEM_DRAG, ITEM_DROP} from './events'
 import Item from './components/palette/item'
 
 import './FormBuilder.scss'
 
-import Palette from './components/palette/Palette'
-import Builder from './components/builder/Builder'
-import ConfigDialog from './components/config/ConfigDialog'
+import {DnDContext} from 'mo-vue-dnd' // eslint-disable-line no-unused-vars
+import Palette from './components/palette/Palette' // eslint-disable-line no-unused-vars
+import Builder from './components/builder/Builder' // eslint-disable-line no-unused-vars
+import ConfigDialog from './components/config/ConfigDialog' // eslint-disable-line no-unused-vars
 // import Debug from './components/debug/Debug'
 
 import {PALETTE_DISPLAY_BREAKPOINT} from './config/general'
@@ -21,12 +21,12 @@ export default {
     ...mapState('builder', ['rootNode']),
     ...mapState(['windowWidth'])
   },
-  data() {
+  data () {
     return {
       palettePopoverVisible: false
     }
   },
-  mounted() {
+  mounted () {
     // Unless mo-vue-dnd emits more events, we have to watch child component state :-(
     unwatchDnd = this.$refs.dndContext.$watch('state', val => {
       if (val) {
@@ -64,16 +64,16 @@ export default {
       window.removeEventListener('touchstart', firstTouchHandler, false)
     }, false)
   },
-  beforeDestroy() {
+  beforeDestroy () {
     unwatchDnd()
     window.removeEventListener('resize', resizeHandler)
     bus.$off(ITEM_DRAG, this.itemDragHandler)
   },
   methods: {
-    itemDragHandler() {
+    itemDragHandler () {
       this.palettePopoverVisible = false
     },
-    text(text) {
+    text (text) {
       switch (text) {
         case 'show palette dropdown': return Drupal.t('Add field')
         case 'Add new form fields': return Drupal.t('Add new form fields')
@@ -81,10 +81,10 @@ export default {
       }
     }
   },
-  render(h) {
+  render (h) {
     const slots = {default: props => props.item.renderFn(h)}
-    const mobilePalette = this.windowWidth < PALETTE_DISPLAY_BREAKPOINT ?
-      <el-popover
+    const mobilePalette = this.windowWidth < PALETTE_DISPLAY_BREAKPOINT
+      ? <el-popover
         class="mfb-show-mobile-palette"
         popper-class="mfb-palette mfb-palette-mobile"
         v-model={this.palettePopoverVisible}
@@ -98,8 +98,8 @@ export default {
         <Palette />
       </el-popover>
       : null
-    const desktopPalette = this.windowWidth >= PALETTE_DISPLAY_BREAKPOINT ?
-      <section class="mfb-palette mfb-palette-desktop">
+    const desktopPalette = this.windowWidth >= PALETTE_DISPLAY_BREAKPOINT
+      ? <section class="mfb-palette mfb-palette-desktop">
         <h1>{this.text('Add new form fields')}</h1>
         <Palette />
       </section>

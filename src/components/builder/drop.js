@@ -4,7 +4,7 @@ import ItemContext from './dnd-dependencies/ItemContext'
 
 import bus from '../../bus'
 
-export default function drop(itemIntersection) {
+export default function drop (itemIntersection) {
   const debug = {}
   debug.itemInt = itemIntersection
   const itemInt = itemIntersection
@@ -48,44 +48,44 @@ export default function drop(itemIntersection) {
     return acceptsParent && acceptedByParent
   }
 
-  if(itemInt.isSameContext) {
+  if (itemInt.isSameContext) {
     // source=traget
     let trgResult = null
     let needsUpdate = false
-    if(sc.idx === tc.idx) {
+    if (sc.idx === tc.idx) {
       trgResult = sc.cnt
-    } else if(sc.idx < tc.idx) {
-      if(itemInt.insBef && sc.idx === tc.idx-1) {
+    } else if (sc.idx < tc.idx) {
+      if (itemInt.insBef && sc.idx === tc.idx - 1) {
         trgResult = sc.cnt
       } else {
         needsUpdate = true
         trgResult = sc.cnt.slice(0, sc.idx)
-          .concat(sc.cnt.slice(sc.idx+1, trgIndex))
+          .concat(sc.cnt.slice(sc.idx + 1, trgIndex))
           .concat(cloneItem())
           .concat(sc.cnt.slice(trgIndex))
       }
     } else {
-      if(!itemInt.insBef && sc.idx === tc.idx+1) {
+      if (!itemInt.insBef && sc.idx === tc.idx + 1) {
         trgResult = sc.cnt
       } else {
         needsUpdate = true
         trgResult = sc.cnt.slice(0, trgIndex)
           .concat(cloneItem())
           .concat(sc.cnt.slice(trgIndex, sc.idx))
-          .concat(sc.cnt.slice(sc.idx+1))
+          .concat(sc.cnt.slice(sc.idx + 1))
       }
     }
 
     let tItemIndex = null
-    if(sc.idx < tc.idx) {
-      tItemIndex = itemInt.insBef ? tc.idx-1: tc.idx
-    } else if(sc.idx > tc.idx) {
-      tItemIndex = itemInt.insBef ? tc.idx: tc.idx+1
+    if (sc.idx < tc.idx) {
+      tItemIndex = itemInt.insBef ? tc.idx - 1 : tc.idx
+    } else if (sc.idx > tc.idx) {
+      tItemIndex = itemInt.insBef ? tc.idx : tc.idx + 1
     } else {
       tItemIndex = tc.idx
     }
 
-    debug.srcResult = srcResult
+    debug.srcResult = trgResult
     debug.trgResult = trgResult
     bus.$emit('debug-drop', debug)
 
@@ -100,13 +100,13 @@ export default function drop(itemIntersection) {
     return new DropResult(td, td, tItemContext, true)
   } else {
     // source!==target
-    var srcResult = sc.options.allowItemRemoval ?
-      sc.cnt.filter((val, index) => index !== sc.idx):
-      sc.cnt
+    var srcResult = sc.options.allowItemRemoval
+      ? sc.cnt.filter((val, index) => index !== sc.idx)
+      : sc.cnt
 
     let trgResult = null
     let tItemIndex = null
-    if(tc.cnt.length === 0) {
+    if (tc.cnt.length === 0) {
       // target is []
       trgResult = [cloneItem()]
       tItemIndex = 0
@@ -115,7 +115,7 @@ export default function drop(itemIntersection) {
         .concat(cloneItem())
         .concat(tc.cnt.slice(trgIndex))
 
-      tItemIndex = itemInt.insBef ? tc.idx: tc.idx+1
+      tItemIndex = itemInt.insBef ? tc.idx : tc.idx + 1
     }
 
     debug.srcResult = srcResult
