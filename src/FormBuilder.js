@@ -26,7 +26,7 @@ export default {
 
   data () {
     return {
-      unsavedChanges: true, // TODO unsaved changes management
+      unsavedChanges: false,
       palettePopoverVisible: false
     }
   },
@@ -35,6 +35,11 @@ export default {
     tree.get().then(
       response => {
         this.$store.commit('builder/setRoot', {node: parseTree(response.data)})
+
+        const unwatchRootNode = this.$watch('rootNode', function () {
+          this.unsavedChanges = true
+          unwatchRootNode()
+        }, { deep: true })
       },
       err => {
         this.$alert(this.text('tree loading error'), this.text('Error'))
