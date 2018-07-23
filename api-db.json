@@ -2,14 +2,6 @@
   "tree": {
     "children": [
       {
-        "children": [],
-        "id": 9,
-        "type": "page",
-        "label": "New page",
-        "formKey": "page_1",
-        "wrapperCls": ""
-      },
-      {
         "children": [
           {
             "children": [
@@ -64,100 +56,6 @@
             "type": "fieldset",
             "label": "my fieldset",
             "id": 4
-          },
-          {
-            "children": [],
-            "type": "radios",
-            "label": "New radios",
-            "id": 7,
-            "formKey": "radios_0",
-            "description": {
-              "text": "",
-              "enabled": false
-            },
-            "labelDisplay": {
-              "options": [
-                {
-                  "value": "before",
-                  "label": "Above"
-                },
-                {
-                  "value": "inline",
-                  "label": "Inline"
-                },
-                {
-                  "value": "none",
-                  "label": "None"
-                }
-              ],
-              "value": "before"
-            },
-            "required": false,
-            "private": false,
-            "wrapperCls": "",
-            "options": [
-              {
-                "value": "1",
-                "label": "One"
-              },
-              {
-                "value": "2",
-                "label": "Two"
-              },
-              {
-                "value": "3",
-                "label": "Three"
-              }
-            ],
-            "customOption": false,
-            "customOptionLabel": "Other..."
-          },
-          {
-            "children": [],
-            "id": 8,
-            "type": "radios",
-            "label": "My radios",
-            "formKey": "radios_1",
-            "description": {
-              "text": "",
-              "enabled": false
-            },
-            "labelDisplay": {
-              "options": [
-                {
-                  "value": "before",
-                  "label": "Above"
-                },
-                {
-                  "value": "inline",
-                  "label": "Inline"
-                },
-                {
-                  "value": "none",
-                  "label": "None"
-                }
-              ],
-              "value": "before"
-            },
-            "required": false,
-            "private": false,
-            "wrapperCls": "",
-            "options": [
-              {
-                "value": "1",
-                "label": "One"
-              },
-              {
-                "value": "2",
-                "label": "Two"
-              },
-              {
-                "value": "3",
-                "label": "Three"
-              }
-            ],
-            "customOption": true,
-            "customOptionLabel": "Other..."
           }
         ],
         "type": "page",
