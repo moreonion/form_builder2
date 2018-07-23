@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="7">
+
+  <testsuite name="test"
+    errors="1" failures="0" hostname="" id="" package="test" skipped="6"
+    tests="7" time="0.06000" timestamp="Mon, 23 Jul 2018 19:24:11 GMT">
+  
+    <testcase name="app is being rendered" classname="test" time="0.06000" assertions="0">
+    </testcase>
+  
+
+  
+    <system-err>
+        Error while running [Test / app is being rendered]:
+
+  TypeError: Cannot read property 'palette' of undefined
+    at Object.appIsBeingRendered [as app is being rendered] (/home/maya/mo/form_builder2/test/e2e/specs/test.js:19:34)
+    at Module.call (/home/maya/mo/form_builder2/node_modules/nightwatch/lib/runner/module.js:62:34)
+    at /home/maya/mo/form_builder2/node_modules/nightwatch/lib/runner/testcase.js:70:29
+    at _fulfilled (/home/maya/mo/form_builder2/node_modules/q/q.js:834:54)
+    at /home/maya/mo/form_builder2/node_modules/q/q.js:863:30
+    at Promise.promise.promiseDispatch (/home/maya/mo/form_builder2/node_modules/q/q.js:796:13)
+    at /home/maya/mo/form_builder2/node_modules/q/q.js:556:49
+    at runSingle (/home/maya/mo/form_builder2/node_modules/q/q.js:137:13)
+    at flush (/home/maya/mo/form_builder2/node_modules/q/q.js:125:13)
+    at process._tickCallback (internal/process/next_tick.js:172:11)
+    </system-err>
+  
+
+  
+    
+    <testcase
+      name="builder renders tree" classname="test">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="start adding a custom dataset and cancel" classname="test">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="add a custom dataset, validate contacts" classname="test">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="edit custom dataset, discard changes" classname="test">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="choose another custom dataset (see build/api-db.template.json for the fixture)" classname="test">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="edit a contact, delete another one and save the dataset" classname="test">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>

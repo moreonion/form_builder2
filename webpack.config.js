@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const pkg = require('./package.json')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const banner = `
 mo-fb2 v${pkg.version}
@@ -9,11 +10,16 @@ License: ${pkg.license}
 `
 
 module.exports = {
-  entry: './src/main.js',
+  entry: process.env.NODE_ENV === 'testing'
+    ? {
+      main: './src/main.js',
+      plugins: './test/e2e/plugins/plugins.js'
+    }
+    : './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: 'dist/',
-    filename: 'build.js'
+    filename: '[name].js'
   },
   module: {
     rules: [
@@ -72,6 +78,7 @@ module.exports = {
     new webpack.BannerPlugin(banner)
   ],
   devServer: {
+    port: 8080,
     contentBase: [
       __dirname,
       // For development, the `mfb-plugins` and `mfb-plugin-commons` directories
@@ -109,6 +116,19 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
+    })
+  ])
+}
+
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'testing') {
+  module.exports.plugins = (module.exports.plugins || []).concat([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: `"${process.env.NODE_ENV}"`
+      }
+    }),
+    new HtmlWebpackPlugin({
+      template: process.env.NODE_ENV === 'development' ? './index.html' : './test.html'
     })
   ])
 }

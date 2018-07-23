@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="8">
+
+  <testsuite name="test"
+    errors="0" failures="0" hostname="" id="" package="test" skipped="0"
+    tests="8" time="9.954" timestamp="Mon, 23 Jul 2018 22:43:25 GMT">
+  
+    <testcase name="app is being rendered" classname="test" time="3.860" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="builder renders tree" classname="test" time="0.2840" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="builder renders draggables" classname="test" time="0.3150" assertions="7">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="drag area and edit button are shown on hover" classname="test" time="0.2610" assertions="6">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="field can be dragged from fieldset into page" classname="test" time="0.8700" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="new field can be dragged from palette into fieldset" classname="test" time="0.7570" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="field can be configured" classname="test" time="1.282" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="tree is persisted to server on form step submit" classname="test" time="2.325" assertions="5">
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

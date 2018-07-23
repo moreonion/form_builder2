@@ -9,16 +9,10 @@
 
     <!-- Paths for the following scripts are set in the webpack config in devServer.contentBase -->
     <script type="text/javascript" src="campaignion_vue.js"></script>
-    <script type="text/javascript" src="mfb-plugin-commons.js"></script>
-    <script type="text/javascript" src="mfb-plugins.js"></script>
-
-    <link rel="stylesheet" href="mfb-plugin-commons.css">
-    <link rel="stylesheet" href="mfb-plugins.css">
+    <script src="dist/plugins.js"></script>
 
   </head>
   <body>
-    <!-- Styles in body to override app styles injected into the head by webpack. -->
-    <link rel="stylesheet" href="modules_css/vue_app_overrides.css">
 
     <a href="#" id="trigger-request-leave-page">Trigger request-leave-page</a>
     <a href="#" id="trigger-request-submit-page">Trigger request-submit-page</a>
