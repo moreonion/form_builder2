@@ -2,6 +2,8 @@ const path = require('path')
 const jsonServer = require('json-server')
 const server = jsonServer.create()
 const bodyParser = require('body-parser')
+const Entities = require('html-entities').XmlEntities
+const entities = new Entities()
 
 // Use an in-memory database for testing.
 const router = process.env.NODE_ENV === 'testing'
@@ -17,6 +19,14 @@ server.use(middlewares)
 // You can use the one used by JSON Server
 server.use(bodyParser.json())
 server.use(bodyParser.text({type: 'text/*'}))
+
+// Add custom routes before JSON Server router
+server.post('/filter-text', (req, res) => {
+  const data = req.body.format === 'full_html_with_editor'
+    ? req.body.value
+    : entities.encode(req.body.value)
+  res.status(200).send(data)
+})
 
 // Use default router
 server.use(router)

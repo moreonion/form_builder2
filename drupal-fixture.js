@@ -12,8 +12,13 @@ window.Drupal = {
         {name: 'generic', label: 'Generic fields'}
       ],
       endpoints: {
-        tree: 'http://localhost:8081/tree'
-      }
+        tree: 'http://localhost:8081/tree',
+        filterText: 'http://localhost:8081/filter-text'
+      },
+      allowedTextFormats: [
+        {value: 'full_html_with_editor', label: 'Full HTML with editor', wysiwyg: true},
+        {value: 'plain_text', label: 'Plain text'}
+      ]
     }
   },
 
