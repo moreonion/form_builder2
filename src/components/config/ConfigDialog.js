@@ -18,6 +18,13 @@ export default {
     title () {
       return this.text('Configure field')
     },
+    wrapperClasses () {
+      const cls = ['mfb-config-dialog']
+      if (this.element) {
+        cls.push('mfb-configuring-' + this.element.type)
+      }
+      return cls
+    },
     configComponent () {
       var name = this.element ? componentName(this.element.type, 'config') : null
       if (name && !Vue.options.components[name]) {
@@ -77,7 +84,7 @@ export default {
     }
   },
   template: `<el-dialog
-               class="mfb-config-dialog"
+               :class="wrapperClasses"
                width="40%"
                :title="title"
                :visible="show"
