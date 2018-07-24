@@ -37,6 +37,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-plugin-transform-vue-jsx": "^3.5.1",
     "babel-preset-env": "^1.6.0",
+    "body-parser": "^1.18.3",
     "chromedriver": "2.36.0",
     "concurrently": "^3.6.0",
     "cross-env": "^5.1.3",

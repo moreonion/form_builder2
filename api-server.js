@@ -1,6 +1,7 @@
 const path = require('path')
 const jsonServer = require('json-server')
 const server = jsonServer.create()
+const bodyParser = require('body-parser')
 
 // Use an in-memory database for testing.
 const router = process.env.NODE_ENV === 'testing'
@@ -14,7 +15,8 @@ server.use(middlewares)
 
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
-server.use(jsonServer.bodyParser)
+server.use(bodyParser.json())
+server.use(bodyParser.text({type: 'text/*'}))
 
 // Use default router
 server.use(router)
