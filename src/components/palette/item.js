@@ -1,22 +1,20 @@
 import {DnDMdArea} from 'mo-vue-dnd' // eslint-disable-line no-unused-vars
 import {Node} from '../builder/node'
-
-var $store
+import {store} from '../../store'
 
 export default class Item {
-  constructor (elTemplate, vuexStore) {
+  constructor (elTemplate) {
     this.elTemplate = elTemplate
-    $store = vuexStore
   }
 
   nodeFactoryProxy () {
-    if (!$store.state.builder.draggedNode) {
+    if (!store.state.builder.draggedNode) {
       // Get the config from the factory.
-      const config = this.elTemplate.factory($store.state.builder.rootNode)
+      const config = this.elTemplate.factory(store.state.builder.rootNode)
       // Cache the newly generated node until it is dropped.
-      $store.commit('builder/dragNode', {node: new Node(config, [])})
+      store.commit('builder/dragNode', {node: new Node(config, [])})
     }
-    return $store.state.builder.draggedNode
+    return store.state.builder.draggedNode
   }
 
   renderFn (h) {

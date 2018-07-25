@@ -24,7 +24,7 @@ export default {
       this.elTemplates.filter(elTemplate => elTemplate.group === group)
         .sort((a, b) => a - b)
         .forEach((elTemplate) => {
-          items.push(new Item(elTemplate, this.$store))
+          items.push(new Item(elTemplate))
         })
       return items
     },
