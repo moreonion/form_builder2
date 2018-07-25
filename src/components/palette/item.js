@@ -1,10 +1,15 @@
 import {DnDMdArea} from 'mo-vue-dnd' // eslint-disable-line no-unused-vars
 import {Node} from '../builder/node'
 import {store} from '../../store'
+import {recursiveAppendNode} from '../../utils'
 
 export default class Item {
   constructor (elTemplate) {
     this.elTemplate = elTemplate
+    this.handleClick = e => {
+      const config = this.elTemplate.factory(store.state.builder.rootNode)
+      recursiveAppendNode(store.state.builder.rootNode, new Node(config, []))
+    }
   }
 
   nodeFactoryProxy () {
@@ -23,7 +28,9 @@ export default class Item {
 
     return (
       <Wrapper class={{'mfb-palette-item': true, 'mfb-palette-item-disabled': !isAddable}}>
-        <fa-icon icon={this.elTemplate.icon}></fa-icon> <span>{this.elTemplate.label}</span>
+        <div onClick={this.handleClick}>
+          <fa-icon icon={this.elTemplate.icon}></fa-icon><span>{this.elTemplate.label}</span>
+        </div>
       </Wrapper>
     )
   }
