@@ -208,11 +208,11 @@ export default {
       <div class="mfb-app" data-interrupt-submit data-has-unsaved-changes={this.unsavedChanges}>
         <DnDContext scopedSlots={slots} ref={'dndContext'}>
           {mobilePalette}
+          {desktopPalette}
           <section class="mfb-builder">
             <h1>{this.text('Form preview')}</h1>
             {builder}
           </section>
-          {desktopPalette}
         </DnDContext>
         <ConfigDialog />
       </div>
