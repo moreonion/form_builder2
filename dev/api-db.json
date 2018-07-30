@@ -4,6 +4,15 @@
       {
         "children": [
           {
+            "children": [],
+            "id": 6,
+            "type": "markup",
+            "label": "New markup",
+            "formKey": "markup_0",
+            "textFormat": "plain_text",
+            "value": "<p><strong>New HTML Markup</strong></p>\n\n<p>Enter any text supported by available text formats.</p>\n"
+          },
+          {
             "children": [
               {
                 "children": [],
@@ -38,15 +47,18 @@
                 "options": [
                   {
                     "value": "1",
-                    "label": "One"
+                    "label": "One",
+                    "default": false
                   },
                   {
                     "value": "2",
-                    "label": "Two"
+                    "label": "Two",
+                    "default": false
                   },
                   {
                     "value": "3",
-                    "label": "Three"
+                    "label": "Three",
+                    "default": true
                   }
                 ],
                 "customOption": false,
@@ -56,6 +68,15 @@
             "type": "fieldset",
             "label": "my fieldset",
             "id": 4
+          },
+          {
+            "id": 8,
+            "children": [],
+            "type": "markup",
+            "label": "New markup",
+            "formKey": "markup_1",
+            "textFormat": "full_html_with_editor",
+            "value": "<p><strong>New HTML Markup</strong></p>\n\n<p>Enter any text supported by available text formats.</p>"
           }
         ],
         "type": "page",

@@ -7,7 +7,7 @@ const entities = new Entities()
 
 // Use an in-memory database for testing.
 const router = process.env.NODE_ENV === 'testing'
-  ? jsonServer.router(require(path.join(__dirname, 'api-db.test.js')))
+  ? jsonServer.router(require(path.join(__dirname, '..', 'test', 'e2e', 'api-db.js')))
   : jsonServer.router(path.join(__dirname, 'api-db.json'))
 
 const middlewares = jsonServer.defaults()

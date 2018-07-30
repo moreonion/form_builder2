@@ -3,7 +3,7 @@ import Vue from 'vue'
 import './global.scss'
 
 import {plugins} from './config/global'
-import './vendor'
+import './vendor/'
 import {store} from './store'
 import eventBus from './bus'
 import events from './events'
