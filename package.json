@@ -1,8 +1,11 @@
 {
   "name": "mo-fb2",
   "description": "More Onion: Form Builder",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "author": "Onur Dogangönül <contact@dinony.com>",
+  "contributors": [
+    "Maya Kokits <hello@mayakokits.com>"
+  ],
   "private": true,
   "scripts": {
     "lint": "eslint 'src/**/*.js'",
@@ -10,7 +13,6 @@
     "build:dev": "cross-env NODE_ENV=development webpack --progress --hide-modules",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "build:analyze": "cross-env NODE_ENV=production webpack --config webpack.config.js --profile --json > stats.json && webpack-bundle-analyzer stats.json",
-    "deploy": "npm run build && tools/deploy.sh",
     "e2e": "cross-env NODE_ENV=testing concurrently --kill-others --success first \"webpack-dev-server\" \"node dev/api-server.js\" \"node test/e2e/runner.js\""
   },
   "dependencies": {
