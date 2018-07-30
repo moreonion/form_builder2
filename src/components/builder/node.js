@@ -10,7 +10,7 @@ import {getNewId} from './id'
 import dropHandler from './drop'
 import {clone} from '../../utils'
 import {store} from '../../store'
-import plugins from '../../plugins'
+import {plugins} from '../../config/global'
 
 export class Node {
   constructor (config, initChildren = []) {

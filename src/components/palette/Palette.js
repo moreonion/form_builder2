@@ -4,6 +4,7 @@ import {DnDItems} from 'mo-vue-dnd' // eslint-disable-line no-unused-vars
 import Item from './item'
 
 import {PALETTE_DND_GROUP, PALETTE_DND_OPTIONS} from '../../config/dnd'
+import {plugins} from '../../config/global'
 
 export default {
   name: 'Palette',
@@ -12,7 +13,7 @@ export default {
       groups: Drupal.settings.campaignion_form_builder.paletteGroups.map(group => group.name),
       groupLabels: Drupal.settings.campaignion_form_builder.paletteGroups.map(group => group.label),
       expanded: Drupal.settings.campaignion_form_builder.paletteGroups.map((group, i) => i), // Every group is expanded by default.
-      elTemplates: window.moFormBuilder.plugins.templates
+      elTemplates: plugins.templates
     }
   },
   computed: {

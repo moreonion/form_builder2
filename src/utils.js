@@ -1,7 +1,7 @@
 import {Node} from './components/builder/node'
 import {registerTakenId} from './components/builder/id'
 import {store} from './store'
-import plugins from './plugins'
+import {plugins} from './config/global'
 
 export function clone (obj) {
   return JSON.parse(JSON.stringify(obj))
