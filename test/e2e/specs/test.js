@@ -68,7 +68,7 @@ module.exports = {
   'new field can be dragged from palette into fieldset': function (client) {
     client
       .useXpath()
-      .drag(`//*[text()="Field"]/parent::*[contains(@class, "mfb-palette-item")]`, `//*[@class="mfb-element-test-fieldset"]/*[contains(@class, "mfb-element-children")]`)
+      .drag(`//*[text()="Field"]/ancestor::*[contains(@class, "mfb-palette-item")]`, `//*[@class="mfb-element-test-fieldset"]/*[contains(@class, "mfb-element-children")]`)
       .assert.visible(`//*[@class="mfb-element-test-page"]//*[@class="mfb-element-test-fieldset"]//*[@class="mfb-element-test-field"]/*[text()="Hello from New field!"]`)
       .useCss()
   },
