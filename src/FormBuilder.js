@@ -18,6 +18,8 @@ import {PALETTE_DISPLAY_BREAKPOINT} from './config/general'
 var unwatchDnd, resizeHandler, leavePageHandler
 
 export default {
+  name: 'FormBuilder',
+
   computed: {
     ...mapState('builder', ['rootNode']),
     ...mapState('config', ['originalNode']),
