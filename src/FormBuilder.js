@@ -61,12 +61,14 @@ export default {
         var draggedNode = this.$refs.dndContext.selIt.cnt[this.$refs.dndContext.selIt.idx]
         // If it’s a palette item, get the according node.
         if (draggedNode instanceof Item) {
-          draggedNode = draggedNode.nodeFactoryProxy()
+          draggedNode = draggedNode.getNewNode()
         }
         bus.$emit(ITEM_DRAG, {node: draggedNode})
+        // Cache the dragged node.
         this.$store.commit('builder/dragNode', {node: draggedNode})
       } else {
         bus.$emit(ITEM_DROP, {node: this.$store.state.builder.draggedNode})
+        // Clear the dragged node cache.
         this.$store.commit('builder/dropNode')
       }
     })

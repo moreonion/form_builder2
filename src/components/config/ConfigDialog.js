@@ -53,10 +53,7 @@ export default {
     /** {(Node|null)} The node that is being edited. */
     ...mapState('config', ['originalNode'])
   },
-  mounted () {
-  },
-  beforeDestroy () {
-  },
+
   watch: {
     /**
      * If a node is being edited, copy it to the component data for editing

@@ -22,20 +22,15 @@ export default class Item {
 
   /**
    * Get an element (a node instance) from this element template.
-   * This is called when a palette item is dragged into the builder.
+   * This is called by the watcher on DnDContext in the FormBuilder component
+   * when a palette item is dragged.
    * @returns {Node} The node instance created.
    */
-  nodeFactoryProxy () {
-    // If there isn’t a node instance yet, create one, so it can be dropped into the builder.
-    if (!store.state.builder.draggedNode) {
-      // Get the config from the factory.
-      const config = this.elTemplate.factory(store.state.builder.rootNode)
-      // Generate a node and cache it to store.state.builder.draggedNode until it is dropped.
-      // When it is dropped, the watcher on DnDContext in the FormBuilder component will
-      // clear store.state.builder.draggedNode again.
-      store.commit('builder/dragNode', {node: new Node(config, [])})
-    }
-    return store.state.builder.draggedNode
+  getNewNode () {
+    // Get the config from the factory.
+    const config = this.elTemplate.factory(store.state.builder.rootNode)
+    // Return a new node with the above config.
+    return new Node(config, [])
   }
 
   /**
