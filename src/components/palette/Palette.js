@@ -19,8 +19,8 @@ export default {
       groups: Drupal.settings.campaignion_form_builder.paletteGroups.map(group => group.name),
       /** {string[]} Array of display labels of the groups. */
       groupLabels: Drupal.settings.campaignion_form_builder.paletteGroups.map(group => group.label),
-      /** {integer[]} Array of zero-based indexes of the groups that are expanded. */
-      expanded: Drupal.settings.campaignion_form_builder.paletteGroups.map((group, i) => i), // Every group is expanded by default.
+      /** {integer} Zero-based index of the expanded group. */
+      expanded: 0,
       /** {Object[]} Array of template plugins. */
       elTemplates: plugins.templates
     }
@@ -45,14 +45,6 @@ export default {
           items.push(new Item(elTemplate))
         })
       return items
-    },
-
-    /**
-     * Handle change event on the Collapse component.
-     * @param {integer[]} expanded Array of zero-based indexes of the groups that are expanded.
-     */
-    onCollapseToggle (expanded) {
-      this.expanded = expanded
     }
   },
 
@@ -61,7 +53,7 @@ export default {
     const slots = {default: props => props.item.renderFn(h)}
 
     const content = this.groups.map((groupName, i) => (
-      <el-collapse value={this.expanded} onChange={this.onCollapseToggle}>
+      <el-collapse v-model={this.expanded} accordion>
         <el-collapse-item title={this.groupLabels[i]} name={i}>
           <DnDItems group={PALETTE_DND_GROUP}
             options={PALETTE_DND_OPTIONS}
