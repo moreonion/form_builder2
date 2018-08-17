@@ -18,3 +18,7 @@ rules:
     - error
     - {ignoreEOLComments: true}
   no-debugger: 0
+  require-jsdoc: error
+  valid-jsdoc:
+    - error
+    - {requireReturn: false}

@@ -1,9 +1,18 @@
+// Unless mo-vue-dnd offers a smoother implementation of a drop handler or exposes
+// the source files, we need to copy these dependencies over.
 import DropResult from './dnd-dependencies/DropResult'
 import DropContext from './dnd-dependencies/DropContext'
 import ItemContext from './dnd-dependencies/ItemContext'
 
 import bus from '../../bus'
 
+/**
+ * Drop handler for mo-vue-dnd.
+ * The logic is taken from there, additionally this handler checks whether the dragged node and
+ * the target context both accept the parent-child relationship.
+ * @param {ItemIntersection} itemIntersection Object describing source and target context.
+ * @returns {DropResult} Object describing the resulting contexts or null to prohibit dropping.
+ */
 export default function drop (itemIntersection) {
   const debug = {}
   debug.itemInt = itemIntersection

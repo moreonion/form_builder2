@@ -1,3 +1,8 @@
+/**
+ * Builder component.
+ * This one renders the tree.
+ */
+
 import bus from '../../bus'
 import {MOUSE_HOVER} from '../../events'
 import {Node} from './node'
@@ -35,7 +40,9 @@ export default {
     }
   },
   render (h) {
+    // Render the root node’s children into DnDItems’ default slot.
     const slots = {default: props => props.item.renderFn(h)}
+    // Get the name of the root preview component.
     const ElementPreview = componentName(this.rootNode.type) // eslint-disable-line no-unused-vars
 
     return (

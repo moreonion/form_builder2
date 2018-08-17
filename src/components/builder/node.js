@@ -12,8 +12,15 @@ import {clone} from '../../utils'
 import {store} from '../../store'
 import {plugins} from '../../config/global'
 
+/** Class representing an element in the tree. */
 export class Node {
+  /**
+   * Create an element.
+   * @param {Object} config The element’s config properties.
+   * @param {Node[]} initChildren = [] The element’s children as an array of node instances.
+   */
   constructor (config, initChildren = []) {
+    // If there is no id in the config, add a new one.
     if (typeof config.id === 'undefined') {
       this.id = getNewId()
     }
@@ -26,42 +33,82 @@ export class Node {
       }
     }
 
-    // 'Private' property for the preview component’s data that has to be
-    // persisted when the component is being destroyed during drag’n’drop.
     var _previewData = null
+
+    /**
+     * Cache the preview component’s data when the component is being destroyed
+     * during drag’n’drop.
+     * @param {Object} data Component data of the preview component.
+     */
     this.setPreviewData = function (data) {
       _previewData = data
     }
+
+    /**
+     * Get the cached data for the new instance of the preview component created
+     * after drag’n’drop.
+     * @returns {Object} Component data for the preview component.
+     */
     this.getPreviewData = function () {
       return _previewData
     }
 
-    // 'Private' parent property.
     var _parent
+
+    /**
+     * Set the node’s parent.
+     * @param {Node} parent This node’s parent node.
+     */
     this.setParent = function (parent) {
       _parent = parent
     }
+
+    /**
+     * Get the node’s parent.
+     * @returns {Node} This node’s parent node.
+     */
     this.getParent = function () {
       return _parent
     }
   }
 
+  /**
+   * Set all of the node’s children at once.
+   * @param {Node[]} children An array of node instances.
+   */
   setChildren (children) {
     store.commit('builder/setChildren', {node: this, children})
   }
 
+  /**
+   * Add a child to the node at a given position.
+   * @param {integer} index Zero-based position of the new child.
+   * @param {Node} child The child node to add.
+   */
   addChild (index, child) {
     store.commit('builder/addChild', {node: this, index, child})
   }
 
+  /**
+   * Remove a child from the node at a given position.
+   * @param {integer} index Zero-based position of the child to remove.
+   */
   removeChildByIndex (index) {
     store.commit('builder/removeChildByIndex', {node: this, index})
   }
 
+  /**
+   * Remove a given child from the node.
+   * @param {Node} child The child to remove.
+   */
   removeChild (child) {
     store.commit('builder/removeChild', {node: this, child})
   }
 
+  /**
+   * Check if the node can be removed from the tree.
+   * @returns {boolean} Can the node be removed?
+   */
   isRemovable () {
     if (plugins.types[this.type] && typeof plugins.types[this.type].acceptsDeletion === 'function') {
       return plugins.types[this.type].acceptsDeletion(store.state.builder.rootNode, this)
@@ -71,6 +118,10 @@ export class Node {
     }
   }
 
+  /**
+   * Remove the node from the tree.
+   * @returns {boolean} Success of the operation.
+   */
   removeNode () {
     if (this.isRemovable()) {
       store.commit('builder/removeChild', {node: this.getParent(), child: this})
@@ -80,7 +131,14 @@ export class Node {
     }
   }
 
+  /**
+   * Render an element with a draggable, the element preview and the element’s children.
+   * @param {function} h createElement function.
+   * @param {boolean} parentDragged Flag indicating whether the node’s parent is being dragged.
+   * @returns {VNode} Virtual DOM node.
+   */
   renderFn (h, parentDragged = false) {
+    // Get the preview component name for this element, fall back to missing.
     var ElementPreview = componentName(this.type)
     if (!Vue.options.components[ElementPreview]) {
       ElementPreview = componentName('missing')

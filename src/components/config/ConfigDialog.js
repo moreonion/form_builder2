@@ -1,3 +1,7 @@
+/**
+ * Config dialog component.
+ */
+
 import Vue from 'vue'
 import {mapState} from 'vuex'
 import bus from '../../bus'
@@ -8,16 +12,25 @@ import {clone} from '../../utils'
 
 export default {
   name: 'ConfigDialog',
+
   data () {
     return {
-      show: false,
-      element: null
+      show: false,  // Config dialog visibility.
+      element: null // Copy of the element being configured.
     }
   },
+
   computed: {
+    /**
+     * @returns {string} The dialog title.
+     */
     title () {
       return this.text('Configure field')
     },
+
+    /**
+     * @returns {string[]} Array of class strings for dialog wrapper.
+     */
     wrapperClasses () {
       const cls = ['mfb-config-dialog']
       if (this.element) {
@@ -25,6 +38,10 @@ export default {
       }
       return cls
     },
+
+    /**
+     * @returns {string} The name of the config component to show.
+     */
     configComponent () {
       var name = this.element ? componentName(this.element.type, 'config') : null
       if (name && !Vue.options.components[name]) {
@@ -32,6 +49,8 @@ export default {
       }
       return name
     },
+
+    /** {(Node|null)} The node that is being edited. */
     ...mapState('config', ['originalNode'])
   },
   mounted () {
@@ -39,6 +58,11 @@ export default {
   beforeDestroy () {
   },
   watch: {
+    /**
+     * If a node is being edited, copy it to the component data for editing
+     * and show the dialog, otherwise reset this.element and hide the dialog.
+     * @param {(Node|null)} val The node that is being edited.
+     */
     originalNode (val) {
       if (val) {
         this.element = clone(val)
@@ -49,7 +73,15 @@ export default {
       }
     }
   },
+
   methods: {
+    /**
+     * Callback called if the user tries to close the dialog.
+     * Calls the cancelCallback or the closeCallback methods on the
+     * config dialog if present and closes the dialog only if they call done().
+     * @param {function} dialogDone Done function provided by the dialog component.
+     * Call dialogDone() to close the dialog.
+     */
     handleCancel (dialogDone) {
       const done = () => {
         this.$store.commit('config/leaveNode')
@@ -63,6 +95,12 @@ export default {
         done()
       }
     },
+    /**
+     * Call the saveCallback or the closeCallback methods on the
+     * config dialog if present. If they call done(),
+     * save the edited element back to the tree.
+     * Emit ELEMENT_UPDATE.
+     */
     handleSave () {
       const done = () => {
         const originalNode = this.originalNode
@@ -77,12 +115,14 @@ export default {
         done()
       }
     },
+
     text (text) {
       switch (text) {
         case 'Configure field': return Drupal.t('Configure field')
       }
     }
   },
+
   template: `<el-dialog
                :class="wrapperClasses"
                width="40%"

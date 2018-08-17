@@ -1,3 +1,8 @@
+/**
+ * Draggable component.
+ * Every element preview that can be dragged is wrapped by this component.
+ */
+
 import bus from '../../bus'
 import {MOUSE_HOVER} from '../../events'
 
@@ -8,11 +13,14 @@ export default {
   props: ['element'],
   data () {
     return {
-      hovered: false,
+      hovered: false, // Is the mouse hovering over this draggable or one of its children?
       faArrowsAlt
     }
   },
   computed: {
+    /**
+     * @returns {boolean} Is this draggable being dragged?
+     */
     dragged () {
       return this.$store.state.builder.draggedNode === this.element
     }
@@ -41,9 +49,14 @@ export default {
       }
       this.hovered = this.$el === target
     },
+
+    /**
+     * Handle clicks on the Edit button.
+     */
     editNode () {
       this.$store.commit('config/editNode', {node: this.element})
     },
+
     text (text) {
       switch (text) {
         case 'edit field': return Drupal.t('Edit')

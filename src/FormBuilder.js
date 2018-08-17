@@ -1,3 +1,7 @@
+/**
+ * Form builder component.
+ */
+
 import {mapState} from 'vuex'
 import bus from './bus'
 import {ITEM_DRAG, ITEM_DROP} from './events'
@@ -28,16 +32,18 @@ export default {
 
   data () {
     return {
-      unsavedChanges: false,
-      palettePopoverVisible: false
+      unsavedChanges: false, // Is there a change in the tree that hasn’t been persisted to the server?
+      palettePopoverVisible: false // status of the palette popover on mobile
     }
   },
 
   mounted () {
+    // Load the tree.
     tree.get().then(
       response => {
         this.$store.commit('builder/setRoot', {node: parseTree(response.data)})
 
+        // Watch the tree for changes.
         const unwatchRootNode = this.$watch('rootNode', function () {
           this.unsavedChanges = true
           unwatchRootNode()
@@ -86,6 +92,7 @@ export default {
     // Listen to events by interrupt-submit.js
     leavePageHandler = e => {
       if (e.type === 'request-leave-page') {
+        // User wants to leave without saving.
         if (this.unsavedChanges) {
           this.$confirm(this.text('unsaved changes'), this.text('unsaved changes title'), {
             confirmButtonText: this.text('Go back anyway'),
@@ -130,10 +137,17 @@ export default {
   },
 
   methods: {
+    /**
+     * Close the palette popover if an item is being dragged from the palette.
+     */
     itemDragHandler () {
       this.palettePopoverVisible = false
     },
 
+    /**
+     * Set the disabled attribute of the wizard submit buttons.
+     * @param {boolean} bool Set disabled attribute to this value.
+     */
     disableDrupalSubmits (bool) {
       const inputs = document.querySelectorAll('.form-actions.form-wrapper input[type=submit]')
       for (var i = 0, j = inputs.length; i < j; i++) {
@@ -141,14 +155,23 @@ export default {
       }
     },
 
+    /**
+     * Resume leaving the wizard page after wizard form submit.
+     */
     leavePage () {
       dispatch(this.$el, 'resume-leave-page')
     },
 
+    /**
+     * Prevent leaving the wizard page after wizard form submit.
+     */
     stayOnPage () {
       dispatch(this.$el, 'cancel-leave-page')
     },
 
+    /**
+     * Persist the tree to the server.
+     */
     putData () {
       const data = this.rootNode
       tree.put(data).then(response => {
@@ -204,6 +227,7 @@ export default {
       </section>
       : null
 
+    // Render builder only if a tree is available.
     const builder = this.rootNode ? <Builder rootNode={this.rootNode} /> : null
 
     return (
