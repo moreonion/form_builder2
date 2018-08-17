@@ -1,5 +1,5 @@
 import bus from '../../bus'
-import {DRAGGABLE_HOVER} from '../../events'
+import {MOUSE_HOVER} from '../../events'
 import {Node} from './node'
 
 import {DnDItems} from 'mo-vue-dnd' // eslint-disable-line no-unused-vars
@@ -20,15 +20,13 @@ export default {
     document.removeEventListener('mousemove', this.onMousemove)
   },
   methods: {
+    /**
+     * Handle mouse movements at document level.
+     * Emit `MOUSE_HOVER` and pass the element hovered at the moment.
+     * @param {Event} event The native event.
+     */
     onMousemove (event) {
-      function findAncestor (el, cls) {
-        while (el.classList && !el.classList.contains(cls)) {
-          el = el.parentNode
-        }
-        return el
-      }
-      // Emit `DRAGGABLE_HOVER` if mouse hovers over a draggable or its children
-      bus.$emit(DRAGGABLE_HOVER, {el: findAncestor(event.target, 'mfb-draggable')})
+      bus.$emit(MOUSE_HOVER, {target: event.target})
     }
   },
   props: {

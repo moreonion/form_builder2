@@ -1,5 +1,5 @@
 import bus from '../../bus'
-import {DRAGGABLE_HOVER} from '../../events'
+import {MOUSE_HOVER} from '../../events'
 
 import faArrowsAlt from '@fortawesome/fontawesome-free-solid/faArrowsAlt'
 
@@ -18,14 +18,28 @@ export default {
     }
   },
   mounted () {
-    bus.$on(DRAGGABLE_HOVER, this.updateHoverState)
+    // Listen to event emitted by the Builder component.
+    bus.$on(MOUSE_HOVER, this.isHovered)
   },
   beforeDestroy () {
-    bus.$off(DRAGGABLE_HOVER, this.updateHoverState)
+    bus.$off(MOUSE_HOVER, this.isHovered)
   },
   methods: {
-    updateHoverState ({el}) {
-      this.hovered = (el === this.$el)
+    /**
+     * Check if the hovered element belongs to this draggable and update
+     * this.hovered accordingly.
+     * @param {Object} payload Event payload.
+     * @param {HTMLElement} payload.target DOM element that is hovered at the moment.
+     */
+    isHovered ({target}) {
+      if (this.$el.contains(target)) {
+        // The target could still be nested inside other draggables in
+        // this draggable, so we travel up from the target to the first draggable.
+        while (!target.classList.contains('mfb-draggable')) {
+          target = target.parentNode
+        }
+      }
+      this.hovered = this.$el === target
     },
     editNode () {
       this.$store.commit('config/editNode', {node: this.element})
