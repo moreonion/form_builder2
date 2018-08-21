@@ -1,9 +1,27 @@
-language: node_js
-node_js:
-  - "10"
+# Selenium needs a Java environment.
+# See: http://sm4.github.io/2017/02/07/Vue-Nightwatch-e2e-tests-on-Travis-CI-in-Chrome/
+
+sudo: required
+dist: trusty
+language: java
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+jdk:
+  - oraclejdk8
+before_install:
+  - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - nvm install 10.0.0
+  - npm install -g yarn
 cache:
   yarn: true
 install:
   - yarn install
 script:
   - yarn lint
+  - yarn e2e
