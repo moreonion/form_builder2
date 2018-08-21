@@ -12,7 +12,7 @@ module.exports = {
     var app = client.page.app()
 
     app.navigate()
-      .waitForElementVisible('body', 5000)
+      .waitForElementVisible(app.section.palette.selector, 5000)
       .assert.visible(app.section.palette.selector)
       .assert.visible(app.section.builder.selector)
       .assert.hidden(app.section.config.selector)
