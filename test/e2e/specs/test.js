@@ -43,6 +43,21 @@ module.exports = {
       .useCss()
   },
 
+  'palette accordion shows first group by default': function (client) {
+    client
+      .assert.visible('.mfb-palette .el-collapse:first-of-type .el-collapse-item__content')
+      .assert.hidden('.mfb-palette .el-collapse:last-of-type .el-collapse-item__content')
+  },
+
+  'palette accordion shows second group on click': function (client) {
+    client
+      .click('.mfb-palette .el-collapse:last-of-type .el-collapse-item__header')
+      .pause(1000)
+      .assert.hidden('.mfb-palette .el-collapse:first-of-type .el-collapse-item__content')
+      .assert.visible('.mfb-palette .el-collapse:last-of-type .el-collapse-item__content')
+      .assert.elementCount('.mfb-palette .el-collapse:last-of-type .el-collapse-item__content .dnd-it', 3)
+  },
+
   'drag area and edit button are shown on hover': function (client) {
     client
       .moveToElement(`.mfb-element-test-fieldset legend`, 5, 5)
