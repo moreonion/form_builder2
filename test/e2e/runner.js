@@ -12,7 +12,7 @@ if (opts.indexOf('--config') === -1) {
 if (opts.indexOf('--env') === -1) {
   opts = opts.concat(['--env', 'chrome'])
 }
-opts = opts.concat(['--verbose'])
+// opts = opts.concat(['--verbose'])
 
 var spawn = require('cross-spawn')
 var runner = spawn('./node_modules/.bin/nightwatch', opts, { stdio: 'inherit' })
